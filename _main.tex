@@ -1,0 +1,1906 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Introduction to Bioinformatics) Excercise Guidebook},
+  pdfauthor={Javier F. Tabima Restrepo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Introduction to Bioinformatics) Excercise Guidebook}
+\author{Javier F. Tabima Restrepo}
+\date{2022-09-01}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{intro}{%
+\chapter{MBB101/BIOL123 (Introduction to Bioinformatics) Excercise Guidebook}\label{intro}}
+
+Welcome to \emph{Introduction to Bioinformatics}! This document here will be your \textbf{excercise guidebook}, or what some will call the \textbf{Laboratory notebook}.
+
+You will find here all the exercises for class, as well as a basic reference guide for basics of coding and all the resources we will use for the course
+
+\hypertarget{additional-information-about-the-professor}{%
+\section*{Additional information about the professor}\label{additional-information-about-the-professor}}
+\addcontentsline{toc}{section}{Additional information about the professor}
+
+Professor Tabima Restrepo is always reachable at \texttt{jtabima@clarku.edu}.
+
+Office hours are on \emph{Wednesdays between 1PM and 3PM} at Larsy 223, or by email.
+
+\hypertarget{structure-of-the-guidebook-and-faqs}{%
+\chapter{Structure of the Guidebook and FAQs}\label{structure-of-the-guidebook-and-faqs}}
+
+\hypertarget{what-do-we-need-for-lab-sessions}{%
+\section{What do we need for lab sessions?}\label{what-do-we-need-for-lab-sessions}}
+
+For our labs we are going to use \emph{R, RStudio} and the basic \emph{UNIX command line}
+We will also use \emph{atom}, a basic text editor that's widely used in programming to view and edit files.
+
+We will use the local cluster called \texttt{SMAUG} (See Figure 1). \texttt{SMAUG} is a computer that the Tabima lab hosts that has 32 processors, more than 14 TB of storage and 128 GB of RAM. Enough to do any kind of analyses.
+
+\hypertarget{why-are-we-using-these-programs}{%
+\section{Why are we using these programs?}\label{why-are-we-using-these-programs}}
+
+While most of our stuff will be executed online, I thought it would be great that we learn a bit about programming and reproducible science.
+
+\texttt{R} and \texttt{RStudio} will allow us to do that. With R we can create code that can be reproducible and we can use for future analisis. With RStudio we will have an easy usable user interface to create notebooks like this one!
+
+\texttt{Atom} will help us read files we wouldn't be able to read otherwise. As we go forward with class we will see some examples of these files.
+
+\hypertarget{do-we-need-to-know-how-to-program}{%
+\section{Do we need to know how to program?}\label{do-we-need-to-know-how-to-program}}
+
+No.~We will use R for very basic things like extracting sequences from a large file or to count numbers of genes or basic stuff.
+
+We will learn how to do some basic programming and how to use the command line (i.e.~how to use basic commands, how to create folders, execute programs and create loops). If not, we will use internet based tools to learn bioinformatics.
+
+\emph{Being recursive and using the resources we can is very important. Sometimes things won't work as expected and we MUST find an alternative. This is one of those cases}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{software}{%
+\chapter{Software for class}\label{software}}
+
+As I mentioned in the preovious chaopter, we are going to use \emph{R, RStudio} and the basic \emph{UNIX command line} for our exercises, as well as \emph{atom}, a basic text editor that's widely used in programming to view and edit files.
+
+\emph{For this course we WON'T need to install R or R studio in our computers! We will use a webpage that has R and R studio}. That being said, I'll leave this guide in case you want to install it in the future.
+
+\hypertarget{how-to-install-r}{%
+\section{How to install R?}\label{how-to-install-r}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Open an internet browser and go to \url{www.r-project.org}
+\item
+  Click the ``download R'' link in the middle of the page.
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/R_down.png}
+\caption{Downloading R}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Select a CRAN location (a mirror site) and click the corresponding link.
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/CRAN.png}
+\caption{Downloading R}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Click on the ``Download R for'' your operating system link at the top of the page.
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/R_link.png}
+\caption{Links for R}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  For Windows users: Click on the ``install R for the first time'' link at the top of the page. Run the \texttt{.exe} file and follow the installation instructions.\\
+\item
+  For MacOS X users: Click on the ``R-4.0.2.pkg'' link to download the install package. Run the \texttt{.pkg} file and follow the installation instructions.
+\end{itemize}
+
+\hypertarget{how-to-install-rstudio}{%
+\section{How to install RStudio?}\label{how-to-install-rstudio}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to \url{www.rstudio.com} and click on the ``Download'' link.
+\end{enumerate}
+
+\includegraphics{Lab0/Rstudio_down.png}
+2. Click on ``Download RStudio Desktop (FREE)'' in the lower part of the page.
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/Rstudio_button.png}
+\caption{Links for R}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Click on the version recommended for your system. save the .exe/.dmg file on your computer, double-click it to open, and then drag and drop it to your applications folder.
+\end{enumerate}
+
+\hypertarget{how-to-install-atom}{%
+\section{How to install Atom?}\label{how-to-install-atom}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to the atom webpage at \url{https://atom.io/}
+\item
+  Click on Download.
+\item
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  In Mac OS: Move the application to the Applications folder
+\item
+  In Windows: Execute the \texttt{AtomSetup.exe} file
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{testing-the-software}{%
+\chapter{Testing the software}\label{testing-the-software}}
+
+\hypertarget{testing-r-and-rstudio}{%
+\section{Testing R and RStudio}\label{testing-r-and-rstudio}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Go to \url{http://140.232.222.154:8787}
+\item
+  Log in using your Clark username \emph{without} the \texttt{@clarku.edu} (e.g.~my user would be \texttt{jtabima}) and the \texttt{BIOL123} password all in capitals
+\item
+  You should see a window like this:
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/R_panels.png}
+\caption{RStudio panels}
+\end{figure}
+
+You should have three panes open (or probably four). The one in the left that says \texttt{R\ version\ XXX} is your \emph{console}. Most of the code goes there, both input and output.
+
+On the upper right you have the \emph{environment/history} pane. The environment stores and shows you all the files being used by the current R session that are saved in your RAM. We will rarely use the environment in this course, but its still an important feature to know how much memory is being used, how many files are loaded and if our objects are actually being used by R. The history panel will show you all the previously used code.
+
+Finally, the lower right has the \emph{Files, Plots, Packages, Help, and Viewer panes}. These panes show exactly that: The files in the folder you are in, the plots generated by R, the R packages that will be loaded, and the help for the different R packages. The Viewer panel is a special feature that is used by some packages, we will use it later.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Now, you will see the menu in the top. Click on the \texttt{new\ file} element and lets do our first R notebook.
+\item
+  Click on \texttt{new\ file}, and then \texttt{R\ notebook}
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/New_file.png}
+\caption{RStudio panels}
+\end{figure}
+
+We will talk on class about R notebooks and why they are important for our course!
+
+\hypertarget{testing-atom}{%
+\section{Testing Atom}\label{testing-atom}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  To test Atom, download the \texttt{atom\_test} file from the moodle page
+\item
+  Open Atom in Applications
+\item
+  Use \texttt{File\ -\textgreater{}\ Open} and open \texttt{atom\_test}
+\item
+  You should see this:
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab0/atom_screen.png}
+\caption{RStudio panels}
+\end{figure}
+
+We will use Atom to open more of these kinds of files that have no programs associated with them! Atom can open any text file that is unformatted, as well as many scripts and programs. We won't go so deep into these other elements (Remember, this is an \emph{Introduction} course!) but we can discuss them in the lab.
+
+\hypertarget{rmark}{%
+\chapter{Introduction to electronic notebooks in R Markdown}\label{rmark}}
+
+The electronic lab notebooks we will use will in class will be created as \texttt{R\ Markdown\ documents}.
+
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+\hypertarget{markdown-formats}{%
+\section{Markdown formats}\label{markdown-formats}}
+
+As mentioned above, Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
+
+We will use R Markdown as it will allow us to create documents that we can modify in different computers (as long as we have R and R Studio).
+
+We will call these documents \emph{Electronic Lab Notebooks (ELS)}. These ELS' will be used to write down what you have done in class, save the results and the commands and also will tell us where the files you are using will be at.
+
+But, before we go into the super complex part of it, lets learn the basics of R markdown.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{basics-of-markdown}{%
+\section{Basics of Markdown}\label{basics-of-markdown}}
+
+So, the idea to use the R markdown file as a E-notebook we need to understand what the syntax is.
+
+\begin{quote}
+Syntax: a set of rules for or an analysis of the syntax of a language
+\end{quote}
+
+\hypertarget{basic-syntax}{%
+\subsection{Basic syntax}\label{basic-syntax}}
+
+In the case of markdown, all the text that is not formatted in any way will be displayed in the most basic font.
+
+So you'll see that all of these sentences are in simple format.
+
+In addition, if you surround words with certain elements, it can become a word in \textbf{bold} or in \emph{italics}.
+
+In this case, when I add a \texttt{**} before and after the word I want to highlight, the word becomes a bold word. When I add a \texttt{**} before and after the word I want to highlight, the word becomes a word in italics.
+
+If you want to add a header, or a subtitle, start a sentence with \texttt{\#}. One \texttt{\#} means main header, two will be a subtitle, and so on.
+
+\hypertarget{lines-of-code}{%
+\subsection{Lines of code}\label{lines-of-code}}
+
+Markdown allows you to create unformatted lines, or lines of code. In these lines you can add the code you are using for certain steps, or to illustrate examples.
+
+To create a code in-line, just add a `\texttt{(backtick)} between the line of code
+
+\hypertarget{example-of-inline-code}{%
+\subsubsection{Example of inline code:}\label{example-of-inline-code}}
+
+Similarity searches were done using \texttt{blastn} with default parameters and an expected E-value of 10-5.
+
+\hypertarget{example-of-code-blocks}{%
+\subsubsection{Example of code blocks:}\label{example-of-code-blocks}}
+
+To create a code block, start a region with three `\texttt{(backticks)}. Add the code in the line after the backticks and then close with three additional backticks.
+
+\begin{verbatim}
+This is a code-block
+blastp -query q
+\end{verbatim}
+
+\hypertarget{lists}{%
+\subsection{Lists}\label{lists}}
+
+You can create unordered or ordered lists in Markdown.
+To create \textbf{unordered} lists in markdown, start each element of the list with a \texttt{-} sign:
+
+\textbf{Code:}
+
+\begin{verbatim}
+- Bananas
+- Pijamas
+- Bandanas
+\end{verbatim}
+
+\textbf{Result:}
+
+\begin{itemize}
+\tightlist
+\item
+  Bananas
+\item
+  Pijamas
+\item
+  Bandanas
+\end{itemize}
+
+To create ordered lists, add a number with a period before each element. The numbers don't have to be consecutive, which will allow Markdown to modify the list no problem \emph{(Check the raw code before you run the Knitr command)}:
+
+\textbf{Code:}
+
+\begin{verbatim}
+1. Wake up
+1. Make the bed
+1. Lie down again
+\end{verbatim}
+
+\textbf{Result:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Wake up
+\item
+  Make the bed
+\item
+  Lie down again
+\end{enumerate}
+
+You can also make nested lists! Nested lists can are done by creating list using \textbf{4} spaces:
+
+\textbf{Code:}
+
+\begin{verbatim}
+1. This week:
+    - Homework
+    - Breakfast
+    - Cats litter
+2. This weekend
+    - Nothing
+\end{verbatim}
+
+\textbf{Result:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  This week:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Homework
+  \item
+    Breakfast
+  \item
+    Cats litter
+  \end{itemize}
+\item
+  This weekend
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nothing
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{horizontal-rules}{%
+\subsection{Horizontal rules}\label{horizontal-rules}}
+
+If you want to separate sections by a horizontal rule, use three \texttt{*} in a row in an empty line:
+
+\begin{verbatim}
+***
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{links-figures-and-tables}{%
+\subsection{Links, figures and tables}\label{links-figures-and-tables}}
+
+Finally, we can add links, figures and tables in the Markdown document
+
+\hypertarget{hyperlinks}{%
+\subsubsection{Hyperlinks}\label{hyperlinks}}
+
+To add a link in markdown, just use the \texttt{{[}link\ name{]}(link\ address)} syntax, where you add the link of interest in the parenthesis and a generic name for the link between the square brackets.
+
+For example, if I want to link NCBI, then the code should be \texttt{{[}NCBI{]}(ncbi.nlm.nih.gov/)}, and it will look like this: \href{ncbi.nlm.nih.gov/}{NCBI}
+
+\hypertarget{figures}{%
+\subsubsection{Figures}\label{figures}}
+
+To add a figure from the internet you use a similar syntax than what we used in the \emph{links} section, but with a exclamation mark at the beginning of the syntax: \texttt{!{[}Clark\ Logo{]}(https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)} results in
+
+\begin{figure}
+\centering
+\includegraphics{https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg}
+\caption{Clark Logo}
+\end{figure}
+
+You can also add images that are not online. For this, you can just upload the image of interest into the folder where your Markdown file is and link it locally as such: \texttt{!{[}Local\ Image\ of\ my\ cat{]}(cat\_img.JPG)} using the \texttt{Upload} button in the File Panel Viewer in your lower right.
+
+\hypertarget{tables}{%
+\subsection{Tables}\label{tables}}
+
+Finally, lets learn how to add tables.
+
+Tables in markdown can be annoying, but gladly there are online elements that will help us with tables.
+
+However, lets start basic. A table can be created by having list of words and separating them with hyphens \texttt{-} (for the first row), and then separating each column with a pipe \texttt{\textbar{}}:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule()
+Header One & Header Two \\
+\midrule()
+\endhead
+Cell {[}1,1{]} & Cell {[}1,2{]} \\
+Cell {[}2,1{]} & Cell {[}2,2{]} \\
+\bottomrule()
+\end{longtable}
+
+So, you can imagine that creating a gigantic table is a mess. Imagine creating the table from the syllabus into Markdown?
+
+Do not worry, use this \href{https://www.tablesgenerator.com/markdown_tables}{amazing page} to copy and paste \textbf{any} Excel/CSV/Table and turn it into Markdown!
+
+Just copy and paste it from the page:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0393}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.6124}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2360}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1124}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Week
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lecture
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lab
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Assignments
+\end{minipage} \\
+\midrule()
+\endhead
+1 & Introduction/Syllabus/Class Structure. Why Bioinformatics? Identifying the goals of computational biology & & \\
+2 & Reproducibility and replicability: Creating electronic notebooks in R & & \\
+3 & Basics of the linux command line 1: What is the command line? & & Assignment 1 \\
+4 & Basics of the linux command line 2: File handling and basic Linux commands & & \\
+5 & A review of molecular biology and the central dogma & Exploring the computational cluster & Assignment 2 \\
+6 & A computational introduction to ``the gene'' & The central dogma in bioinformatics I & \\
+7 & Identifying patterns and connecting them with funcions & The central dogma in bioinformatics II & Pre-proposal due \\
+8 & Databases 1: Genic functions using online resources (BLAST, HMMER) & & Assignment 3 \\
+9 & Databases 2: Protein functions (PFAM, InterPro Scan) & & \\
+10 & Detecting similarities: Homology at the molecular level & Sequence alignments & Assignment 4 \\
+11 & Introduction to phylogenetics & & \\
+12 & Introduction to genomics: What does a genome look like? & & Assignment 5 \\
+13 & & & \\
+14-15 & Final Project & & \\
+\bottomrule()
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{excerise}{%
+\chapter{Excerise:}\label{excerise}}
+
+Create a Markdown page that describes yourself in a simple manner. Use as many element of syntax as possible, like \emph{bold text}, \textbf{italics}, lists, tables and even add a picture of yourself. You can make it a very simple resume, a simple CV or just a small paragraph of you and your likes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{additional-information-on-markdown}{%
+\chapter{Additional information on Markdown}\label{additional-information-on-markdown}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://guides.github.com/features/mastering-markdown/}{Mastering Markdown by GitHub}
+\item
+  \href{https://www.markdowntutorial.com/}{Using online resources to learn Markdown}
+\item
+  \href{https://rmarkdown.rstudio.com/gallery.html}{R markdown gallery of all the cool stuff we can do with Markdown}
+\end{itemize}
+
+\hypertarget{introduction-to-the-command-line}{%
+\chapter{Introduction to the Command Line}\label{introduction-to-the-command-line}}
+
+The UNIX command line is a program that will interpret commands, in the form of text instructions, for the computer to be executed.
+
+This means that you can tell the computer to \texttt{list\ files} or \texttt{print\ text\ in\ the\ screen} or \texttt{do\ a\ mathematical\ operation} using a set of commands and the computer will exacute them and provide you with an answer.
+
+However, before we start using the command line I decided to make a list of the most commonly used commands in UNIX for your future reference.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{commonly-used-commands}{%
+\section{Commonly used commands}\label{commonly-used-commands}}
+
+\hypertarget{logging-in}{%
+\subsection{Logging in}\label{logging-in}}
+
+\begin{itemize}
+\tightlist
+\item
+  Logging into the cluster: \texttt{140.232.222.154} in your browser
+\item
+  Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): \texttt{ssh\ username@140.232.222.228}
+\end{itemize}
+
+\hypertarget{navigating-the-cluster}{%
+\subsection{Navigating the cluster}\label{navigating-the-cluster}}
+
+\begin{itemize}
+\tightlist
+\item
+  Show your current working directory: \texttt{pwd}
+\item
+  Navigating into a folder: \texttt{cd\ foldername}
+\item
+  Creating a folder: \texttt{mkdir\ foldername}
+\item
+  Visualizing the contents of a folder: \texttt{ls}
+\item
+  Creating a symbolic link \texttt{ln\ -s\ source\ destination}
+\item
+  Visualizing a file: \texttt{less\ file} or \texttt{cat\ file}
+\end{itemize}
+
+\hypertarget{moving-and-downloading-files}{%
+\subsection{Moving and downloading files}\label{moving-and-downloading-files}}
+
+\begin{itemize}
+\tightlist
+\item
+  Copying a file: \texttt{cp\ file\ destination}
+\item
+  Renaming a file/Moving a file: \texttt{mv\ file\ distination\_or\_new\_name}
+\item
+  Downloading a file: \texttt{wget\ web\_adress\_of\_the\_file}
+\item
+  Removing a file \texttt{rm\ file}
+\end{itemize}
+
+\hypertarget{editing-files}{%
+\subsection{Editing files}\label{editing-files}}
+
+\begin{itemize}
+\tightlist
+\item
+  Edit a text file: \texttt{nano} (However, we will try and use atom for now)
+\item
+  Counting the number of lines, words and bytes of a file: \texttt{wc}
+\item
+  Match a pattern and extract text: \texttt{grep\ pattern\_of\_interest}
+\item
+  Match and replace a pattern in a text file: \texttt{sed\ \textquotesingle{}s/match/replacement/g\textquotesingle{}}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-1-basics-of-the-command-line}{%
+\section{Section 1: Basics of the command line}\label{section-1-basics-of-the-command-line}}
+
+Today, we will do very basic things on the cluster. First, we will learn about our whereabouts (where is our \texttt{home} folder), then we will learn how to \texttt{create\ a\ folder} for the lab within your home folder. Then, we will create a folder for lab 2 and download a file to it. Finally, we will do a similar exercise to the one in class, and count the number of occurences in a text file.
+
+\hypertarget{logging-into-the-cluster.}{%
+\subsection{Logging into the cluster.}\label{logging-into-the-cluster.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Log into your R studio session through your browser as indicated above
+\item
+  Go to the \texttt{Terminal} tab in the Command Pane Viewer in the bottom of your screen
+\end{enumerate}
+
+\begin{quote}
+WELCOME TO SMAUG!!
+\end{quote}
+
+\hypertarget{where-are-we-who-am-i}{%
+\subsection{Where are we? Who am I?}\label{where-are-we-who-am-i}}
+
+First thing: You land into the magical real of the cluster. Now\ldots{} where are you?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 1: What command would you use to check in which working directory are you?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/working_directory.png}
+\caption{``Where am I?''}
+\end{figure}
+
+In addition, in case you forget what is your username, you can always use the command \texttt{whoami}:
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/whoami.png}
+\caption{``Who am I?''}
+\end{figure}
+
+This means two things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Our home directory, where all of your files are, is located within the \texttt{/Smaug\_SSD/MBB101/username} folder
+\item
+  Our username, in case we forget it, can always be remembered.
+\end{enumerate}
+
+\hypertarget{running-basic-commands}{%
+\subsection{Running basic commands}\label{running-basic-commands}}
+
+So, the idea of the command line is to run commands, right?
+Well, congrats! You have already ran two commands!
+
+\begin{rmdquestion}
+Which commands have you already ran?
+\end{rmdquestion}
+
+So, as you know now. To run commands you just write them and that's it!
+
+For example: you want to know what time it is? Use the command \texttt{date}:
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/date.png}
+\caption{``What time is it?''}
+\end{figure}
+
+We will learn to use more commands as we use the cluster more and more.
+
+\hypertarget{creating-files-and-navigating-through-the-cluster}{%
+\subsection{Creating files and navigating through the cluster}\label{creating-files-and-navigating-through-the-cluster}}
+
+In order to follow the structure of the reproducibility class, we will create folders for each lab session and store the files in them.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Before we start, see if you have any folders in your \texttt{home} folder. Check that with the \texttt{ls} command:
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/first_ls.png}
+\caption{``Listing files''}
+\end{figure}
+
+If you see nothing new, then that means you have nothing in that folder. That's good!
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For today's lab let's create a folder called \texttt{MBB101}.
+\end{enumerate}
+
+\begin{rmdquestion}
+Using the command list above, what command would you use to create a
+folder?
+\end{rmdquestion}
+
+Exactly, so use that command to create the folder, and then use the \texttt{ls} command to check if the folder was correctly created (\texttt{ls} is short for list, as it lists all of the files within a folder):
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/mkdir_ls.png}
+\caption{``making our first folder''}
+\end{figure}
+
+Nice, the folder has been created!
+
+To navigate into the new MBB101 folder, use the \texttt{cd} command (\texttt{cd} is short for change directory).
+
+The syntax of \texttt{cd} is \texttt{cd\ destination}, so in our case, we would do \texttt{cd\ MBB101}:
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/cd_mbb.png}
+\caption{``Changing directories''}
+\end{figure}
+
+if you see, after our \texttt{username@smaug} we can see now it shows a prompt that says \texttt{MBB101}. This means we have been able to move to our folder!
+
+You can also check if you are inside the folder of interest by using the \texttt{pwd} command (\texttt{pwd} is short for print working directory)
+
+\begin{rmdquestion}
+Create a folder within MBB101 called Lab\_2. How would you do it? Add a
+screenshot of the command and the result.
+\end{rmdquestion}
+
+\begin{quote}
+Good job! Nicely done at creating your first folder!
+\end{quote}
+
+\hypertarget{downloading-files-into-the-cluster.}{%
+\subsection{Downloading files into the cluster.}\label{downloading-files-into-the-cluster.}}
+
+After creating your \texttt{Lab\_2} folder, we need to populate it with files.
+
+I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: \texttt{https://raw.githubusercontent.com/Tabima/MBB101/master/Lab\_2/text\_file.txt}.
+
+To download the files, use the \texttt{wget} command. (\texttt{wget} is short for web page get):
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/wget.png}
+\caption{``Downloading text file}
+\end{figure}
+
+\begin{rmdquestion}
+What are the contents of this file? What command from the list above
+would you use to open or view a file?
+
+How many lines does this file has? What command from the list above
+would you use to count the number of lines? What are the three outputs
+from the command?
+\end{rmdquestion}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{extracting-patterns-from-a-text-file}{%
+\subsection{Extracting patterns from a text file}\label{extracting-patterns-from-a-text-file}}
+
+Finally, lets do the examples from Monday's course:
+
+\begin{itemize}
+\tightlist
+\item
+  How many times is the word ``Dursley'' found in the document?
+\item
+  How many times is Harry mentioned?
+\item
+  How was the weather on that Tuesday?
+\end{itemize}
+
+To find and match a pattern, we can use the command \texttt{grep}. (\texttt{grep} is short for \texttt{g/re/p}: globally search for a regular expression and print matching lines)
+
+So, if we want to find out if the word ``Dursley'' is mentioned in the document we use the command:
+
+\texttt{grep\ Dursley\ text\_file.txt}
+
+\begin{rmdwarning}
+NOTE: Before you run the command, do you see anything weird?
+
+In this case, we are using two more arguments after the \texttt{grep}
+command: The pattern of interest we want (Dursley) and the file that we
+want to search in (text\_file.txt).
+
+To learn how to use these commands, we can google the command or use the
+\texttt{man} command (short for manual).
+\end{rmdwarning}
+
+Alright, how does the output of \texttt{grep} looks like?
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/grep_dursley.png}
+\caption{``grepping for the first time''}
+\end{figure}
+
+Ah cool, we can see if the pattern is present or not!
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{rmdquestion}
+What happens if you try and answer the other two questions? Summarize
+how \texttt{grep} can help you with finding these patterns of interest.
+\end{rmdquestion}
+
+Finally, question 8 (as well as question 6) will be your homework. We will discuss it next week as we also learn how to replace patterns and create pipes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{rmdquestion}
+Using the \texttt{man\ grep} command, how can you use grep to count for
+an occurence of a text string. For example, can grep count the number of
+times the word \texttt{Dursley} exists in the file? Write the command
+you would use and the results.
+\end{rmdquestion}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-2-advanced-command-line.}{%
+\section{Section 2: Advanced command line.}\label{section-2-advanced-command-line.}}
+
+\hypertarget{identifying-paths}{%
+\subsection{Identifying paths}\label{identifying-paths}}
+
+We know now how to download and check files, but we also need to remember how to look at where the files are in case we need to use paths in the future.
+
+For example, what is the path of the \texttt{text\_file.txt} we were working on?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 8: Using the \texttt{readlink\ -f} command, can you indicate what is the full path of this file?.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{quote}
+Question 9: If you are in your home (\texttt{\textasciitilde{}}) folder, and you have a file there called \texttt{file.txt}, what is the relative path of this file?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+***
+
+\hypertarget{creating-copies-of-a-file-into-a-new-folder.}{%
+\subsection{Creating copies of a file into a new folder.}\label{creating-copies-of-a-file-into-a-new-folder.}}
+
+We want to modify the \texttt{text\_file.txt} to add, remove, replace or count elements in a new version of it.
+
+So, the idea is to create a new folder inside your \texttt{Lab\_2/} folder, named \texttt{modified/}.
+
+Create the folder and copy the \texttt{text\_file.txt} file into a new file called \texttt{modified\_file.txt} in a new folder called \texttt{modified/} using the \texttt{cp} command
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 10: Please present me the syntax of the command to do the instructions above.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{quote}
+Question 11: What is the absolute path of the \texttt{modified\_file.txt}?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Lets check if it worked:
+
+\begin{figure}
+\centering
+\includegraphics{Lab2/cp_file.png}
+\caption{copying file}
+\end{figure}
+
+\hypertarget{replacing-patterns-using-sed}{%
+\subsection{\texorpdfstring{Replacing patterns using \texttt{sed}}{Replacing patterns using sed}}\label{replacing-patterns-using-sed}}
+
+So, if you recall the theory class, we learnt about the \texttt{sed} command to replace patterns.
+
+The idea is that you will replace some patterns in the \texttt{modified\_file.txt} file and then check if the results make sense.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Change the \texttt{Dursley} patterns into \texttt{Potter} and save the file as \texttt{potter.txt} using the \texttt{sed\ s/Dursley/Potter/g\ modified\_file.txt\ \textgreater{}\ potter.txt} command. Answer question 12.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 11: What does the \texttt{\textgreater{}} in the command mean?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Check the number of occurrences of the word \texttt{Potter} in the \texttt{potter.txt} file using \texttt{grep}. Answer question 12
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 12: How many times does the word \texttt{Potter} appear? Is it the same number as in question 7?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Count the number of lines of the \texttt{potter.txt} file and compare them to the original file. Answer question 13
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 13: Is the number of lines similar between \texttt{potter.txt} and \texttt{modified\_file.txt}? Very very briefly justify your answer.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Extract all the lines that say \texttt{Potter} from \texttt{potter.txt} into a new file called \texttt{potter\_lines.txt}. Answer questions 14 and 15
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 14: Present the syntax to execute the previous instruction.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{quote}
+Question 15: What are the number of lines that say Potter in the file? Is the number different from questions 12 and 13? Explain your answer very briefly.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{removing-files-renaming-files-and-creating-symbolic-links}{%
+\subsection{Removing files, renaming files and creating symbolic links}\label{removing-files-renaming-files-and-creating-symbolic-links}}
+
+Now that we are done with creating files and modifing them, we need to remove all the files we are not using anymore. The \texttt{rm} command will allow us to do that.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Remove the \texttt{potter\_lines.txt} and the \texttt{modified\_file.txt} files from the folder. Answer question 16.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 16: What are the commands you used to remove the files? How can you make sure the files do not exist anymore?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Rename the \texttt{potter.txt} file as \texttt{Potter\_story.txt} using the mv command as such \texttt{mv\ potter.txt\ Potter\_story.txt}. Answer question 17
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 17: Explain the syntax of the previous command briefly.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Go back to your \texttt{Lab\_2/} folder (remember to use the \texttt{cd\ ..} command) and create a symbolic link of your \texttt{Potter\_story.txt} file into the \texttt{Lab\_2/} folder using the \texttt{ln\ -s\ modified/Potter\_story.txt\ .}. Answer question 18, 19 and 20.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Question 18: Explain the syntax of the previous command briefly.
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\begin{quote}
+Question 19: Use the ls -l command while in your \texttt{Lab\_2/} folder. What is a weird pattern you see on the new \texttt{Potter\_story.txt} file? Is that its absolute or its relative path?
+\end{quote}
+
+\begin{quote}
+Answer here:
+\end{quote}
+
+{Add your answer in this space}
+
+\hypertarget{basic-bioinformatics-in-the-command-line}{%
+\chapter{Basic bioinformatics in the command line}\label{basic-bioinformatics-in-the-command-line}}
+
+The next chapters focus on the analysis of molecular sequence data in using command line.
+Nothing too fancy, just some basic commands to look at the data files and summarize information from the sequences.
+
+\hypertarget{section-1-basic-commands-for-sequence-data}{%
+\section{Section 1: Basic commands for sequence data}\label{section-1-basic-commands-for-sequence-data}}
+
+\hypertarget{downloading-the-datasets}{%
+\subsection{Downloading the datasets}\label{downloading-the-datasets}}
+
+We are going to use two main datasets:
+
+\begin{verbatim}
+https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/AAB21188.seq
+https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a folder called \texttt{Lab\_3} in your \texttt{MBB101} folder at the cluster
+\item
+  Download the files. Answer the following question:
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+What commands you used to download the files?
+\end{quote}
+
+\begin{verbatim}
+Add you answers here:
+
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Check the files. Answer the following questions:
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+What kind of sequence (DNA/RNA/Protein) is the \texttt{S79522.seq} file? Briefly justify your answer.
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+\end{verbatim}
+
+\begin{quote}
+What kind of of sequence (DNA/RNA/Protein) is the \texttt{AAB21188.seq} file? Briefly justify your answer.
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{counting-basic-patterns-for-dna-data}{%
+\subsection{Counting basic patterns for DNA data}\label{counting-basic-patterns-for-dna-data}}
+
+Ok, after checking the files we know now that the \texttt{S79522.seq} file contains a DNA sequence.
+
+Lets do some command line exercises with it. Answer all of these questions:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+How many lines are found on this file?
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+How many characters are found on this file? (Or, what is the length of this sequence?)
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+How many A, C, G, and T can you find in this sequence?
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+Convert this sequence to RNA and save it in a file called \texttt{S79522\_RNA.seq}. Please add the command you used to create the file. (Don't create a complementary strand, just convert this one from DNA to RNA)
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+How can we test that this new file is an RNA sequence \texttt{S79522\_RNA.seq}. Please add a command you'd use to check if this is DNA or RNA.
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+Finally, using your RNA sequence, check how many start codons (\texttt{AUG}) or stop codons (\texttt{UAG},\texttt{UAG}, or \texttt{UGA}) may exist in your sequence
+\end{quote}
+
+\begin{verbatim}
+Add your answer here:
+\end{verbatim}
+
+\hypertarget{counting-basic-patterns-for-aminoacid-data}{%
+\subsection{Counting basic patterns for Aminoacid data}\label{counting-basic-patterns-for-aminoacid-data}}
+
+Ok, after checking the files we know now that the \texttt{S79522.seq} file contains a DNA sequence.
+
+Lets do some command line exercises with it. Answer all of these questions:
+
+\begin{quote}
+How many characters are found on this file? (Or, what is the length of this sequence?)
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+Select two aminoacids of interest and count them. Please add the command used to count them.
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{quote}
+We have four candidate patterns for this gene:
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{VLKYYKVD} (A common pattern found in the Ribosomal S27 subunit domains)
+\item
+  \texttt{ITLEVE} (A common pattern found in Ubiquitin domains)
+\item
+  \texttt{KWCPRP} (A common pattern found in In Between Ring fingers (IBR) domains)
+\item
+  \texttt{LSVLSQKM} (A common pattern found in DNA polymerase unit A domains)
+\end{itemize}
+
+Which patterns do you find in the sequence?
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule()
+Sequence & Ribosomal 27 & Ubiquitin & IBR & DNA poly A \\
+\midrule()
+\endhead
+S79522 & Yes/No & Yes/No & Yes/No & Yes/No \\
+\bottomrule()
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-2-creating-pipelines}{%
+\section{Section 2: Creating pipelines}\label{section-2-creating-pipelines}}
+
+In this section we will learn something new and exciting:
+
+We will make a simple pipeline to automate counting nucleotide sequences.
+
+\hypertarget{what-is-a-pipeline}{%
+\subsection{What is a pipeline?}\label{what-is-a-pipeline}}
+
+Pipelines are \textbf{sequential lines of code that can be used to use multiple commands at once}.
+
+For example, if you want to count all the \texttt{U} in a DNA sequence that you have transformed into DNA, you can actually do this in one simple line of code.
+
+Think about this as a logical set of steps (or, a \emph{pseudocode}):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read the DNA file
+\item
+  Replace the \texttt{T} for \texttt{U}
+\item
+  Extract the matches to \texttt{U}
+\item
+  Count those matches
+\end{enumerate}
+
+Using the command line the intructions would be like:
+
+\begin{verbatim}
+cat file.txt
+sed 's/T/U/g' file.txt > file_rna.txt
+grep -o U file_rna.txt > U_ocurrences.txt
+wc -l U_ocurrences.txt
+\end{verbatim}
+
+This code works, but its quite useless as it forces us to create two independent files: \texttt{file\_rna.txt} and \texttt{U\_ocurrences.txt}.
+
+Imagine that the output of these files were large and you had no space left in your hard drive! You would have to run everything again from the beginning!
+
+One of the options is to use pipelines, using the \textbf{pipe (\texttt{\textbar{}}) modifier}. This modifier works as an \texttt{an\ then}.
+
+So for example, a command that is like this: \texttt{ls\ -lrt\ \textbar{}\ grep\ seq\ \textbar{}\ wc\ -l} can be read as:
+
+Make a list of all the files \textbf{and then} extract all the matches to \texttt{seq} \textbf{and then} count the number of occurences.
+
+So, we can totally use this with out data.
+
+\hypertarget{pipeline-example-using-dna-data}{%
+\subsubsection{Pipeline example using DNA data}\label{pipeline-example-using-dna-data}}
+
+Before we start, let me introduce you to two elements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Variables
+\item
+  the \texttt{echo} command.
+\end{enumerate}
+
+\hypertarget{variables}{%
+\paragraph{Variables}\label{variables}}
+
+Variables can be defined as \textbf{a place to temporarly store a piece of information}.
+
+For example, you wallet is a variable that is full of your money.
+
+So, if you have \$10 in your wallet, then your variable is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{wallet}\OperatorTok{=}\NormalTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+So, that is how you define a variable in \texttt{bash}. To see what the value of that variable is, you use the \texttt{echo} command
+
+\hypertarget{the-echo-command}{%
+\paragraph{\texorpdfstring{The \texttt{echo} command}{The echo command}}\label{the-echo-command}}
+
+The \texttt{echo} command will print to your screen whatever you tell it to print.
+
+For example, if you tell the command to \texttt{echo\ \textquotesingle{}hello\textquotesingle{}}, this will happen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{\textquotesingle{}hello\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## hello
+\end{verbatim}
+
+Meaning that you can tell it to say whatever you want to say. If you want to add spaces or other weird characters, make sure you surrond the statement with single quotes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{\textquotesingle{}This is the best course ever\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## This is the best course ever
+\end{verbatim}
+
+\hypertarget{mixing-variables-and-echo}{%
+\paragraph{\texorpdfstring{Mixing variables and \texttt{echo}}{Mixing variables and echo}}\label{mixing-variables-and-echo}}
+
+So, we want to mix these two because then you can store a variable and print it in the screen, for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{statement}\OperatorTok{=}\StringTok{\textquotesingle{}This is the best course ever\textquotesingle{}}
+\BuiltInTok{echo} \VariableTok{$statement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## This is the best course ever
+\end{verbatim}
+
+Look at this! You can simplify the instructions and print variables!
+
+Now, did you notice that the variable \texttt{statement} had a \texttt{\$} in front? That is how you tell \texttt{bash} that you are using a variable!
+
+If you don't add it this is what happens:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo}\NormalTok{ statement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## statement
+\end{verbatim}
+
+So, you are just printing the word statement. Interesting ah?
+
+\hypertarget{using-a-pipeline-as-an-example-of-variables-and-pipes}{%
+\subsubsection{Using a pipeline as an example of variables and pipes}\label{using-a-pipeline-as-an-example-of-variables-and-pipes}}
+
+Now, lets say we want to count all the nucelotides in our DNA file independently.
+
+So, we want to extract each nucleotides, starting from the \texttt{A}, using \texttt{grep\ -c\ A}, and then counting lines with \texttt{wc\ -l}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{grep} \AttributeTok{{-}o}\NormalTok{ A Lab\_3/S79522.seq }\KeywordTok{|} \FunctionTok{wc} \AttributeTok{{-}l}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      171
+\end{verbatim}
+
+Answer the following question:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{quote}
+Did these results match what you did at the beginning of the lab? Expand briefly your answer.
+\end{quote}
+
+\begin{verbatim}
+Add you answer here:
+
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Ok, now, to save this on a variable (you can call the variable anything as long as it doesn't have any spaces or weird characters) we just put the entire pipeline inside a \texttt{\$()}, like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{nucA}\OperatorTok{=}\VariableTok{$(}\FunctionTok{grep} \AttributeTok{{-}o}\NormalTok{ A Lab\_3/S79522.seq }\KeywordTok{|} \FunctionTok{wc} \AttributeTok{{-}l}\VariableTok{)}
+\BuiltInTok{echo} \VariableTok{$nucA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 171
+\end{verbatim}
+
+WOW! that was easy!
+
+Now, if you want to add more variables you can do it like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{nucA}\OperatorTok{=}\VariableTok{$(}\FunctionTok{grep} \AttributeTok{{-}o}\NormalTok{ A Lab\_3/S79522.seq }\KeywordTok{|} \FunctionTok{wc} \AttributeTok{{-}l}\VariableTok{)}
+\VariableTok{nucC}\OperatorTok{=}\VariableTok{$(}\FunctionTok{grep} \AttributeTok{{-}o}\NormalTok{ C Lab\_3/S79522.seq }\KeywordTok{|} \FunctionTok{wc} \AttributeTok{{-}l}\VariableTok{)}
+
+\BuiltInTok{echo} \StringTok{\textquotesingle{}Number of A:\textquotesingle{}}\VariableTok{$nucA}
+\BuiltInTok{echo} \StringTok{\textquotesingle{}Number of C:\textquotesingle{}}\VariableTok{$nucC}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of A: 171
+## Number of C: 104
+\end{verbatim}
+
+Now, answer the following question:
+
+\begin{quote}
+How would you count the other nucleotides?. Add the code below:
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Add you answer here:}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-2-final-exercise}{%
+\subsection{Section 2 final exercise:}\label{section-2-final-exercise}}
+
+\begin{quote}
+Write a set of instructions to count ten of the aminoacids in the \texttt{AAB21188.seq} file.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Add you answer here:}
+
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-3-how-to-upload-and-process-local-files-into-the-cluster}{%
+\section{Section 3: How to upload and process local files into the cluster}\label{section-3-how-to-upload-and-process-local-files-into-the-cluster}}
+
+So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster using a program called cyberduck.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Download cyberduck from this \href{https://cyberduck.io/download/}{page}. Download the version for your operating system and install it.
+\item
+  Open Cyberduck. To connect to the cluster follow these instructions:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Click on the \texttt{Open\ Connection} button
+\item
+  Select the \texttt{SFTP\ (SSH\ File\ Transfer\ protocol)} option from the drop down menu
+\item
+  Fill the rest of the fields like in the image below but using your username and password. Make sure you check on the \texttt{Add\ to\ Keychain} box.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{Lab_3/cyberduck_optn.png}
+\caption{Cyberduck connection menu}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  You have landed in your cluster folder at \texttt{/home/username}!
+\end{enumerate}
+
+Now you can navigate the cluster using your mouse like if you were in your computer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Download the \texttt{sequence\_1} and \texttt{sequence\_2} files from the moodle.
+\item
+  Create a new folder called \texttt{mystery\_genes} in your \texttt{Lab\_3} folder using cyberduck (Right click --\textgreater{} New Folder)
+\item
+  Select the \texttt{sequence\_1} and \texttt{sequence\_2} files and drag them to the \texttt{mystery\_genes} folder.
+\item
+  Connect to the cluster using terminal/mobaxterm, go to the \texttt{Lab\_3/mystery\_genes} folder and check if the files are there.
+\end{enumerate}
+
+Answer the following question:
+
+\begin{itemize}
+\tightlist
+\item
+  How did you check if the files were correctly uploaded?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{checking-file-types}{%
+\subsection{Checking file types}\label{checking-file-types}}
+
+If you remember, we saw some file types for sequence data in the theory class. These are \texttt{FASTA} and \texttt{GenBank}.
+
+We are going to deal with these files today, and see how we can extract important information from these files. First, answer the following questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Briefly summarize what is a FASTA and what is a GenBank file (one sentence each)
+\item
+  Can these formats include RNA, DNA and Aminoacid data? (Yes/No answer)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Now, use your knowledge of the command line to answer these questions:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  What format is the \texttt{sequence\_1} file in? (FASTA or GenBank) Briefly explain your answer.
+\item
+  What format is the \texttt{sequence\_2} file in? (FASTA or GenBank) Briefly explain your answer.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+If you answered correclty, you have seen that \texttt{sequence\_1} is in FASTA format, while \texttt{sequence\_2} is in GenBank format.
+
+\hypertarget{fasta-data-handling}{%
+\subsection{FASTA: Data handling}\label{fasta-data-handling}}
+
+Answer these questions (and please ask the professor for help)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  How many lines does the \texttt{sequence\_1} file has?
+\item
+  How can you count the number of SEQUENCES that exist in the \texttt{sequence\_1} file?
+\item
+  What is the number of sequences in the \texttt{sequence\_1} file? Is this result different than the number of lines in the file? Why?
+  ***
+\end{itemize}
+
+Now, we know that the number of sequences (five) can be recognized by counting the number of \texttt{\textgreater{}} symbols in the sequence, right?
+
+This means that for this particular FASTA file, you can extract each sequence individually if you know the lines.
+
+For example:
+- lines 1 and 2 have the first sequence
+- lines 2 and 3 the second
+
+and so on.
+
+That means we can extract each sequence. You can do this using the \texttt{sed} command in the following way
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sed} \AttributeTok{{-}n} \StringTok{\textquotesingle{}staring\_line,ending\_line p\textquotesingle{}}\NormalTok{ file\_with\_sequences}
+\end{Highlighting}
+\end{Shaded}
+
+So, for example, to extract the first sequence in FASTA format:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sed} \AttributeTok{{-}n} \StringTok{\textquotesingle{}1,2 p\textquotesingle{}}\NormalTok{ sequence\_1}
+\end{Highlighting}
+\end{Shaded}
+
+Now, because this is extracting in a fasta file, you will get the header and the sequence data. To only see the sequence data, use \texttt{grep} to extract all lines that DON'T have a \texttt{\textgreater{}} symbol. You can pipe the results of \texttt{sed} into \texttt{grep}!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sed} \AttributeTok{{-}n} \StringTok{\textquotesingle{}1,2 p\textquotesingle{}}\NormalTok{ sequence\_1 }\KeywordTok{|} \FunctionTok{grep} \AttributeTok{{-}v} \StringTok{"\textgreater{}"} 
+\end{Highlighting}
+\end{Shaded}
+
+in this case, we had to put the \texttt{\textgreater{}} symbol between quotes because without them then the command line creates a new file.
+
+Finally, we can even count the length of the sequence:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sed} \AttributeTok{{-}n} \StringTok{\textquotesingle{}1,2 p\textquotesingle{}}\NormalTok{ sequence\_1 }\KeywordTok{|} \FunctionTok{grep} \AttributeTok{{-}v} \StringTok{"\textgreater{}"} \KeywordTok{|} \FunctionTok{wc} \AttributeTok{{-}c} 
+\end{Highlighting}
+\end{Shaded}
+
+This first sequence is 7478 nucleotides long! Ain't this cool?
+
+Answer the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  How can you save the new sequence in a new FASTA file?
+\item
+  Extract all other sequences from the file and save them in 5 different FASTA files. Add the code you used below
+\end{itemize}
+
+\hypertarget{section-3-final-exercises}{%
+\subsection{Section 3 final exercises:}\label{section-3-final-exercises}}
+
+Can you create code that will do the following for each extracted FASTA sequence?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Count the number of A,G,C and T?
+\item
+  Count the length of each sequence?
+\item
+  Count the number of open reading frames (ORF)?
+\end{enumerate}
+
+Present the code and the results
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-4-genbank-files}{%
+\section{Section 4: GenBank Files}\label{section-4-genbank-files}}
+
+GenBank files are more complex than FASTA files.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  These files are supremely complex to analyse only using the command line. However, we can take a look a this data and answer a simple question using the command line:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  How many lines does the \texttt{sequence\_2} file has?
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Open the file using \texttt{less\ -NS} and answer the following questions:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  If you were looking for the information on the gene that codes for \texttt{lacZ}, what line would you use?
+\item
+  What species is this gene taken from?
+\item
+  What genomic region does this represent?
+\item
+  How many other genes can you find?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{section-4-final-exercise}{%
+\subsection{Section 4 final exercise}\label{section-4-final-exercise}}
+
+Genic regions on GenBank files are represented by three different types: \texttt{mRNA}, \texttt{gene}, \texttt{CDS}.
+
+\begin{itemize}
+\tightlist
+\item
+  What are the differences between these \texttt{mRNA}, \texttt{gene}, and \texttt{CDS} based in your GenBank and the NCBI help?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sharing-your-book}{%
+\chapter{Sharing your book}\label{sharing-your-book}}
+
+\hypertarget{publishing}{%
+\section{Publishing}\label{publishing}}
+
+HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
+
+\hypertarget{pages}{%
+\section{404 pages}\label{pages}}
+
+By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
+
+\hypertarget{metadata-for-sharing}{%
+\section{Metadata for sharing}\label{metadata-for-sharing}}
+
+Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
+
+This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
+
+Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
+
+Read more about the features of this output format here:
+
+\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
+
+Or use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

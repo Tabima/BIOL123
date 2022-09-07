@@ -1,0 +1,599 @@
+---
+title: 'Lab 3: Basic bioinformatics and sequence handling'
+author: "Tamanna Gurung"
+date: "9/9/2020"
+output: html_document
+---
+# GRADE: 
+<h2>
+<span style="color: red;">75/100. Make sure you run the code you present to see if it works!!</span>.
+</h2>
+
+# Instructions:
+
+- Section 1 and 2 will be done on Sept. 25
+- Section 3 and 4 will be done on Oct. 2 
+- Lab. is due before Oct. 9
+
+
+# Section 1: Using basic commands to analyze sequence data
+
+Today and next week we will start analysing some sequence data in the command line. 
+
+Nothing too fancy, just some basic commands to analyze data and summarize information from the sequences.
+
+## Downloading the datasets
+
+Today's dataset are going to be found in two main files. 
+
+These are the addresses to download them:
+
+```
+https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/AAB21188.seq
+https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
+```
+
+1. Create a folder called `Lab_3` in your `MBB101` folder at the cluster
+2. Download the files. Answer the following question:
+
+***
+> What commands you used to download the files?
+
+```
+wget and the link 
+
+
+```
+***
+
+3. Check the files. Answer the following questions:
+
+***
+> What kind of sequence (DNA/RNA/Protein) is the `S79522.seq` file? Briefly justify your answer.
+
+```
+DNA because it has A,T,C, and G nucleotides and no protein names. RNA has U in them. 
+
+```
+
+> What kind of of sequence (DNA/RNA/Protein)  is the `AAB21188.seq` file? Briefly justify your answer.
+
+```
+It is a protein because 
+it starts with 'M' which is the methoinine amino acid. 
+```
+
+<h4><span style="color: red;">Good answer, but sometimes you might find processed proteins (such as quaternary proteins) that don't start in M. Maybe a more broad answer next time (-1 pt)</span></h4>
+
+***
+
+## Counting basic patterns for DNA data
+
+Ok, after checking the files we know now that the `S79522.seq` file contains a DNA sequence. 
+
+Lets do some command line exercises with it. Answer all of these questions:
+
+***
+
+> How many lines are found on this file?
+
+```
+1
+
+
+```
+
+> How many characters are found on this file? (Or, what is the length of this sequence?)
+
+```
+1
+```
+<h4><span style="color: red;">Tamanna, the idea was to count the number of characters with wc, this way you know how many characters are in the data (-5 points)</span></h4>
+
+> How many A, C, G, and T can you find in this sequence?
+
+```
+171 for A, 104 for C, 131 for G, and 134 for T.
+
+
+```
+
+> Convert this sequence to RNA and save it in a file called `S79522_RNA.seq`. Please add the command you used to create the file. (Don't create a complementary strand, just convert this one from DNA to RNA)
+
+```
+sed 's/T/U/g' S79522.seq > S79522_RNA.seq
+
+
+```
+
+> How can we test that this new file is an RNA sequence `S79522_RNA.seq`. Please add a command you'd use to check if this is DNA or RNA.
+
+```
+cat S79522_RNA.seq to open the file and check if all the 'T's are now 'U's or use the grep command to see if the 'T's are present. 
+
+
+```
+
+> Finally, using your RNA sequence, check how many start codons (`AUG`) or stop codons (`UAG`,`UAA`, or `UGA`) may exist in your sequence
+
+```
+11 start codons; 3 for UAG, 10 for UAA and 14 for UGA stop codons
+
+```
+
+## Counting basic patterns for Aminoacid data
+
+Ok, after checking the files we know now that the `S79522.seq` file contains a DNA sequence. 
+
+Lets do some command line exercises with it. Answer all of these questions: 
+
+
+> How many characters are found on this file? (Or, what is the length of this sequence?)
+
+```
+1
+```
+<h4><span style="color: red;">Tamanna, the idea was to count the number of characters with wc, this way you know how many characters are in the data (-5 points)</span></h4>
+
+
+> Select two aminoacids of interest and count them. Please add the command used to count them.
+
+```
+12 for UGG `grep -o UGG S79522_RNA.seq | wc -l`, 8 for UCG `grep -o UCG S79522_RNA.seq | wc -l`
+
+<h4><span style="color: red;">Tamanna, UGG and UCG are codons. The aminoacids associated to these codons are Tryptophane (UGG) and Serine (UCG) (-2 points)</span></h4>
+
+```
+
+> We have four candidate patterns for this gene:
+
+ - `VLKYYKVD` (A common pattern found in the Ribosomal S27 subunit domains)
+ - `ITLEVE` (A common pattern found in Ubiquitin domains)
+ - `KWCPRP` (A common pattern found in In Between Ring fingers (IBR) domains)
+ - `LSVLSQKM`  (A common pattern found in DNA polymerase unit A domains)
+ 
+ Which patterns do you find in the sequence?
+ 
+|Sequence|Ribosomal 27|Ubiquitin|IBR|DNA poly A|
+|---|---|---|---|---|
+|AAB21188|Yes|Yes|No|No|
+ 
+***
+ 
+# Section 2: Learning pipes  to create pipelines
+
+In this section we will learn somethig new and exciting: 
+
+We will make a simple pipeline to automate counting nucleotide sequences.
+
+## Creating a pipeline
+
+Pipelines are **sequential lines of code that can be used to use multiple commands at once**.
+
+For example, if you want to count all the `U` in a DNA sequence that you have transformed into DNA, you can actually do this in one simple line of code.
+
+Think about this as a logical set of steps (or, a *pseudocode*):
+
+1. Read the DNA file
+2. Replace the `T` for `U`
+3. Extract the matches to `U`
+4. Count those matches
+
+Using the command line the intructions would be like:
+ 
+ ```
+ cat file.txt
+ sed 's/T/U/g' file.txt > file_rna.txt
+ grep -o U file_rna.txt > U_ocurrences.txt
+ wc -l U_ocurrences.txt
+ ```
+ 
+ This code works, but its quite useless as it forces us to create two independent files: `file_rna.txt` and `U_ocurrences.txt`. 
+ 
+ Imagine that the output of these files were large and you had no space left in your hard drive. It would ruin the program
+ 
+ One of the options is to use pipelines, using the **pipe (`|`) modifier**. This modifier works as an `an then`. 
+ 
+ So for example, a command that is like this: `ls -lrt | grep seq | wc -l` can be read as:
+ 
+ Make a list of all the files **and then** extract all the matches to `seq` **and then** count the number of occurences.
+ 
+ So, we can totally use this with out data.
+ 
+### Pipeline example using DNA data
+ 
+Before we start, let me introduce you to two elements: 
+
+1. Variables
+2. the `echo` command.
+
+#### Variables
+
+Variables can be defined as **a place to temporarily store a piece of information**.
+
+For example, you wallet is a variable that is full of your money. 
+
+So, if you have $10 in your wallet, then your variable is:
+
+```{bash}
+wallet=10
+```
+
+So, that is how you define a variable in `bash`. To see what the value of that variable is, you use the `echo` command
+ 
+#### The `echo` command
+
+The `echo` command will print to your screen whatever you tell it to print. 
+
+For example, if you tell the command to `echo 'hello'`, this will happen:
+
+```{bash}
+echo 'hello'
+```
+
+Meaning that you can tell it to say whatever you want to say. If you want to add spaces or other weird characters, make sure you surrond the statement with single quotes
+
+```{bash}
+echo 'This is the best course ever'
+```
+
+#### Mixing variables and `echo`
+
+So, we want to mix these two because then you can store a variable and print it in the screen, for example:
+
+```{bash}
+statement='This is the best course ever'
+echo $statement
+```
+
+Look at this! You can simplify the instructions and print variables!
+
+Now, did you notice that the variable `statement` had a `$` in front? That is how you tell `bash` that you are using a variable!
+
+If you don't add it this is what happens:
+
+```{bash}
+echo statement
+```
+
+So, you are just printing the word statement. Interesting ah?
+
+### Using a pipeline as an example of variables and pipes
+
+Now, lets say we want to count all the nucelotides in our DNA file independently. 
+
+So, we want to extract each nucleotides, starting from the `A`, using `grep -c A`, and then counting lines with `wc -l`:
+
+```{bash}
+grep -o A Lab_3/S79522.seq | wc -l
+```
+
+Answer the following question:
+
+***
+> Did these results match what you did at the beginning of the lab? Expand briefly your answer.
+
+```
+Yes because it gave out the same answer.
+
+
+```
+***
+
+Ok, now, to save this on a variable (you can call the variable anything as long as it doesn't have any spaces or weird characters) we just put the entire pipeline inside a `$()`, like this:
+
+```{bash}
+nucA=$(grep -o A Lab_3/S79522.seq | wc -l)
+echo $nucA
+```
+
+WOW! that was easy!
+
+Now, if you want to add more variables you can do it like this:
+
+```{bash}
+nucA=$(grep -o A Lab_3/S79522.seq | wc -l)
+nucC=$(grep -o C Lab_3/S79522.seq | wc -l)
+
+echo 'Number of A:'$nucA
+echo 'Number of C:'$nucC
+```
+
+Now, answer the following question:
+
+> How would you count the other nucleotides?. Add the code below:
+
+```
+nucA=$(grep -o A Lab_3/S79522.seq | wc -l), just switch the A's with the nucleotide we are looking for. And then we can use echo to check if it worked or not. 
+```
+
+***
+
+## Homework 1: 
+
+> Write a set of instructions to count ten of the aminoacids in the `AAB21188.seq` file. 
+
+```
+grep -o F Lab_3/AAB21188.seq | wc -l | grep -o T Lab_3/AAB21188.seq | wc -l | grep -o I Lab_3/AAB21188.seq | wc -l | grep -o E Lab_3/AAB21188.seq | wc -l | grep -o K Lab_3/AAB21188.seq | wc -l | grep -o V Lab_3/AAB21188.seq | wc -l | grep -o P Lab_3/AAB21188.seq | wc -l | grep -o C Lab_3/AAB21188.seq | wc -l | grep -o G Lab_3/AAB21188.seq | wc -l | grep -o Y Lab_3/AAB21188.seq | wc -l 
+```
+
+<h4><span style="color: red;">Tamanna, I'm not sure this works... If you pipe all these commands the result will be zero.</span></h4>
+<p>
+<h4><span style="color: red;">This may be a better option:</span></h4>
+
+```
+grep -o F Lab_3/AAB21188.seq | wc -l 
+grep -o T Lab_3/AAB21188.seq | wc -l
+grep -o I Lab_3/AAB21188.seq | wc -l
+rep -o E Lab_3/AAB21188.seq | wc -l
+grep -o K Lab_3/AAB21188.seq | wc -l 
+grep -o V Lab_3/AAB21188.seq | wc -l
+grep -o P Lab_3/AAB21188.seq | wc -l
+grep -o C Lab_3/AAB21188.seq | wc -l
+grep -o G Lab_3/AAB21188.seq | wc -l 
+grep -o Y Lab_3/AAB21188.seq | wc -l 
+```
+
+<h4><span style="color: red;">Make sure you try the your code before you submit the homework (-5 points)</span></h4>
+
+
+***
+
+# Section 3: Using Cyberduck to upload local files into the cluster
+
+> MAKE SURE YOU ARE CONNECTED TO THE VPN!
+
+So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster using a program called cyberduck.
+
+1. Download cyberduck from this [page](https://cyberduck.io/download/). Download the version for your operating system and install it.
+
+2. Open Cyberduck. To connect to the cluster follow these instructions:
+
+* Click on the `Open Connection` button
+* Select the `SFTP (SSH File Transfer protocol)` option from the drop down menu
+* Fill the rest of the fields like in the image below but using your username and password. Make sure you check on the `Add to Keychain` box.
+
+
+
+3. You have landed in your cluster folder at `/home/username`! 
+
+Now you can navigate the cluster using your mouse like if you were in your computer.
+
+4. Download the `sequence_1` and `sequence_2` files from the moodle.
+
+5. Create a new folder called `mystery_genes` in your `Lab_3` folder using cyberduck (Right click --> New Folder)
+
+6. Select the `sequence_1` and `sequence_2` files and drag them to the `mystery_genes` folder.
+
+7. Connect to the cluster using terminal/mobaxterm, go to the `Lab_3/mystery_genes` folder and check if the files are there. Answer the following question:
+
+***
+> How did you check if the files were correctly uploaded?
+
+```
+I used ls command to see what files I had inside the folder.
+```
+
+***
+
+## Checking file types
+
+If you remember, we saw some file types for sequence data in the theory class. These are `FASTA` and `GenBank`. 
+
+We are going to deal with these files today, and see how we can extract important information from these files. First, answer the following questions:
+
+***
+> Briefly summarize what is a FASTA and what is a GenBank file (one sentence each)
+
+```
+FASTA is the widely used format to store only sequence information, it has two lines; a header with the basic info of the sequence (starts with a > sign); and the sequence data, whereas Genbank file is most used to store molecular data which includes a lot of information including authors, organisms, annotations, etc. 
+
+```
+
+> Can these formats include RNA, DNA and Aminoacid data? (Yes/No answer)
+
+```
+Yes
+
+
+```
+***
+
+Now, use your knowledge of the command line to answer these questions:
+
+***
+> What format is the `sequence_1` file in? (FASTA or GenBank) Briefly explain your answer.
+
+```
+FASTA because it has a > sign in the beginning.
+
+
+```
+
+> What format is the `sequence_2` file in? (FASTA or GenBank) Briefly explain your answer.
+
+```
+GenBank file because it has a lot more information including the organism, the authors, genes, etc. 
+
+
+```
+***
+
+If you answered correclty, you have seen that `sequence_1` is in FASTA format, while `sequence_2` is in GenBank format.
+
+## FASTA: Data handling
+
+Answer these questions (and please ask the professor for help)
+
+***
+> How many lines does the `sequence_1` file has?
+
+```
+10
+
+
+```
+
+> How can you count the number of SEQUENCES that exist in the `sequence_1` file? 
+
+```
+We can use the grep command to find the number of SEQUENCES that exists in the 'sequence_1' file.
+
+
+```
+
+> What is the number of sequences in the `sequence_1` file? Is this result different than the number of lines in the file? Why? 
+
+```
+The number of sequences was 5. It is different from the number of lines because for a FASTA file, each sequence has two lines. 
+
+
+```
+
+***
+
+Now, we know that the number of sequences (five) can be recognized by counting the number of `>` symbols in the sequence, right? 
+
+This means that for this particular FASTA file, you can extract each sequence individually if you know the lines. 
+
+For example:
+- lines 1 and 2 have the first sequence
+- lines 2 and 3 the second
+
+and so on.
+
+That means we can extract each sequence. You can do this using the `sed` command in the following way
+
+```bash
+sed -n 'staring_line,ending_line p' file_with_sequences
+```
+
+So, for example, to extract the first sequence in FASTA format:
+
+```bash
+sed -n '1,2 p' sequence_1
+```
+
+Now, because this is extracting in a fasta file, you will get the header and the sequence data. To only see the sequence data, use `grep` to extract all lines that DON'T have a `>` symbol. You can pipe the results of `sed` into `grep`!
+
+```bash
+sed -n '1,2 p' sequence_1 | grep -v ">" 
+```
+
+in this case, we had to put the `>` symbol between quotes because without them then the command line creates a new file.
+
+Finally, we can even count the length of the sequence:
+
+```bash
+sed -n '1,2 p' sequence_1 | grep -v ">" | wc -c 
+```
+
+This first sequence is 7478 nucleotides long! Ain't this cool?
+
+Answer the following questions:
+
+***
+> How can you save the new sequence in a new FASTA file?
+
+```
+sed -n '1,2 p' sequence_1 | grep -v ">" > Fasta_1
+
+
+```
+
+> Extract all other sequences from the file and save them in 5 different FASTA files. Add the code you used below.
+
+```
+sed -n '3,4 p' sequence_1 | grep -v ">" > Fasta_2 | sed -n '5,6 p' sequence_1 | grep -v ">" > Fasta_3 | sed -n '7,8 p' sequence_1 | grep -v ">" > Fasta_4 | sed -n '9,10 p' sequence_1 | grep -v ">" > Fasta_5
+```
+
+<h4><span style="color: red;">Tamanna, you have the same issue here than before. It should look like this:</span></h4>
+
+```
+sed -n '3,4 p' sequence_1 | grep -v ">" > Fasta_2 
+sed -n '5,6 p' sequence_1 | grep -v ">" > Fasta_3 
+sed -n '7,8 p' sequence_1 | grep -v ">" > Fasta_4 
+sed -n '9,10 p' sequence_1 | grep -v ">" > Fasta_5
+```
+
+<h4><span style="color: red;">Each command has to be independent. If you add a pipe (`|`) then you are not making them independent (-2 pts)</span></h4>
+
+## Homework 2:
+
+***
+> Question 1: Can you create code that will do the following for each extracted FASTA sequence?
+> 1. Count the number of A,G,C and T?
+> 2. Count the length of each sequence?
+> 3. Count the number of open reading frames (ORF)?
+
+Present the code and the results
+
+
+\![numbers](numbers.png)
+
+\![length](lines.png)
+
+\![orfs](orf.png)
+
+
+
+
+
+
+## Section 4: GenBank Files
+
+GenBank files are more complex than FASTA files. 
+
+These files are supremely complex to analyse only using the command line. However, we can take a look a this data and answer a couple of simple questions using the command line:
+
+***
+> How many lines does the `sequence_2` file has?
+
+```
+It has 310 lines.
+
+
+```
+
+> Open the file using `less -NS` and answer the following questions:
+> 1. If you were looking for the information on the gene that codes for lacZ, what line would you use?
+> 2. What species is this gene taken from?
+> 3. What genomic region does this represent? 
+> 4. How many other genes can you find?
+
+```
+1. I would use lines 137-154.
+2. E.coli
+3. It represents the lactose operon.
+4. We can find 3 more genes.
+
+```
+***
+
+## Homework 3: Genic regions on GenBank files are of three different kinds: `mRNA`, `gene`, `CDS`. 
+Each of these represent a different genetic sequence. 
+
+***
+> What are the differences between these the kinds?
+
+```
+#Add you answer here:
+
+- mRNA: includes the gene and the CDS
+- gene: gene information
+- CDS: includes the protein sequence
+```
+
+<h4>
+<span style="color: red;">Not bad, but a little bit incomplete.</span>
+<p>
+<span style="color: red;">mRNA includes regions additional to just the coding sequence. In this case we see that a Repressor is included!</span>
+<p>
+<span style="color: red;">Gene represents the area that spans the gene.</span>
+<p>
+<span style="color: red;">(-7 points)</span>
+</h4>
+***
+
+
+

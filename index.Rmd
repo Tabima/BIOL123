@@ -1,0 +1,27 @@
+--- 
+title: "Introduction to Bioinformatics: Excercise Guidebook"
+author: "Javier F. Tabima Restrepo"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# MBB101/BIOL123 (Introduction to Bioinformatics) Excercise Guidebook {#intro}
+
+Welcome to *Introduction to Bioinformatics*! This document here will be your **excercise guidebook**, or what some will call the **Laboratory notebook**. 
+
+You will find here all the exercises for class, as well as a basic reference guide for basics of coding and all the resources we will use for the course
+
+## Additional information about the professor {-}
+
+Professor Tabima Restrepo is always reachable at `jtabima@clarku.edu`. 
+
+Office hours are on *Wednesdays between 1PM and 3PM* at Larsy 223, or by email.

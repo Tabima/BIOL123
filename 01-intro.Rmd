@@ -1,0 +1,27 @@
+
+# Structure of the Guidebook and FAQs 
+
+## What do we need for lab sessions?
+
+For our labs we are going to use *R, RStudio* and the basic *UNIX command line*
+We will also use *atom*, a basic text editor that's widely used in programming to view and edit files.
+
+We will use the local cluster called `SMAUG` (See Figure 1). `SMAUG` is a computer that the Tabima lab hosts that has 32 processors, more than 14 TB of storage and 128 GB of RAM. Enough to do any kind of analyses.
+
+## Why are we using these programs?
+
+While most of our stuff will be executed online, I thought it would be great that we learn a bit about programming and reproducible science.
+
+`R` and `RStudio` will allow us to do that. With R we can create code that can be reproducible and we can use for future analisis. With RStudio we will have an easy usable user interface to create notebooks like this one!
+
+`Atom` will help us read files we wouldn't be able to read otherwise. As we go forward with class we will see some examples of these files.
+
+## Do we need to know how to program?
+
+No. We will use R for very basic things like extracting sequences from a large file or to count numbers of genes or basic stuff.
+
+We will learn how to do some basic programming and how to use the command line (i.e. how to use basic commands, how to create folders, execute programs and create loops). If not, we will use internet based tools to learn bioinformatics. 
+
+*Being recursive and using the resources we can is very important. Sometimes things won't work as expected and we MUST find an alternative. This is one of those cases*.
+
+***

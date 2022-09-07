@@ -1,0 +1,158 @@
+---
+title: 'Lab 5: Homology and Phylogenetics (Section 2)'
+author: "Katie Crowley with Kelsey Joyce"
+date: "10/14/2020"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+<h2>
+<span style="color: red;"> 45/50. Y'all: When using code use code blocks! Good use of the rest of the notations and we will figure out what happened with the tree thoon...</span>
+</h2>
+
+# Instructions:
+
+- Section 2 will be done on Nov. 13
+- Lab is due before Nov. 20
+
+## Creating a phylogenetic tree using protein data
+
+One of the most common ways of creating phylogenetic trees is using protein data, as the length of the protein alignment is usually smaller than the nucleotide alignment. 
+
+### Introduction to `IQ-tree`
+
+In this lab, we will use one of the most recent programs to build phylogenetic trees: [`IQ-tree`](http://www.iqtree.org/).
+
+`IQ-tree` uses a maximum likelihood approach and ultra-fast bootstrapping to reconstruct phylogenetic trees. 
+
+`IQ-tree` is a very fast program, and it can use nucleotide, protein and other types of data to reconstruct phylogenies based on maximum likelihood.
+
+In addition, if you remember from the theory lecture, `IQ-tree` also determines the best model for nucleotide/amino-acid substitution for the phylogenetic reconstruction, so pretty much `IQ-tree` can do it all.
+
+## Running IQ-tree on protein data
+
+So, we are going to use the protein alignment that we created last week.
+
+To run IQ-tree, we need two super-simple commands:
+
+1. Load the module for IQ-tree
+
+```
+module load iqtree
+```
+
+2. Use this magical command to run `IQ-tree` and automatically determine the best model of amino-acid evolution, run 1000 ultra-fast bootstraps and obtain the most likely tree.
+
+```
+iqtree2 -s your_protein_alignment -B 1000
+```
+
+3. Answer the following questions:
+
+***
+> 1. Check the output of the program as it runs. According to the output, what is the Best-fit model for our alignment?
+
+The best fit model is LG+I+G4 chosen according to BIC
+
+> 2. What are the best models according to Akaike information criteria, corrected Akaike information criteria, and Bayesian information criteria? Are they all different?
+
+Akaike Information Criterion:           LG+F+I+G4
+Corrected Akaike Information Criterion: LG+F+I+G4
+Bayesian Information Criterion:         LG+I+G4
+The Akaike are the same while the Bayesian is different. 
+
+> 3. Use code to extract the Log-likelihood of the tree from the `.iqtree` file from the run. What is that value? How did you extracted it? 
+
+The value is -19711.2154. I extracted it by using the code to find this I used the code `less alin.fasta.iqtree and then /Log-likelihood`
+
+***
+
+4. To view your final phylogenetic tree, download [FigTree](https://github.com/rambaut/figtree/releases) where the `dmg` is for MacOS, the `zip` for Windows, and the `tgz` for Linux. Install the program.
+
+5. Download the `.treefile` file from the cluster to your computer. Open `FigTree` and open the downloaded `.treefile`.
+
+6. You'll see a window like this. It asks you about what name you want to give the labels of the trees. I usually call them *bootstrap*:
+
+
+7. Here's your tree! Now, all Maximum Likelihood trees are unrooted by definition. However, its easier to study the tree if you root it. In this case, you can root it on the node with the longest branch. To do so do `Trees -> Root tree -> Midpoint`.
+
+8. You can also organize the tree for easy viewing by organizing it by early-emerging to late emerging. Use `Trees -> Order nodes -> Increasing` to do so.
+
+9. Finally, observe the bootstrap values by selecting `Node Labels -> Bootstrap`. Good boostrap support values are greater than 60%, highly supported values are greater than 75%. 
+
+10. Answer the following question:
+
+***
+> 4. Summarize your findings (i.e.: Describe the relationships between the species; which nodes are well supported, which nodes are not; does this tree fit the expectation based on the taxonomy of the species used?)
+
+All of the nodes are highly supported (>75%) with the exception of two. The node containing *Mus musculus, Rattus norvegicus, Homo sapiens, and Canis lupus familiaris* with a boostrap value of 73. This value is not highly supported but it is still a good boostrap value. The node containing *Kluyveromyces lactis, Eremothecium gossypii, Saccharomyces cerevisiae S288C, Pyricularia oryzae 70-15, and Neurospora crassa OR74A* has a much lower boostrap value of 51 which is not considered a good boostrap value. I believe that based off of these bootstrap values and the taxonomy of the species used, this tree does fit the expectations of these species.
+
+\![Tree Picture](Tree.jpeg) 
+
+
+***
+
+## Running IQ-tree on nucelotide data
+
+Now, lets do the same but using the `homologene_nucl.fasta` file you'll find in the moodle page. 
+
+This file has **been previously aligned** using `MAFFT`, so this **SHOULD BE** the same file you got from the `mRNA` homologene file, and we will test this hypothesis. 
+
+11. Align **YOUR** mRNA homologene file you obtained last week using `MAFFT`. Answer the following question.
+
+***
+> 5. Add the code for the MAFFT alignment of your mRNA file. 
+
+mafft --localpair --maxiterate 1000 homologene_nucl.fasta > homologene_nucl_output.fasta   
+
+<span style="color: red;"> CODE NOTATION!! (-5 pts) </span>.
+
+> 6. Why did you decide to use that algorithm?
+We decided that we wanted to complete a local sequence allignment. We are looking to compare the similarities between the two files. We chose this type of allignment because we are comparing the homologs of the files. 
+***
+
+12. Run `IQ-tree` for each of the mRNA alignments. Fill the following table
+
+| mRNA file | Best nucleotide model | Likelihood score of tree |
+|--------  -|--------|--------|--------|----------|
+| Your mRNA file |TIM3+F+R3 chosen according to BIC | -50069.776         |    
+| Professor's mRNA file | TIM3+F+R3 chosen according to BIC| -49890.473  |         
+
+13. Open both trees in FigTree. Answer the following question:
+
+***
+> 7. What is the most striking difference you see?
+The striking differences is that the file we created with the homolog comparison has far more similarities and higher bootstrap values in comparison to the other trees. The order has also changed with the position of mRNA alignments. The difference is also that there is an error in the *Mus musculus* sequence. *Mus musculus* is in a must different spot on the tree than was anticipated. It was expected to be in the same node with *Rattus norvegicus*. 
+
+***
+
+14. Open the professor's alignment in the [MSA viewer of NCBI](https://www.ncbi.nlm.nih.gov/projects/msaviewer/). After uploading the sequence, use the `Coloring -> Nucleic Acid Colors` option. Answer the following question:
+
+***
+> 8. There is one sequence that looks very weird (i.e. Colors don't match and there are long strands of insertions and deletions in the region). What sequence do you suspect its weird?
+
+The *Mus musculus* sequence is the one that looks weird. I believe that this is because there is an issue with the order of the sequence. Where there should be an intron, there is an exon and where there is an exon there should be introns. This seems to be a sequence issue such as the order of the sequence. 
+***
+
+15. The professor just noticed that he changed the sequence of *Mus musculus* (`gi|118130707|ref|NM_008628.2|`) and added the reverse strand instead of the forward strand... WHOOPS.
+
+In this case, `MAFFT` can check all the sequences and correct the direction of the strand. Use the `--adjustdirectionaccurately` option of `MAFFT` to run it. 
+
+So, if you used the `E-INS-i` algorithm, the syntax would be like this:
+
+`mafft --adjustdirectionaccurately --genafpair --maxiterate 1000 homologene_nucl.fasta > professor_corrected.fasta`
+
+Using this info, here's the homework:
+
+## Homework: 
+
+> Using the mis-alignment I sent, correct it using the `MAFFT` code above and run the tree again. Does the tree look like the mRNA you obtained? Write a paragraph about the comparison.
+
+When looking at the trees there are many differences between our mRNA and the professor's tree. On our tree, *Mus musculus* is at the  bottom on its own branch. This is similar to the professors initial tree with the error in the sequences. The bottom node at the bottom of our tree is at the top of the professors tree. As we know, the order of the node is not relevant to the relatedness of the species. In the professor's corrected tree, the *Mus musculus* is in a node with *Rattus norvegius* they also share a common ancestor with *Homo sapiens*, *Bos taurus* and *Canis lupus familiaris*. This is very different from our tree because *Mus musculus* is located on it's own branch in our tree. The similarities in our tree are most closely matched to the professor's first tree that had sequence errors. It is very different from the second, corrected tree. 
+
+\![Our Tree](Final Tree.jpeg)
+\![Professor Tree Orignial](Prof_Tree.jpeg) 
+
+

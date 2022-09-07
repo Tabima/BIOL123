@@ -1,0 +1,452 @@
+---
+title: 'Lab 4: Advanced bioinformatics'
+author: Hannah Evers and Cammi Mackenzie
+date: "10/2/2020"
+output: html_document
+---
+# GRADE: 
+<h2>
+<span style="color: red;"> 84/100. Use the Markdown notations for code, italics, etc, please!</span>
+</h2>
+
+# Advanced bioinformatics
+
+## Notes:
+
+-   Session 1 will be done on Oct. 16
+-   Session 2 will be done in Oct. 23
+-   Lab is due Oct. 30
+
+***
+
+# Introduction
+
+This lab will be focused in understanding advanced bioinformatics.
+
+**Section 1** will focus on how to identify open reading frames and a gene based on searches on the ORF finder, translate the largest ORF and navigate through NCBI as we did on the theory class
+
+**Section 2** will focus on how to use the cluster to create a BLAST and HMMER database of genes of interest.
+
+***
+
+# Section 1: Open reading frames, translating sequences and BLAST searches to identify the role and functionality of a mystery gene
+
+
+1. Download the `unknown_seq.fasta` file from the Moodle and open it on `atom`. This is a nucleotide strand from a segment of a chromosome of a cool species that we will try to identify.
+
+2. Go to [NCBI's ORF Finder](https://www.ncbi.nlm.nih.gov/orffinder/) and upload your sequence by copying and pasting it. Keep the parameters by default and submit the form. Answer the following questions:
+
+***
+
+> Questions:
+
+> 1. How many ORF do you find in the sequence? 
+
+There are 5 ORF's in this sequence. 
+> 2. Which ORF is the longest, how long it is (Both in NT and AA), and in which strand (Plus or minus) is located? 
+
+The 1st reading frame is the longest. It has 153 NTs and 50 AA and is part of the plus strand. 
+
+> 3. In what frame is the longest ORF in? What does this mean? 
+
+It's in Frame 1 which means it starts reading at the very first nucleotide in the sequence to make the three letter codon rather than the three letter codons starting at the second or third nucloetide in the sequence. 
+
+> 4. Click on Display ORF and copy and paste the Protein sequence and the nucleotide sequence of the longest ORF here. 
+
+Protein Sequence: MVMITLDRYNVIVRGMAAAPLTHKKATLLLLFVWIWSGGWTILPFFGWSR
+Nucleotide Sequence: ATGGTGATGATAACACTAGACCGCTACAACGTGATTGTTAGAGGTATGGC
+AGCTGCACCTTTGACCCACAAGAAAGCCACTCTGCTCCTCCTGTTTGTCT
+GGATCTGGTCAGGTGGTTGGACTATCCTGCCTTTCTTCGGATGGAGCAGG
+TAG
+
+> 5. Is there any ORF on the backwards direction? (-)
+
+Yes, ORF5 is in the minus direction. 
+
+***
+
+3. Now, take your original sequence and go to [NCBI BLAST ](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Answer the following question:
+
+
+***
+
+> 6. This is DNA data, so what kinds of BLAST's can you use? Nucleotide to Protein which is BLASTX or nucleotide to nucleotide BLAST
+
+***
+
+4. First, lets do a nucleotide BLAST. Click on nucleotide BLAST, and copy and paste your original sequence. Now, select the **Nucleotide collection** database and run a megablast. Answer the following questions:
+
+
+***
+
+> 7. What are the best 3 hits. Why do you consioder them the best hits?
+
+The best 3 hits are: Limulus polyphemus opsin 2 gene, exons 2, 3 and 4 and partial cds; Limulus polyphemus opsin 4 gene, exons 2 and 3 and partial cds; and Limulus polyphemus opsin 3 gene, exons 2 and 3 and partial cds. 
+
+<span style="color: red;"> Why do you consider them the best hits? (-5 pts) </span>.
+
+> 8. Include the accesion numbers of the best three hits.
+
+AY190508.1; AY190514.2; AY190512.2
+
+***
+
+5. Go to the Graphic Summary of the BLAST results. Take a screenshot and add it below and answer the following questions
+
+***
+
+> 9. Add screenshot here 
+\![Screenshot!](ORFS2.png)
+
+> 10. Does this image support your results from question 7? Explain why briefly. 
+
+Yes this image supports our results from question 7 because the first three red lines correlate to the three hits we found in 7. 
+
+***
+
+6. Go to the Taxonomy window of the BLAST results. Answer the following question:
+
+***
+
+> 11. What species has the highest score? What about the other species? Are they closely related to each other? 
+
+The horseshoe crabs has the highest score. Bees are the next closest hit. Yes they are somewhat all related as they all belong to the arthropod phylum. 
+
+***
+
+7. After doing the BLAST, click on the hit with the best score. You should find the accession number there (AY190508.1). Click on it and answer the following question:
+
+***
+
+> 12. What kind of is this? A FASTA or a GenBank? 
+
+A GenBank
+
+> 13. Copy and paste the protein region coded by the CDS. 
+
+RYNVIVRGMAAAPLTHKKATLLLLFVWIWSGGWTILPFFGWSRY      VPEGNLTSCTVDYLTKDWSSASYVIIYGLAVYFLPLITMIYCYFFIVHAVAEHEKQLR
+EQAKKMNVASLRANADQQKQSAECRLAKVAMMTVGLWFMAWTPYLIIAWAGVFSSGTR
+LTPLATIWGSVFAKANSCYNPIVYGISHPRYKAALYQRFPSLACGSGESGSDVKSEAS
+ATTTMEEKPKSPEA
+
+***
+
+8. On the panel on the right, you'll find a link to the *More about the gene LOC106470356*. This means we have a whole gene associated to our query gene!
+
+Answer the following questions:
+
+***
+
+> 14. What's the name of the gene? 
+
+Lateral Eye Opsin
+
+> 15. Check the organism's name. Is this what you found at the beginning of the lab? 
+
+Yes, horseshoe crab is what we found earlier. 
+
+> 16. Go to the genomic regions. How many exons does the gene has? How did you come to this conclusion? 
+
+The gene has two exons. There are only 2 large green rectangles on the genomic region section and above this section in genomic context it says there are 2 exons. 
+
+
+***
+
+10. Go down to the NCBI Reference Sequences (RefSeq) - mRNA and Proteins section. 
+
+11. Click on the UniProtKB/Swiss-Prot link. Answer the following question:
+
+***
+
+> 17. What database are we in? 
+
+UniProt
+
+> 18. Is the organism still the same? 
+
+Yes, the organism is still the same.
+
+> 19. What is the proposed function for this gene? 
+
+Light absorption for visual pigment.
+
+> 20. What are the molecular functions and biological processes that this gene is involved with? 
+
+The molecular functions are G-protein coupled receptor activity and photoreceptor activity. The biological processes that this gene is involved with are phototransduction, protein-chromophore linkage, and visual perception. 
+
+***
+
+
+12. Extract the FASTA protein sequence from the LOC106470356 gene (You can find it on the RefSeq submenu, on the mRNA and Protein segment, click on the NP_001301089.1 link). Then, go to [Pfam](http://pfam.xfam.org/) and search the sequence you just copied on the Sequence Search window. Answer the following questions based on the **Significant Pfam matches**:
+
+***
+
+> 21. How many protein domains can we find in this sequence? 
+
+There is 1 protein domain in this sequence.
+
+> 22. What domain is it? 
+
+7tm_1 = 7 transmembrane receptor
+
+> 23. Is this a good E-value to determine a good hit? 
+
+It's a very good E-value to determine a good hit because it is very very very very small. 
+
+***
+
+13. Click on the domain name. Answer these questions:
+
+***
+
+> 21. How many architectures of this domain are found? 
+
+765
+> 22. How many sequences are found that contain this domain? 
+
+76,859
+
+***
+
+14. Click on the the Species link on the menu on the left. Answer these questions:
+
+***
+
+> 23. What are the kingdom, phylum and class with more sequences that contain this domain?
+
+Metazoa, Chordata, and Actinopterygii
+
+***
+
+## Homework 1: 
+
+Based on all the information that we found today, write a summary of the gene and all the information we were able to obtain from the search. Include gene ID, accession numbers for mRNA and protein sequence. Two paragraphs are more than enough.
+
+***
+
+> Answer here: 
+
+
+he gene we were searching today was the lateral eye opsin gene (LOC106470356) which has various molecular and biological functions including receptor activities, visual perception, phototransduction, and protein-chromophore linkage. From NCBI, UniProt, and Blast we were able to obtain the best sequence alignment matches and the main best fit, whose accession number was AY190508.1, which was the lateral eye opsin gene from horseshoe crab which we were able to determine through GenBank data. With this same information we were able to obtain the kingdom, phyla, class, etc. as well as the FASTA sequences and all the different sites located on this gene/protein. We could then obtain related sequences, and the mRNA and protein reference sequences which were NM_001314160.1 for mRNA and  NP_001301089.1 for protein. With those we could perform a pfam search to identify domains whether significant or not and then look at the architectures, sequences, interactions, species relatedness, etc. on those domains.   
+
+<span style="color: red;"> I liked the vast majority of it, until the last paragraph. Add a small summary as well of the Pfam search! (-2 pts) </span>.
+
+***
+
+***
+
+# Section 2: Creating our own searches using BLAST and HMMER in the cluster.
+
+## Creating databases using BLAST
+
+Today we are going to learn how to create our own databases in the cluster based on a list of sequences and search to identify query sequences from species of interest.
+
+In our case, we are going to use the database from *Phytophthora-ID*, a database I constructed a while ago to detect species of *Phytophthora* based on the ITS molecular marker.
+
+1. Connect to the cluster and create a new folder inside your MBB101 folder called `Lab_4`
+2. Create a second folder inside of `Lab_4` called blastDB and go into it.
+3. Download the sequences from this link `http://phytophthora-id.org/files/Phytophthora-ID-ITS-version-1.17.fasta` into the `Lab_4/blastDB` folder
+4. We are going to use the `unknown_sequences.fasta` file as query for the unknown files
+
+Answer the following questions:
+
+***
+
+> 1. How many sequences are in the `unknown_sequences.fasta` and the `Phytophthora-ID-ITS-version-1.17.fasta` files? Add the code you used to check the sequences. 
+
+There are 2 sequences in the unknown sequences fasta file. There are 270 sequences in the Phytophthora fasta file. The code we used was grep -c '>' FILE NAME. 
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+> 2. Are these files nucleotide or protein sequences? Add the code you added to check the sequences. 
+
+Nucleotide sequences and we just simply used the command cat to open the files to see what the sequences contained which were only ATGC's. 
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+***
+
+Now, we are going to create the BLAST database. To create this we will use the following template of code:
+
+```
+makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_name
+```
+
+Answer the following question:
+
+***
+
+> 3. Modify the template code by changing the `list_of_reference_seq`, `type_of_molecule` and `database_name` and add it below. 
+
+makeblastdb -in Phytophthora-ID-ITS-version-1.17.fasta -dbtype nucl -out unknownsequences
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+***
+
+5. Run the code after modification and make sure it worked by doing an `ls` and checking that the `database_name.nhr`, `database_name.nin`, `database_name.nsq` files are there.
+
+6. Now, we are going to run a BLAST search to identify the unknown sequences in the `unknown_sequences.fasta`
+
+The following is template code to run BLAST:
+
+```
+blast_program -query query_file -db database_name -out output_file -evalue 1e-10 -outfmt 6 -max_target_seqs 7
+```
+
+Answer the following questions
+
+***
+
+> 4. Modify the template code by changing the `blast_program` to the blast program we should be using (blastp, blastn, tblastn, tblastx). Explain your answer briefly.
+
+We are using blastn because both our reference and query sequences are nucloetide sequences. 
+
+blastn -query unknown_sequences.fasta -db unknownsequences -out output_file -evalue 1e-10 -outfmt 6 -max_target_seqs 7
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+> 5. Complete the template code by modifying the `query_file` and `database_name` and add it below.
+
+blastn -query unknown_sequences.fasta -db unknownsequences -out output_file -evalue 1e-10 -outfmt 6 -max_target_seqs 7
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+> 6. Explain briefly what the `-evalue 1e-10`, `-outfmt 6`, `-max_target_seqs 7` and flags mean.
+
+-evalue 1e-10 just means that we only want to get hits that are significant results. -outfmt 6 puts the data into a table that we can easily read. -max_target_seqs 7 just means that we'll only get a a max of 7 hits out after our search. 
+
+***
+
+7. Run the modified code. Check that you have some results by making sure that your `output_file` has content on it.
+
+8. In the following table, add the top 3 hits for each of the query sequences.
+
+| qseqid  | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore |
+|---------|--------|--------|--------|----------|---------|--------|------|--------|------|--------|----------|
+| Query_1 |AY369370.1 |    100     |    797    |     0   |    0     |     1    |   797     |   1   |   797     |   0.0   |   1472   |     
+| Query_1 | AY369375.1     |   99.875     |    797    |     1     |    0     |    1    |   797   |     1   |   797   |     0.0   |   1467       |
+| Query_1 | AF266804   |    95.119    |   799     |   35      |   4      |    1    |   797   |   1     |   797   |   0.0     |     1256     |
+
+| qseqid  | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore |
+|---------|--------|--------|--------|----------|---------|--------|------|--------|------|--------|----------|
+| Query_2 |    L41373.1    |     100   |   798     |   0       |    0     |    1    |   798   |    1    |   798   |   0.0     |    1474      |
+| Query_2 |   AF271221     |    99.373    |   798     |     4     |    1     |    1    |    798  |    1    |   797   |   0.0     |   1445       |
+| Query_2 | 	HQ261661     |     98.116   |    796    |     12     |   3      |     1   |   796   |   1     |   793   |   0.0     |    1384      |
+
+Answer these following questions:
+
+***
+
+> 7. Based on your results, what are the most likely identities of each query? Explain why. 
+
+The most likely identity of query 1 is AY369370.1 and the most likely identity of query 2 is L41373.1 because they both have a 100% identity, zero mismatches, an e value of zero which is the best you can get indicating that it is a significant match and it also has the highest bitscore of the hits which is another statistical indicator of significance. 
+
+> 8. Within the `Phytophthora-ID-ITS-version-1.17.fasta` you can extract the names of each species in the database. What are the species of each of the most likely sequences? 
+
+For query 1 the species is Phytophthora hibernalis. We used the command grep -a 'AY369370.1' Phytophthora-ID-ITS-version-1.17.fasta
+For query 2 the species is Phytophthora macrochlamydospora. We used the same command above except substituted L41373.1
+
+<span style="color: red;"> Use the markdown code and italics notations for code blocks and species names, please (-2 pt)</span>.
+
+***
+
+
+## Using HMMER to search for proteins with domains of interest
+
+We are going to learn also how to use the information from databases to identify genes of interest that can serve us.
+
+In this case, you are a Veterinarian Bioinformatitian. 
+
+You have detected that a community of three animals (A chicken, *Gallus gallus*; a dog, *Canis familiaris*; and a cow, *Bos taurus*) that may have a disease associated with a mutation on the [Sonic The Hedgehog gene](https://medlineplus.gov/genetics/gene/shh/#resources).
+
+You sequenced one copy of each the genes per species, and translated them into proteins. 
+
+However, due to an error in the machine, your sequences have been mixed with another hundred protein sequences from other species and genes in a file called `oh_this_is_a_mess.fasta`
+
+A BLAST would be too much to run as you have a very small machine in your office, but you remember (thanks to your bioinformatics course ;) ) that you can run HMMER, a faster way of identifying protein sequences using Hidden Markov Models (HMM).
+
+You also remember that [Pfam](http://pfam.xfam.org/) is a great database of protein domains that also contains HMM for these proteins.
+
+Using your bioinformatics software, you discover that there is a reference gene for *Sonic The Hedgehog* in humans, in NCBI, in the accession number [NP_000184.1](http://www.ncbi.nlm.nih.gov/protein/NP_000184.1?report=fasta)
+
+1. Copy the FASTA file and search for the domains in Pfam
+
+2. What are the two Pfam-A matches you find?
+HH_signal and the Hint module domains
+
+***
+
+> 1. Answer here:
+
+***
+
+3. Click on each of the domains. Go to the **Curation & model** link on the left.
+
+4. Download the raw HMM for each domain. 
+
+5. Log into the Cluster. Within the `Lab_4` folder create a `hmm_example` folder.
+
+6. Upload the HMM files and the `oh_this_is_a_mess.fasta` files into the new folder
+
+7. Merge both HMM files into a single file called `SHH.hmm`. Answer the following question:
+
+***
+
+> 2. How would you merge the two files? Add the code below.
+
+cat HH_signal.hmm Hint.hmm > SHH.hmm
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+
+***
+
+8. Load the hmmer/3.3 module in the cluster using the following command:
+
+```
+module load hmmer/3.3
+```
+ 
+9. The following is a template to run HMMER searches:
+
+```
+hmmsearch --tblout output_table HMM_file query_sequences
+```
+
+Answer the following question:
+
+***
+
+> 3. Modify the template code by changing the `output_table`, `HMM_file` and `query_sequences` and add it below.
+
+hmmsearch --tblout mess_output.txt SHH.hmm oh_this_is_a_mess.fasta
+
+<span style="color: red;"> Use the markdown code notation, please (-1 pt)</span>.
+***
+
+10. Run the modified code.
+
+11. Check the `output_table` file. Could you find the sequences of interest? Explain the results below:
+
+***
+
+> 4. Answer here: 
+
+Yes, we could find the sequences of interest. They were the top three hits listed under the target sequences/matches for each query. Being said, we could see that all three sequences contained both domains of the Sonic The Hedgehog gene so, we can assume that they are the three interests. They all have very small e values for not only the full sequence but also the best 1 domain as well which indicates that they are significant matches and most likely our sequences of interest.  
+
+***
+
+## Homework 2: 
+
+How can you check if your candidate sequences are indeed the *Sonic The Hedgehog* genes?
+
+
+***
+
+> Answer here: In order to check that the candidate sequences are indeed the Sonic The Hedgehog genes we could take the target name/ID of each, search them on the NCBI website, extract their FASTA sequences, plug each one into pfam and then observe if the two domains of the Sonic gene (Hint and HH_signal) are present in that candidate sequence. 
+
+<span style="color: red;"> Excellent!</span>.
+***
+
+
+
