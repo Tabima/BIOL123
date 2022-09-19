@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-09-07" />
+<meta name="date" content="2022-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="rmark.html"/>
 <link rel="next" href="basic-bioinformatics.html"/>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -519,13 +519,28 @@ Question 7
 </h4>
 <ul>
 <li>
-What happens if you try and answer <strong>Questions 3 and
-4</strong> usin <code>grep</code>? Summarize how <code>grep</code> can
-help you with finding these patterns of interest.
+<p>
+What happens if you try and answer these questions using
+<code>grep</code>?
+</p>
+<ul>
+<li>
+How many times is the word “Dursley” found in the document?
+</li>
+<li>
+How many times is Harry mentioned?
+</li>
+<li>
+How was the weather on that Tuesday?
 </li>
 </ul>
+</li>
+</ul>
+<p>
+Summarize how <code>grep</code> can help you with finding these
+patterns of interest.
+</p>
 </div>
-<p>Finally, question 8 (as well as question 6) will be your homework. We will discuss it next week as we also learn how to replace patterns and create pipes.</p>
 <div class="rmdquestion">
 <h3 id="question-8">
 Question 8
@@ -533,9 +548,9 @@ Question 8
 <ul>
 <li>
 Using the <code>man grep</code> command, how can you use grep to
-count for an occurence of a text string. For example, can grep count the
-number of times the word <code>Dursley</code> exists in the file? Write
-the command you would use and the results.
+count for an occurrence of a text string. For example, can grep count
+the number of times the word <code>Dursley</code> exists in the file?
+Write the command you would use and the results.
 </li>
 </ul>
 </div>
@@ -611,7 +626,7 @@ What is the absolute path of the
 <p>So, if you recall the theory class, we learnt about the <code>sed</code> command to replace patterns.</p>
 <p>The idea is that you will replace some patterns in the <code>modified_file.txt</code> file and then check if the results make sense.</p>
 <ol style="list-style-type: decimal">
-<li>Change the <code>Dursley</code> patterns into <code>Potter</code> and save the file as <code>potter.txt</code> using the <code>sed s/Dursley/Potter/g modified_file.txt &gt; potter.txt</code> command. Answer question 12.</li>
+<li>Change the <code>Dursley</code> patterns into <code>Potter</code> and save the file as <code>potter.txt</code> using the <code>sed s/Dursley/Potter/g modified_file.txt &gt; potter.txt</code> command.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-13">
@@ -641,18 +656,8 @@ Question 15
 <ul>
 <li>
 How many times does the word <code>Potter</code> appear? Is it the
-same number as in question 6?
-</li>
-</ul>
-</div>
-<div class="rmdquestion">
-<h3 id="question-16">
-Question 16
-</h3>
-<ul>
-<li>
-Count the number of lines of the <code>potter.txt</code> file and
-compare them to the original file. Answer question 13
+same number as in question 7 when you checked the number of times that
+Harry was mentioned? Why?
 </li>
 </ul>
 </div>
@@ -660,16 +665,19 @@ compare them to the original file. Answer question 13
 <h3 id="question-17">
 Question 17
 </h3>
+<p>
+Count the number of lines of the <code>potter.txt</code> file and
+compare them to the original file.
+</p>
 <ul>
 <li>
 Is the number of lines similar between <code>potter.txt</code> and
-<code>modified_file.txt</code>? Very very briefly justify your
-answer.
+<code>modified_file.txt</code>? Very briefly justify your answer.
 </li>
 </ul>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>Extract all the lines that say <code>Potter</code> from <code>potter.txt</code> into a new file called <code>potter_lines.txt</code>. Answer questions 14 and 15</li>
+<li>Extract all the lines that say <code>Potter</code> from <code>potter.txt</code> into a new file called <code>potter_lines.txt</code>.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-18">
@@ -699,7 +707,7 @@ answer very briefly.
 <h3><span class="header-section-number">6.3.4</span> Removing files, renaming files and creating symbolic links<a href="introduction-to-the-command-line.html#removing-files-renaming-files-and-creating-symbolic-links" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that we are done with creating files and modifing them, we need to remove all the files we are not using anymore. The <code>rm</code> command will allow us to do that.</p>
 <ol style="list-style-type: decimal">
-<li>Remove the <code>potter_lines.txt</code> and the <code>modified_file.txt</code> files from the folder. Answer question 16.</li>
+<li>Remove the <code>potter_lines.txt</code> and the <code>modified_file.txt</code> files from the folder.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-20">
@@ -712,18 +720,9 @@ sure the files do not exist anymore?
 </li>
 </ul>
 </div>
-<div class="rmdquestion">
-<h3 id="question-21">
-Question 21
-</h3>
-<ul>
-<li>
-Rename the <code>potter.txt</code> file as
-<code>Potter_story.txt</code> using the mv command as such
-<code>mv potter.txt Potter_story.txt</code>. Answer question 17
-</li>
-</ul>
-</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Rename the <code>potter.txt</code> file as <code>Potter_story.txt</code> using the<code>mv</code> command as such <code>mv potter.txt Potter_story.txt</code>.</li>
+</ol>
 <div class="rmdquestion">
 <h3 id="question-22">
 Question 22

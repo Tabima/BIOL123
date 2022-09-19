@@ -203,16 +203,19 @@ Ah cool, we can see if the pattern is present or not!
 ```{block, type='rmdquestion'}
 #### Question 7
 
-- What happens if you try and answer **Questions 3 and 4** usin `grep`? Summarize how `grep` can help you with finding these patterns of interest.
+- What happens if you try and answer these questions using `grep`? 
+
+   * How many times is the word “Dursley” found in the document?
+   * How many times is Harry mentioned?
+   * How was the weather on that Tuesday?
+
+Summarize how `grep` can help you with finding these patterns of interest.
 ```
-
-Finally, question 8 (as well as question 6) will be your homework. We will discuss it next week as we also learn how to replace patterns and create pipes.
-
 
 ```{block, type='rmdquestion'}
 ### Question 8
 
-- Using the `man grep` command, how can you use grep to count for an occurence of a text string. For example, can grep count the number of times the word `Dursley` exists in the file? Write the command you would use and the results.
+- Using the `man grep` command, how can you use grep to count for an occurrence of a text string. For example, can grep count the number of times the word `Dursley` exists in the file? Write the command you would use and the results.
 ```
 
 ***
@@ -271,7 +274,7 @@ So, if you recall the theory class, we learnt about the `sed` command to replace
 
 The idea is that you will replace some patterns in the `modified_file.txt` file and then check if the results make sense.
 
-1. Change the `Dursley` patterns into `Potter` and save the file as `potter.txt` using the `sed s/Dursley/Potter/g modified_file.txt > potter.txt` command. Answer question 12.
+1. Change the `Dursley` patterns into `Potter` and save the file as `potter.txt` using the `sed s/Dursley/Potter/g modified_file.txt > potter.txt` command.
 
 
 ```{block, type='rmdquestion'}
@@ -289,23 +292,19 @@ The idea is that you will replace some patterns in the `modified_file.txt` file 
 ```{block, type='rmdquestion'}
 ### Question 15
 
-- How many times does the word `Potter` appear? Is it the same number as in question 6?
-```
-
-```{block, type='rmdquestion'}
-### Question 16
-
-- Count the number of lines of the `potter.txt` file and compare them to the original file. Answer question 13 
+- How many times does the word `Potter` appear? Is it the same number as in question 7 when you checked the number of times that Harry was mentioned? Why?
 ```
 
 ```{block, type='rmdquestion'}
 ### Question 17
 
-- Is the number of lines similar between `potter.txt` and `modified_file.txt`? Very very briefly justify your answer.
+Count the number of lines of the `potter.txt` file and compare them to the original file.
+
+- Is the number of lines similar between `potter.txt` and `modified_file.txt`? Very briefly justify your answer.
 ```
 
 
-4. Extract all the lines that say `Potter` from `potter.txt` into a new file called `potter_lines.txt`. Answer questions 14 and 15 
+4. Extract all the lines that say `Potter` from `potter.txt` into a new file called `potter_lines.txt`. 
 
 ```{block, type='rmdquestion'}
 ### Question 18
@@ -325,7 +324,7 @@ The idea is that you will replace some patterns in the `modified_file.txt` file 
 
 Now that we are done with creating files and modifing them, we need to remove all the files we are not using anymore. The `rm` command will allow us to do that.
 
-1. Remove the `potter_lines.txt` and the `modified_file.txt` files from the folder. Answer question 16.
+1. Remove the `potter_lines.txt` and the `modified_file.txt` files from the folder. 
 
 ```{block, type='rmdquestion'}
 ### Question 20
@@ -334,11 +333,7 @@ Now that we are done with creating files and modifing them, we need to remove al
 ```
 
 
-```{block, type='rmdquestion'}
-### Question 21
-
-- Rename the `potter.txt` file as `Potter_story.txt` using the mv command as such `mv potter.txt Potter_story.txt`. Answer question 17
-```
+2. Rename the `potter.txt` file as `Potter_story.txt` using the` mv` command as such `mv potter.txt Potter_story.txt`.
 
 ```{block, type='rmdquestion'}
 ### Question 22
