@@ -276,7 +276,7 @@ Right here, stop and make the same sound a rooster makes. Then answer the follow
 
 ## Section 3: Processing local files into the cluster
 
-So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster using a program called cyberduck.
+So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster.
 
 
 1. Download the `sequence_1` and `sequence_2` files from the moodle.
