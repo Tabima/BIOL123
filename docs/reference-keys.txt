@@ -55,7 +55,7 @@ variables
 the-echo-command
 mixing-variables-and-echo
 using-a-pipeline-as-an-example-of-variables-and-pipes
-section-3-how-to-upload-and-process-local-files-into-the-cluster
+section-3-processing-local-files-into-the-cluster
 checking-file-types
 fasta-data-handling
 section-4-genbank-files

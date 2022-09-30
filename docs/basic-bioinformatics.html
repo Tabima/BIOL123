@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-09-19" />
+<meta name="date" content="2022-09-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="introduction-to-the-command-line.html"/>
 <link rel="next" href="advanced-bioinformatics.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#what-is-a-pipeline"><i class="fa fa-check"></i><b>7.2.1</b> What is a pipeline?</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-3-how-to-upload-and-process-local-files-into-the-cluster"><i class="fa fa-check"></i><b>7.3</b> Section 3: How to upload and process local files into the cluster</a>
+<li class="chapter" data-level="7.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-3-processing-local-files-into-the-cluster"><i class="fa fa-check"></i><b>7.3</b> Section 3: Processing local files into the cluster</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#checking-file-types"><i class="fa fa-check"></i><b>7.3.1</b> Checking file types</a></li>
 <li class="chapter" data-level="7.3.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#fasta-data-handling"><i class="fa fa-check"></i><b>7.3.2</b> FASTA: Data handling</a></li>
@@ -279,7 +279,7 @@ Nothing too fancy, just some basic commands to look at the data files and summar
 <pre><code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/AAB21188.seq
 https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq</code></pre>
 <ol style="list-style-type: decimal">
-<li>Create a folder called <code>Lab_3</code> in your <code>MBB101</code> folder at the cluster</li>
+<li>Create a folder called <code>Lab_3</code> in your home folder at the cluster</li>
 <li>Download the files. Answer the following question:</li>
 </ol>
 <div class="rmdquestion">
@@ -302,7 +302,8 @@ Question 2
 <ul>
 <li>
 What kind of sequence (DNA/RNA/Protein) is the
-<code>S79522.seq</code> file? Briefly justify your answer.
+<code>S79522.seq</code> file? Add the command you used to answer the
+question.
 </li>
 </ul>
 </div>
@@ -313,7 +314,8 @@ Question 3
 <ul>
 <li>
 What kind of of sequence (DNA/RNA/Protein) is the
-<code>AAB21188.seq</code> file? Briefly justify your answer.
+<code>AAB21188.seq</code> file? Add the command you used to answer the
+question.
 </li>
 </ul>
 </div>
@@ -571,6 +573,7 @@ Expand briefly your answer.
 <span id="cb21-5"><a href="basic-bioinformatics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;Number of C:&#39;</span><span class="va">$nucC</span></span></code></pre></div>
 <pre><code>## Number of A: 171
 ## Number of C: 104</code></pre>
+<p>Right here, stop and make the same sound a rooster makes. Then answer the following questions:</p>
 <div class="rmdquestion">
 <h3 id="question-13">
 Question 13
@@ -596,31 +599,14 @@ Write a set of instructions to count ten of the aminoacids in the
 </div>
 </div>
 </div>
-<div id="section-3-how-to-upload-and-process-local-files-into-the-cluster" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Section 3: How to upload and process local files into the cluster<a href="basic-bioinformatics.html#section-3-how-to-upload-and-process-local-files-into-the-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="section-3-processing-local-files-into-the-cluster" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Section 3: Processing local files into the cluster<a href="basic-bioinformatics.html#section-3-processing-local-files-into-the-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster using a program called cyberduck.</p>
 <ol style="list-style-type: decimal">
-<li><p>Download cyberduck from this <a href="https://cyberduck.io/download/">page</a>. Download the version for your operating system and install it.</p></li>
-<li><p>Open Cyberduck. To connect to the cluster follow these instructions:</p></li>
-</ol>
-<ul>
-<li>Click on the <code>Open Connection</code> button</li>
-<li>Select the <code>SFTP (SSH File Transfer protocol)</code> option from the drop down menu</li>
-<li>Fill the rest of the fields like in the image below but using your username and password. Make sure you check on the <code>Add to Keychain</code> box.</li>
-</ul>
-<div class="figure">
-<img src="Lab_3/cyberduck_optn.png" alt="" />
-<p class="caption">Cyberduck connection menu</p>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>You have landed in your cluster folder at <code>/home/username</code>!</li>
-</ol>
-<p>Now you can navigate the cluster using your mouse like if you were in your computer.</p>
-<ol start="4" style="list-style-type: decimal">
 <li><p>Download the <code>sequence_1</code> and <code>sequence_2</code> files from the moodle.</p></li>
-<li><p>Create a new folder called <code>mystery_genes</code> in your <code>Lab_3</code> folder using cyberduck (Right click –&gt; New Folder)</p></li>
-<li><p>Select the <code>sequence_1</code> and <code>sequence_2</code> files and drag them to the <code>mystery_genes</code> folder.</p></li>
-<li><p>Connect to the cluster using terminal/mobaxterm, go to the <code>Lab_3/mystery_genes</code> folder and check if the files are there.</p></li>
+<li><p>Create a new folder called <code>mystery_genes</code> in your <code>Lab_3</code> folder</p></li>
+<li><p>Upload the files into the folder</p></li>
+<li><p>Check if the files are there.</p></li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-15">
@@ -712,15 +698,34 @@ Is this result different than the number of lines in the file? Why?
 <p>Finally, we can even count the length of the sequence:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="basic-bioinformatics.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;1,2 p&#39;</span> sequence_1 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span> </span></code></pre></div>
 <p>This first sequence is 7478 nucleotides long! Ain’t this cool?</p>
-<p>Answer the following questions:</p>
-<ul>
-<li>How can you save the new sequence in a new FASTA file?</li>
-<li>Extract all other sequences from the file and save them in 5 different FASTA files. Add the code you used below</li>
-</ul>
 <div class="rmdquestion">
-<h3 id="question-20">
-Question 20
+<h3 id="question-21">
+Question 21
 </h3>
+<ul>
+<li>
+How can you save the new sequence in a new FASTA file?
+</li>
+<li>
+Extract all other sequences from the file and save them in 5
+different FASTA files. Add the code you used below
+</li>
+</ul>
+</div>
+<hr />
+<div class="rmdalert">
+<h2 id="stop-here">
+STOP HERE!
+</h2>
+<p>
+We will learn about how to write a script to answer the take home HW.
+On the meantime, finish the Section 4 questions
+</p>
+</div>
+<div class="rmdquestion">
+<h2 id="take-home-hw">
+Take Home HW
+</h2>
 <p>
 Can you create code that will do the following for each extracted
 FASTA sequence?

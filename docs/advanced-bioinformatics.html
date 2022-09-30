@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-09-19" />
+<meta name="date" content="2022-09-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="basic-bioinformatics.html"/>
 <link rel="next" href="homology-and-multiple-sequence-alignments.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#what-is-a-pipeline"><i class="fa fa-check"></i><b>7.2.1</b> What is a pipeline?</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-3-how-to-upload-and-process-local-files-into-the-cluster"><i class="fa fa-check"></i><b>7.3</b> Section 3: How to upload and process local files into the cluster</a>
+<li class="chapter" data-level="7.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-3-processing-local-files-into-the-cluster"><i class="fa fa-check"></i><b>7.3</b> Section 3: Processing local files into the cluster</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#checking-file-types"><i class="fa fa-check"></i><b>7.3.1</b> Checking file types</a></li>
 <li class="chapter" data-level="7.3.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#fasta-data-handling"><i class="fa fa-check"></i><b>7.3.2</b> FASTA: Data handling</a></li>
@@ -290,7 +290,7 @@ create a BLAST and HMMER database of genes of interest.
 <div id="section-1-open-reading-frames-translating-sequences-and-blast-searches-to-identify-the-role-and-functionality-of-a-mystery-gene" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Section 1: Open reading frames, translating sequences and BLAST searches to identify the role and functionality of a mystery gene<a href="advanced-bioinformatics.html#section-1-open-reading-frames-translating-sequences-and-blast-searches-to-identify-the-role-and-functionality-of-a-mystery-gene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Download the <code>unknown_seq.fasta</code> file from the Moodle and open it on <code>atom</code>. This is a nucelotide strand from a segment of a chromosome of a cool species that we will try to identify.</p></li>
+<li><p>Download the <code>mystery_gene.fasta</code> file from the Moodle and open it on <code>R</code>. This is a nucleotide strand from a segment of a chromosome of a cool species that we will try to identify.</p></li>
 <li><p>Go to <a href="https://www.ncbi.nlm.nih.gov/orffinder/">NCBI’s ORF Finder</a> and upload your sequence by copying and pasting it. Keep the parameters by default and submit the form. Answer the following questions:</p></li>
 </ol>
 <hr />
@@ -340,7 +340,7 @@ Questions 7-8
 </h3>
 <ul>
 <li>
-What are the best 3 hits. Why do you consioder them the best
+What are the best 3 hits. Why do you consider them the best
 hits?
 </li>
 <li>
@@ -516,7 +516,7 @@ paragraphs are more than enough.
 <p>Today we are going to learn how to create our own databases in the cluster based on a list of sequences and search to identify query sequences from species of interest.</p>
 <p>In our case, we are going to use the database from <em>Phytophthora-ID</em>, a database I constructed a while ago to detect species of <em>Phytophthora</em> based on the ITS molecular marker.</p>
 <ol style="list-style-type: decimal">
-<li>Connect to the cluster and create a new folder inside your MBB101 folder called <code>Lab_4</code></li>
+<li>Create a new folder inside your home folder called <code>Lab_4</code></li>
 <li>Create a second folder inside of <code>Lab_4</code> called blastDB and go into it.</li>
 <li>Download the sequences from this link <code>http://phytophthora-id.org/files/Phytophthora-ID-ITS-version-1.17.fasta</code> into the <code>Lab_4/blastDB</code> folder</li>
 <li>We are going to use the <code>unknown_sequences.fasta</code> file as query for the unknown files</li>
@@ -542,13 +542,16 @@ added to check the sequences.
 </li>
 </ul>
 </div>
-<p>Now, we are going to create the BLAST database. To create this we will use the following template of code:</p>
+<p>Now, we are going to <strong>create the BLAST database</strong>. To create this we will use the following template of code:</p>
 <pre><code>makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_name</code></pre>
 <div class="rmdquestion">
 <h3 id="question-30">
 Question 30
 </h3>
 <ul>
+<li>
+What is a BLAST database? Why do we care about them?
+</li>
 <li>
 Modify the template code by changing the
 <code>list_of_reference_seq</code>, <code>type_of_molecule</code> and

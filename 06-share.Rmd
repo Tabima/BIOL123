@@ -14,7 +14,7 @@
 ## Section 1: Open reading frames, translating sequences and BLAST searches to identify the role and functionality of a mystery gene
 
 
-1. Download the `unknown_seq.fasta` file from the Moodle and open it on `atom`. This is a nucelotide strand from a segment of a chromosome of a cool species that we will try to identify.
+1. Download the `mystery_gene.fasta` file from the Moodle and open it on `R`. This is a nucleotide strand from a segment of a chromosome of a cool species that we will try to identify.
 
 2. Go to [NCBI's ORF Finder](https://www.ncbi.nlm.nih.gov/orffinder/) and upload your sequence by copying and pasting it. Keep the parameters by default and submit the form. Answer the following questions:
 
@@ -45,7 +45,7 @@
 ```{block, type='rmdquestion'}
 ### Questions 7-8
 
--  What are the best 3 hits. Why do you consioder them the best hits?
+-  What are the best 3 hits. Why do you consider them the best hits?
 -  Include the accession numbers of the best three hits.
 ```
 
@@ -147,7 +147,7 @@ Today we are going to learn how to create our own databases in the cluster based
 
 In our case, we are going to use the database from *Phytophthora-ID*, a database I constructed a while ago to detect species of *Phytophthora* based on the ITS molecular marker.
 
-1. Connect to the cluster and create a new folder inside your MBB101 folder called `Lab_4`
+1. Create a new folder inside your home folder called `Lab_4`
 2. Create a second folder inside of `Lab_4` called blastDB and go into it.
 3. Download the sequences from this link `http://phytophthora-id.org/files/Phytophthora-ID-ITS-version-1.17.fasta` into the `Lab_4/blastDB` folder
 4. We are going to use the `unknown_sequences.fasta` file as query for the unknown files
@@ -160,7 +160,7 @@ In our case, we are going to use the database from *Phytophthora-ID*, a database
 -  Are these files nucleotide or protein sequences? Add the code you added to check the sequences.
 ```
 
-Now, we are going to create the BLAST database. To create this we will use the following template of code:
+Now, we are going to **create the BLAST database**. To create this we will use the following template of code:
 
 ```
 makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_name
@@ -168,7 +168,7 @@ makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_nam
 
 ```{block, type='rmdquestion'}
 ### Question 30
-
+- What is a BLAST database? Why do we care about them?
 -  Modify the template code by changing the `list_of_reference_seq`, `type_of_molecule` and `database_name` and add it below.
 ```
 
