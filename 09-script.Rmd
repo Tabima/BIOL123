@@ -1,0 +1,84 @@
+# Creating a simple multiFASTA analyzer program in the command line {-}
+
+## Answering each part of the question:
+
+1. Count the number of A,G,C and T?
+2. Count the length of each sequence?
+3. Count the number of open reading frames (ORF)?
+
+### Number of nucleotides
+
+```bash
+    A=$(grep -o "A" | wc -l)
+    C=$(grep -o "C" | wc -l)
+    G=$(grep -o "G" | wc -l)
+    T=$(grep -o "T" | wc -l)
+    echo "Number of A": $A;
+    echo "Number of C": $C;
+    echo "Number of G": $G;
+    echo "Number of T": $T;
+```
+
+### Length of sequence
+
+```bash
+   seqlen= wc -c 
+   echo "Length:" $seqlen
+```
+
+### Number of ORF
+
+```bash
+   orf=$(grep -o "ATG" | wc -l)
+   echo "NUmber of ORF:" $seqlen
+```
+
+How do we put this together to avoid the header and only use the sequence?
+
+***
+
+## Total script
+
+```{bash}
+echo "Welcome to Sequence Analyzer by Prof. Tabima"
+echo
+sleep 1
+
+total_num=$(grep -c ">" Lab_3/mystery_genes/sequence_1) 
+echo "### Total Number of sequences in the file ###"
+echo $total_num
+echo
+
+grep -v ">" Lab_3/mystery_genes/sequence_1 | while read -r line ; do
+    echo "############## Processing Sequence ##############"
+    echo
+    A=$(echo $line | grep -o "A" | wc -l)
+    C=$(echo $line | grep -o "C" | wc -l)
+    G=$(echo $line | grep -o "G" | wc -l)
+    T=$(echo $line | grep -o "T" | wc -l)
+    seqlen=$(echo $line | grep -o "T" | wc -c)
+    orf=$(echo $line | grep -o "ATG" | wc -l)
+    echo "--- Count per nucleotide ---"
+    echo "Number of A": $A;
+    echo "Number of C": $C;
+    echo "Number of G": $G;
+    echo "Number of T": $T;
+    echo "---"
+    echo
+    echo "--- Total length of the sequence ---"
+    echo $seqlen
+    echo "---"
+    echo
+    echo "--- Number of ORF ---"
+    echo $orf
+    echo "---"
+    echo 
+    echo "############### Sequence processed #############"
+    echo 
+    sleep 2
+done
+
+echo "Program done!"
+```
+
+

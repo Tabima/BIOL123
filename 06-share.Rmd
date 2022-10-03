@@ -14,7 +14,7 @@
 ## Section 1: Open reading frames, translating sequences and BLAST searches to identify the role and functionality of a mystery gene
 
 
-1. Download the `mystery_gene.fasta` file from the Moodle and open it on `R`. This is a nucleotide strand from a segment of a chromosome of a cool species that we will try to identify.
+1. Download the `mystery_gene.fasta` file and open it on `R`. This is a nucleotide strand from a segment of a chromosome of a cool species that we will try to identify.
 
 2. Go to [NCBI's ORF Finder](https://www.ncbi.nlm.nih.gov/orffinder/) and upload your sequence by copying and pasting it. Keep the parameters by default and submit the form. Answer the following questions:
 

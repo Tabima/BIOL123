@@ -74,3 +74,9 @@ introduction-to-iq-tree
 running-iq-tree-on-protein-data
 running-iq-tree-on-nucelotide-data
 final-phylogenetics-excercise
+multiple-sequence-alignment-in-mafft
+answering-each-part-of-the-question
+number-of-nucleotides
+length-of-sequence
+number-of-orf
+total-script
