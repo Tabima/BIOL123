@@ -81,14 +81,14 @@ Lets do some command line exercises with it. Answer all of these questions:
 ```{block, type='rmdquestion'}
 ### Question 9
 
-- Finally, using your RNA sequence, check how many start codons (`AUG`) or stop codons (`UAG`,`UAG`, or `UGA`) may exist in your sequence
+- Finally, using your RNA sequence, check how many start codons (`AUG`) or stop codons (`UAA`,`UAG`, or `UGA`) may exist in your sequence
 ```
 
 ***
 
 ### Counting basic patterns for Aminoacid data
 
-Ok, after checking the files we know now that the `S79522.seq` file contains a DNA sequence. 
+Ok, after checking the files we know now that the `AAB21188.seq` file contains a aminoacid sequence. 
 
 ```{block, type='rmdquestion'}
 ### Question 10
