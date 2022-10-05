@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-10-03" />
+<meta name="date" content="2022-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="introduction-to-the-command-line.html"/>
 <link rel="next" href="advanced-bioinformatics.html"/>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -223,6 +223,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#fasta-data-handling"><i class="fa fa-check"></i><b>7.3.2</b> FASTA: Data handling</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-4-genbank-files"><i class="fa fa-check"></i><b>7.4</b> Section 4: GenBank Files</a></li>
+<li class="chapter" data-level="7.5" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#for-loops-and-solution-to-the-hw"><i class="fa fa-check"></i><b>7.5</b> For loops and Solution to the HW</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#how-do-we-fill-up-variables"><i class="fa fa-check"></i><b>7.5.1</b> How do we fill up variables?</a></li>
+<li class="chapter" data-level="7.5.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#complete-for-extra-points-if-desired"><i class="fa fa-check"></i><b>7.5.2</b> Complete, for extra points if desired:</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="advanced-bioinformatics.html"><a href="advanced-bioinformatics.html"><i class="fa fa-check"></i><b>8</b> Advanced Bioinformatics</a>
 <ul>
@@ -803,7 +808,209 @@ NCBI help?
 </li>
 </ul>
 </div>
+<hr />
+</div>
+<div id="for-loops-and-solution-to-the-hw" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> For loops and Solution to the HW<a href="basic-bioinformatics.html#for-loops-and-solution-to-the-hw" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Extracting all the sequences from <code>sequence_1</code> into different files (As asked in Question 21)</li>
+</ol>
+<p>We have noticed that
+- Gene 1 is in lines one and two</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="basic-bioinformatics.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;1,2 p&#39;</span> sequence_1 <span class="op">&gt;</span> gene_1.fasta</span>
+<span id="cb27-2"><a href="basic-bioinformatics.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> gene_1.fasta</span></code></pre></div>
+<pre><code>## &gt;J01636.1 E.coli lactose operon with lacI, lacZ, lacY and lacA genes
+## GACACCATCGAATGGCGCAAAACCTTTCGCGGTATGGCATGATAGCGCCCGGAAGAGAGTCAATTCAGGGTGGTGAATGTGAAACCAGTAACGTTATACGATGTCGCAGAGTATGCCGGTGTCTCTTATCAGACCGTTTCCCGCGTGGTGAACCAGGCCAGCCACGTTTCTGCGAAAACGCGGGAAAAAGTGGAAGCGGCGATGGCGGAGCTGAATTACATTCCCAACCGCGTGGCACAACAACTGGCGGGCAAACAGTCGTTGCTGATTGGCGTTGCCACCTCCAGTCTGGCCCTGCACGCGCCGTCGCAAATTGTCGCGGCGATTAAATCTCGCGCCGATCAACTGGGTGCCAGCGTGGTGGTGTCGATGGTAGAACGAAGCGGCGTCGAAGCCTGTAAAGCGGCGGTGCACAATCTTCTCGCGCAACGCGTCAGTGGGCTGATCATTAACTATCCGCTGGATGACCAGGATGCCATTGCTGTGGAAGCTGCCTGCACTAATGTTCCGGCGTTATTTCTTGATGTCTCTGACCAGACACCCATCAACAGTATTATTTTCTCCCATGAAGACGGTACGCGACTGGGCGTGGAGCATCTGGTCGCATTGGGTCACCAGCAAATCGCGCTGTTAGCGGGCCCATTAAGTTCTGTCTCGGCGCGTCTGCGTCTGGCTGGCTGGCATAAATATCTCACTCGCAATCAAATTCAGCCGATAGCGGAACGGGAAGGCGACTGGAGTGCCATGTCCGGTTTTCAACAAACCATGCAAATGCTGAATGAGGGCATCGTTCCCACTGCGATGCTGGTTGCCAACGATCAGATGGCGCTGGGCGCAATGCGCGCCATTACCGAGTCCGGGCTGCGCGTTGGTGCGGATATCTCGGTAGTGGGATACGACGATACCGAAGACAGCTCATGTTATATCCCGCCGTCAACCACCATCAAACAGGATTTTCGCCTGCTGGGGCAAACCAGCGTGGACCGCTTGCTGCAACTCTCTCAGGGCCAGGCGGTGAAGGGCAATCAGCTGTTGCCCGTCTCACTGGTGAAAAGAAAAACCACCCTGGCGCCCAATACGCAAACCGCCTCTCCCCGCGCGTTGGCCGATTCATTAATGCAGCTGGCACGACAGGTTTCCCGACTGGAAAGCGGGCAGTGAGCGCAACGCAATTAATGTGAGTTAGCTCACTCATTAGGCACCCCAGGCTTTACACTTTATGCTTCCGGCTCGTATGTTGTGTGGAATTGTGAGCGGATAACAATTTCACACAGGAAACAGCTATGACCATGATTACGGATTCACTGGCCGTCGTTTTACAACGTCGTGACTGGGAAAACCCTGGCGTTACCCAACTTAATCGCCTTGCAGCACATCCCCCTTTCGCCAGCTGGCGTAATAGCGAAGAGGCCCGCACCGATCGCCCTTCCCAACAGTTGCGCAGCCTGAATGGCGAATGGCGCTTTGCCTGGTTTCCGGCACCAGAAGCGGTGCCGGAAAGCTGGCTGGAGTGCGATCTTCCTGAGGCCGATACTGTCGTCGTCCCCTCAAACTGGCAGATGCACGGTTACGATGCGCCCATCTACACCAACGTAACCTATCCCATTACGGTCAATCCGCCGTTTGTTCCCACGGAGAATCCGACGGGTTGTTACTCGCTCACATTTAATGTTGATGAAAGCTGGCTACAGGAAGGCCAGACGCGAATTATTTTTGATGGCGTTAACTCGGCGTTTCATCTGTGGTGCAACGGGCGCTGGGTCGGTTACGGCCAGGACAGTCGTTTGCCGTCTGAATTTGACCTGAGCGCATTTTTACGCGCCGGAGAAAACCGCCTCGCGGTGATGGTGCTGCGTTGGAGTGACGGCAGTTATCTGGAAGATCAGGATATGTGGCGGATGAGCGGCATTTTCCGTGACGTCTCGTTGCTGCATAAACCGACTACACAAATCAGCGATTTCCATGTTGCCACTCGCTTTAATGATGATTTCAGCCGCGCTGTACTGGAGGCTGAAGTTCAGATGTGCGGCGAGTTGCGTGACTACCTACGGGTAACAGTTTCTTTATGGCAGGGTGAAACGCAGGTCGCCAGCGGCACCGCGCCTTTCGGCGGTGAAATTATCGATGAGCGTGGTGGTTATGCCGATCGCGTCACACTACGTCTGAACGTCGAAAACCCGAAACTGTGGAGCGCCGAAATCCCGAATCTCTATCGTGCGGTGGTTGAACTGCACACCGCCGACGGCACGCTGATTGAAGCAGAAGCCTGCGATGTCGGTTTCCGCGAGGTGCGGATTGAAAATGGTCTGCTGCTGCTGAACGGCAAGCCGTTGCTGATTCGAGGCGTTAACCGTCACGAGCATCATCCTCTGCATGGTCAGGTCATGGATGAGCAGACGATGGTGCAGGATATCCTGCTGATGAAGCAGAACAACTTTAACGCCGTGCGCTGTTCGCATTATCCGAACCATCCGCTGTGGTACACGCTGTGCGACCGCTACGGCCTGTATGTGGTGGATGAAGCCAATATTGAAACCCACGGCATGGTGCCAATGAATCGTCTGACCGATGATCCGCGCTGGCTACCGGCGATGAGCGAACGCGTAACGCGAATGGTGCAGCGCGATCGTAATCACCCGAGTGTGATCATCTGGTCGCTGGGGAATGAATCAGGCCACGGCGCTAATCACGACGCGCTGTATCGCTGGATCAAATCTGTCGATCCTTCCCGCCCGGTGCAGTATGAAGGCGGCGGAGCCGACACCACGGCCACCGATATTATTTGCCCGATGTACGCGCGCGTGGATGAAGACCAGCCCTTCCCGGCTGTGCCGAAATGGTCCATCAAAAAATGGCTTTCGCTACCTGGAGAGACGCGCCCGCTGATCCTTTGCGAATACGCCCACGCGATGGGTAACAGTCTTGGCGGTTTCGCTAAATACTGGCAGGCGTTTCGTCAGTATCCCCGTTTACAGGGCGGCTTCGTCTGGGACTGGGTGGATCAGTCGCTGATTAAATATGATGAAAACGGCAACCCGTGGTCGGCTTACGGCGGTGATTTTGGCGATACGCCGAACGATCGCCAGTTCTGTATGAACGGTCTGGTCTTTGCCGACCGCACGCCGCATCCAGCGCTGACGGAAGCAAAACACCAGCAGCAGTTTTTCCAGTTCCGTTTATCCGGGCAAACCATCGAAGTGACCAGCGAATACCTGTTCCGTCATAGCGATAACGAGCTCCTGCACTGGATGGTGGCGCTGGATGGTAAGCCGCTGGCAAGCGGTGAAGTGCCTCTGGATGTCGCTCCACAAGGTAAACAGTTGATTGAACTGCCTGAACTACCGCAGCCGGAGAGCGCCGGGCAACTCTGGCTCACAGTACGCGTAGTGCAACCGAACGCGACCGCATGGTCAGAAGCCGGGCACATCAGCGCCTGGCAGCAGTGGCGTCTGGCGGAAAACCTCAGTGTGACGCTCCCCGCCGCGTCCCACGCCATCCCGCATCTGACCACCAGCGAAATGGATTTTTGCATCGAGCTGGGTAATAAGCGTTGGCAATTTAACCGCCAGTCAGGCTTTCTTTCACAGATGTGGATTGGCGATAAAAAACAACTGCTGACGCCGCTGCGCGATCAGTTCACCCGTGCACCGCTGGATAACGACATTGGCGTAAGTGAAGCGACCCGCATTGACCCTAACGCCTGGGTCGAACGCTGGAAGGCGGCGGGCCATTACCAGGCCGAAGCAGCGTTGTTGCAGTGCACGGCAGATACACTTGCTGATGCGGTGCTGATTACGACCGCTCACGCGTGGCAGCATCAGGGGAAAACCTTATTTATCAGCCGGAAAACCTACCGGATTGATGGTAGTGGTCAAATGGCGATTACCGTTGATGTTGAAGTGGCGAGCGATACACCGCATCCGGCGCGGATTGGCCTGAACTGCCAGCTGGCGCAGGTAGCAGAGCGGGTAAACTGGCTCGGATTAGGGCCGCAAGAAAACTATCCCGACCGCCTTACTGCCGCCTGTTTTGACCGCTGGGATCTGCCATTGTCAGACATGTATACCCCGTACGTCTTCCCGAGCGAAAACGGTCTGCGCTGCGGGACGCGCGAATTGAATTATGGCCCACACCAGTGGCGCGGCGACTTCCAGTTCAACATCAGCCGCTACAGTCAACAGCAACTGATGGAAACCAGCCATCGCCATCTGCTGCACGCGGAAGAAGGCACATGGCTGAATATCGACGGTTTCCATATGGGGATTGGTGGCGACGACTCCTGGAGCCCGTCAGTATCGGCGGAATTCCAGCTGAGCGCCGGTCGCTACCATTACCAGTTGGTCTGGTGTCAAAAATAATAATAACCGGGCAGGCCATGTCTGCCCGTATTTCGCGTAAGGAAATCCATTATGTACTATTTAAAAAACACAAACTTTTGGATGTTCGGTTTATTCTTTTTCTTTTACTTTTTTATCATGGGAGCCTACTTCCCGTTTTTCCCGATTTGGCTACATGACATCAACCATATCAGCAAAAGTGATACGGGTATTATTTTTGCCGCTATTTCTCTGTTCTCGCTATTATTCCAACCGCTGTTTGGTCTGCTTTCTGACAAACTCGGGCTGCGCAAATACCTGCTGTGGATTATTACCGGCATGTTAGTGATGTTTGCGCCGTTCTTTATTTTTATCTTCGGGCCACTGTTACAATACAACATTTTAGTAGGATCGATTGTTGGTGGTATTTATCTAGGCTTTTGTTTTAACGCCGGTGCGCCAGCAGTAGAGGCATTTATTGAGAAAGTCAGCCGTCGCAGTAATTTCGAATTTGGTCGCGCGCGGATGTTTGGCTGTGTTGGCTGGGCGCTGTGTGCCTCGATTGTCGGCATCATGTTCACCATCAATAATCAGTTTGTTTTCTGGCTGGGCTCTGGCTGTGCACTCATCCTCGCCGTTTTACTCTTTTTCGCCAAAACGGATGCGCCCTCTTCTGCCACGGTTGCCAATGCGGTAGGTGCCAACCATTCGGCATTTAGCCTTAAGCTGGCACTGGAACTGTTCAGACAGCCAAAACTGTGGTTTTTGTCACTGTATGTTATTGGCGTTTCCTGCACCTACGATGTTTTTGACCAACAGTTTGCTAATTTCTTTACTTCGTTCTTTGCTACCGGTGAACAGGGTACGCGGGTATTTGGCTACGTAACGACAATGGGCGAATTACTTAACGCCTCGATTATGTTCTTTGCGCCACTGATCATTAATCGCATCGGTGGGAAAAACGCCCTGCTGCTGGCTGGCACTATTATGTCTGTACGTATTATTGGCTCATCGTTCGCCACCTCAGCGCTGGAAGTGGTTATTCTGAAAACGCTGCATATGTTTGAAGTACCGTTCCTGCTGGTGGGCTGCTTTAAATATATTACCAGCCAGTTTGAAGTGCGTTTTTCAGCGACGATTTATCTGGTCTGTTTCTGCTTCTTTAAGCAACTGGCGATGATTTTTATGTCTGTACTGGCGGGCAATATGTATGAAAGCATCGGTTTCCAGGGCGCTTATCTGGTGCTGGGTCTGGTGGCGCTGGGCTTCACCTTAATTTCCGTGTTCACGCTTAGCGGCCCCGGCCCGCTTTCCCTGCTGCGTCGTCAGGTGAATGAAGTCGCTTAAGCAATCAATGTCGGATGCGGCGCGACGCTTATCCGACCAACATATCATAACGGAGTGATCGCATTGAACATGCCAATGACCGAAAGAATAAGAGCAGGCAAGCTATTTACCGATATGTGCGAAGGCTTACCGGAAAAAAGACTTCGTGGGAAAACGTTAATGTATGAGTTTAATCACTCGCATCCATCAGAAGTTGAAAAAAGAGAAAGCCTGATTAAAGAAATGTTTGCCACGGTAGGGGAAAACGCCTGGGTAGAACCGCCTGTCTATTTCTCTTACGGTTCCAACATCCATATAGGCCGCAATTTTTATGCAAATTTCAATTTAACCATTGTCGATGACTACACGGTAACAATCGGTGATAACGTACTGATTGCACCCAACGTTACTCTTTCCGTTACGGGACACCCTGTACACCATGAATTGAGAAAAAACGGCGAGATGTACTCTTTTCCGATAACGATTGGCAATAACGTCTGGATCGGAAGTCATGTGGTTATTAATCCAGGCGTCACCATCGGGGATAATTCTGTTATTGGCGCGGGTAGTATCGTCACAAAAGACATTCCACCAAACGTCGTGGCGGCTGGCGTTCCTTGTCGGGTTATTCGCGAAATAAACGACCGGGATAAGCACTATTATTTCAAAGATTATAAAGTTGAATCGTCAGTTTAAATTATAAAAATTGCCTGATACGCTGCGCTTATCAGGCCTACAAGTTCAGCGATCTACATTAGCCGCATCCGGCATGAACAAAGCGCAGGAACAAGCGTCGCATCATGCCTCTTTGACCCACAGCTGCGGAAAACGTACTGGTGCAAAACGCAGGGTTATGATCATCAGCCCAACGACGCACAGCGCATGAAATGCCCAGTCCATCAGGTAATTGCCGCTGATACTACGCAGCACGCCAGAAAACCACGGGGCAAGCCCGGCGATGATAAAACCGATTCCCTGCATAAACGCCACCAGCTTGCCAGCAATAGCCGGTTGCACAGAGTGATCGAGCGCCAGCAGCAAACAGAGCGGAAACGCGCCGCCCAGACCTAACCCACACACCATCGCCCACAATACCGGCAATTGCATCGGCAGCCAGATAAAGCCGCAGAACCCCACCAGTTGTAACACCAGCGCCAGCATTAACAGTTTGCGCCGATCCTGATGGCGAGCCATAGCAGGCATCAGCAAAGCTCCTGCGGCTTGCCCAAGCGTCATCAATGCCAGTAAGGAACCGCTGTACTGCGCGCTGGCACCAATCTCAATATAGAAAGCGGGTAACCAGGCAATCAGGCTGGCGTAACCGCCGTTAATCAGACCGAAGTAAACACCCAGCGTCCACGCGCGGGGAGTGAATACCACGCGAACCGGAGTGGTTGTTGTCTTGTGGGAAGAGGCGACCTCGCGGGCGCTTTGCCACCACCAGGCAAAGAGCGCAACAACGGCAGGCAGCGCCACCAGGCGAGTGTTTGATACCAGGTTTCGCTATGTTGAACTAACCAGGGCGTTATGGCGGCACCAAGCCCACCGCCGCCCATCAGAGCCGCGGACCACAGCCCCATCACCAGTGGCGTGCGCTGCTGAAACCGCCGTTTAATCACCGAAGCATCACCGCCTGAATGATGCCGATCCCCACCCCACCAAGCAGTGCGCTGCTAAGCAGCAGCGCACTTTGCGGGTAAAGCTCACGCATCAATGCACCGACGGCAATCAGCAACAGACTGATGGCGACACTGCGACGTTCGCTGACATGCTGATGAAGCCAGCTTCCGGCCAGCGCCAGCCCGCCCATGGTAACCACCGGCAGAGCGGTCGAC</code></pre>
+<ul>
+<li>Gene 2 is in lines three and four</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="basic-bioinformatics.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;3,4 p&#39;</span> sequence_1 <span class="op">&gt;</span> gene_2.fasta</span>
+<span id="cb29-2"><a href="basic-bioinformatics.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> gene_2.fasta</span></code></pre></div>
+<pre><code>## &gt;lcl|J01636.1_cds_AAA24052.1_1 [gene=lacI] [protein_id=AAA24052.1] [location=79..1161] [gbkey=CDS]
+## GTGAAACCAGTAACGTTATACGATGTCGCAGAGTATGCCGGTGTCTCTTATCAGACCGTTTCCCGCGTGGTGAACCAGGCCAGCCACGTTTCTGCGAAAACGCGGGAAAAAGTGGAAGCGGCGATGGCGGAGCTGAATTACATTCCCAACCGCGTGGCACAACAACTGGCGGGCAAACAGTCGTTGCTGATTGGCGTTGCCACCTCCAGTCTGGCCCTGCACGCGCCGTCGCAAATTGTCGCGGCGATTAAATCTCGCGCCGATCAACTGGGTGCCAGCGTGGTGGTGTCGATGGTAGAACGAAGCGGCGTCGAAGCCTGTAAAGCGGCGGTGCACAATCTTCTCGCGCAACGCGTCAGTGGGCTGATCATTAACTATCCGCTGGATGACCAGGATGCCATTGCTGTGGAAGCTGCCTGCACTAATGTTCCGGCGTTATTTCTTGATGTCTCTGACCAGACACCCATCAACAGTATTATTTTCTCCCATGAAGACGGTACGCGACTGGGCGTGGAGCATCTGGTCGCATTGGGTCACCAGCAAATCGCGCTGTTAGCGGGCCCATTAAGTTCTGTCTCGGCGCGTCTGCGTCTGGCTGGCTGGCATAAATATCTCACTCGCAATCAAATTCAGCCGATAGCGGAACGGGAAGGCGACTGGAGTGCCATGTCCGGTTTTCAACAAACCATGCAAATGCTGAATGAGGGCATCGTTCCCACTGCGATGCTGGTTGCCAACGATCAGATGGCGCTGGGCGCAATGCGCGCCATTACCGAGTCCGGGCTGCGCGTTGGTGCGGATATCTCGGTAGTGGGATACGACGATACCGAAGACAGCTCATGTTATATCCCGCCGTCAACCACCATCAAACAGGATTTTCGCCTGCTGGGGCAAACCAGCGTGGACCGCTTGCTGCAACTCTCTCAGGGCCAGGCGGTGAAGGGCAATCAGCTGTTGCCCGTCTCACTGGTGAAAAGAAAAACCACCCTGGCGCCCAATACGCAAACCGCCTCTCCCCGCGCGTTGGCCGATTCATTAATGCAGCTGGCACGACAGGTTTCCCGACTGGAAAGCGGGCAGTGA</code></pre>
+<ul>
+<li>Gene 3 is in lines five and six</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="basic-bioinformatics.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;5,6 p&#39;</span> sequence_1 <span class="op">&gt;</span> gene_3.fasta</span>
+<span id="cb31-2"><a href="basic-bioinformatics.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> gene_3.fasta</span></code></pre></div>
+<pre><code>## &gt;lcl|J01636.1_cds_AAA24053.1_2 [gene=lacZ] [protein_id=AAA24053.1] [location=1284..4358] [gbkey=CDS]
+## ATGACCATGATTACGGATTCACTGGCCGTCGTTTTACAACGTCGTGACTGGGAAAACCCTGGCGTTACCCAACTTAATCGCCTTGCAGCACATCCCCCTTTCGCCAGCTGGCGTAATAGCGAAGAGGCCCGCACCGATCGCCCTTCCCAACAGTTGCGCAGCCTGAATGGCGAATGGCGCTTTGCCTGGTTTCCGGCACCAGAAGCGGTGCCGGAAAGCTGGCTGGAGTGCGATCTTCCTGAGGCCGATACTGTCGTCGTCCCCTCAAACTGGCAGATGCACGGTTACGATGCGCCCATCTACACCAACGTAACCTATCCCATTACGGTCAATCCGCCGTTTGTTCCCACGGAGAATCCGACGGGTTGTTACTCGCTCACATTTAATGTTGATGAAAGCTGGCTACAGGAAGGCCAGACGCGAATTATTTTTGATGGCGTTAACTCGGCGTTTCATCTGTGGTGCAACGGGCGCTGGGTCGGTTACGGCCAGGACAGTCGTTTGCCGTCTGAATTTGACCTGAGCGCATTTTTACGCGCCGGAGAAAACCGCCTCGCGGTGATGGTGCTGCGTTGGAGTGACGGCAGTTATCTGGAAGATCAGGATATGTGGCGGATGAGCGGCATTTTCCGTGACGTCTCGTTGCTGCATAAACCGACTACACAAATCAGCGATTTCCATGTTGCCACTCGCTTTAATGATGATTTCAGCCGCGCTGTACTGGAGGCTGAAGTTCAGATGTGCGGCGAGTTGCGTGACTACCTACGGGTAACAGTTTCTTTATGGCAGGGTGAAACGCAGGTCGCCAGCGGCACCGCGCCTTTCGGCGGTGAAATTATCGATGAGCGTGGTGGTTATGCCGATCGCGTCACACTACGTCTGAACGTCGAAAACCCGAAACTGTGGAGCGCCGAAATCCCGAATCTCTATCGTGCGGTGGTTGAACTGCACACCGCCGACGGCACGCTGATTGAAGCAGAAGCCTGCGATGTCGGTTTCCGCGAGGTGCGGATTGAAAATGGTCTGCTGCTGCTGAACGGCAAGCCGTTGCTGATTCGAGGCGTTAACCGTCACGAGCATCATCCTCTGCATGGTCAGGTCATGGATGAGCAGACGATGGTGCAGGATATCCTGCTGATGAAGCAGAACAACTTTAACGCCGTGCGCTGTTCGCATTATCCGAACCATCCGCTGTGGTACACGCTGTGCGACCGCTACGGCCTGTATGTGGTGGATGAAGCCAATATTGAAACCCACGGCATGGTGCCAATGAATCGTCTGACCGATGATCCGCGCTGGCTACCGGCGATGAGCGAACGCGTAACGCGAATGGTGCAGCGCGATCGTAATCACCCGAGTGTGATCATCTGGTCGCTGGGGAATGAATCAGGCCACGGCGCTAATCACGACGCGCTGTATCGCTGGATCAAATCTGTCGATCCTTCCCGCCCGGTGCAGTATGAAGGCGGCGGAGCCGACACCACGGCCACCGATATTATTTGCCCGATGTACGCGCGCGTGGATGAAGACCAGCCCTTCCCGGCTGTGCCGAAATGGTCCATCAAAAAATGGCTTTCGCTACCTGGAGAGACGCGCCCGCTGATCCTTTGCGAATACGCCCACGCGATGGGTAACAGTCTTGGCGGTTTCGCTAAATACTGGCAGGCGTTTCGTCAGTATCCCCGTTTACAGGGCGGCTTCGTCTGGGACTGGGTGGATCAGTCGCTGATTAAATATGATGAAAACGGCAACCCGTGGTCGGCTTACGGCGGTGATTTTGGCGATACGCCGAACGATCGCCAGTTCTGTATGAACGGTCTGGTCTTTGCCGACCGCACGCCGCATCCAGCGCTGACGGAAGCAAAACACCAGCAGCAGTTTTTCCAGTTCCGTTTATCCGGGCAAACCATCGAAGTGACCAGCGAATACCTGTTCCGTCATAGCGATAACGAGCTCCTGCACTGGATGGTGGCGCTGGATGGTAAGCCGCTGGCAAGCGGTGAAGTGCCTCTGGATGTCGCTCCACAAGGTAAACAGTTGATTGAACTGCCTGAACTACCGCAGCCGGAGAGCGCCGGGCAACTCTGGCTCACAGTACGCGTAGTGCAACCGAACGCGACCGCATGGTCAGAAGCCGGGCACATCAGCGCCTGGCAGCAGTGGCGTCTGGCGGAAAACCTCAGTGTGACGCTCCCCGCCGCGTCCCACGCCATCCCGCATCTGACCACCAGCGAAATGGATTTTTGCATCGAGCTGGGTAATAAGCGTTGGCAATTTAACCGCCAGTCAGGCTTTCTTTCACAGATGTGGATTGGCGATAAAAAACAACTGCTGACGCCGCTGCGCGATCAGTTCACCCGTGCACCGCTGGATAACGACATTGGCGTAAGTGAAGCGACCCGCATTGACCCTAACGCCTGGGTCGAACGCTGGAAGGCGGCGGGCCATTACCAGGCCGAAGCAGCGTTGTTGCAGTGCACGGCAGATACACTTGCTGATGCGGTGCTGATTACGACCGCTCACGCGTGGCAGCATCAGGGGAAAACCTTATTTATCAGCCGGAAAACCTACCGGATTGATGGTAGTGGTCAAATGGCGATTACCGTTGATGTTGAAGTGGCGAGCGATACACCGCATCCGGCGCGGATTGGCCTGAACTGCCAGCTGGCGCAGGTAGCAGAGCGGGTAAACTGGCTCGGATTAGGGCCGCAAGAAAACTATCCCGACCGCCTTACTGCCGCCTGTTTTGACCGCTGGGATCTGCCATTGTCAGACATGTATACCCCGTACGTCTTCCCGAGCGAAAACGGTCTGCGCTGCGGGACGCGCGAATTGAATTATGGCCCACACCAGTGGCGCGGCGACTTCCAGTTCAACATCAGCCGCTACAGTCAACAGCAACTGATGGAAACCAGCCATCGCCATCTGCTGCACGCGGAAGAAGGCACATGGCTGAATATCGACGGTTTCCATATGGGGATTGGTGGCGACGACTCCTGGAGCCCGTCAGTATCGGCGGAATTCCAGCTGAGCGCCGGTCGCTACCATTACCAGTTGGTCTGGTGTCAAAAATAA</code></pre>
+<ul>
+<li>Gene 4 is in lines seven and eight</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="basic-bioinformatics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;7,8 p&#39;</span> sequence_1 <span class="op">&gt;</span> gene_4.fasta</span>
+<span id="cb33-2"><a href="basic-bioinformatics.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> gene_4.fasta</span></code></pre></div>
+<pre><code>## &gt;lcl|J01636.1_cds_AAA24054.1_3 [gene=lacY] [protein_id=AAA24054.1] [location=4410..5663] [gbkey=CDS]
+## ATGTACTATTTAAAAAACACAAACTTTTGGATGTTCGGTTTATTCTTTTTCTTTTACTTTTTTATCATGGGAGCCTACTTCCCGTTTTTCCCGATTTGGCTACATGACATCAACCATATCAGCAAAAGTGATACGGGTATTATTTTTGCCGCTATTTCTCTGTTCTCGCTATTATTCCAACCGCTGTTTGGTCTGCTTTCTGACAAACTCGGGCTGCGCAAATACCTGCTGTGGATTATTACCGGCATGTTAGTGATGTTTGCGCCGTTCTTTATTTTTATCTTCGGGCCACTGTTACAATACAACATTTTAGTAGGATCGATTGTTGGTGGTATTTATCTAGGCTTTTGTTTTAACGCCGGTGCGCCAGCAGTAGAGGCATTTATTGAGAAAGTCAGCCGTCGCAGTAATTTCGAATTTGGTCGCGCGCGGATGTTTGGCTGTGTTGGCTGGGCGCTGTGTGCCTCGATTGTCGGCATCATGTTCACCATCAATAATCAGTTTGTTTTCTGGCTGGGCTCTGGCTGTGCACTCATCCTCGCCGTTTTACTCTTTTTCGCCAAAACGGATGCGCCCTCTTCTGCCACGGTTGCCAATGCGGTAGGTGCCAACCATTCGGCATTTAGCCTTAAGCTGGCACTGGAACTGTTCAGACAGCCAAAACTGTGGTTTTTGTCACTGTATGTTATTGGCGTTTCCTGCACCTACGATGTTTTTGACCAACAGTTTGCTAATTTCTTTACTTCGTTCTTTGCTACCGGTGAACAGGGTACGCGGGTATTTGGCTACGTAACGACAATGGGCGAATTACTTAACGCCTCGATTATGTTCTTTGCGCCACTGATCATTAATCGCATCGGTGGGAAAAACGCCCTGCTGCTGGCTGGCACTATTATGTCTGTACGTATTATTGGCTCATCGTTCGCCACCTCAGCGCTGGAAGTGGTTATTCTGAAAACGCTGCATATGTTTGAAGTACCGTTCCTGCTGGTGGGCTGCTTTAAATATATTACCAGCCAGTTTGAAGTGCGTTTTTCAGCGACGATTTATCTGGTCTGTTTCTGCTTCTTTAAGCAACTGGCGATGATTTTTATGTCTGTACTGGCGGGCAATATGTATGAAAGCATCGGTTTCCAGGGCGCTTATCTGGTGCTGGGTCTGGTGGCGCTGGGCTTCACCTTAATTTCCGTGTTCACGCTTAGCGGCCCCGGCCCGCTTTCCCTGCTGCGTCGTCAGGTGAATGAAGTCGCTTAA</code></pre>
+<ul>
+<li>Gene 5 is in lines nine and ten</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="basic-bioinformatics.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;9,10 p&#39;</span> sequence_1 <span class="op">&gt;</span> gene_5.fasta</span>
+<span id="cb35-2"><a href="basic-bioinformatics.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> gene_5.fasta</span></code></pre></div>
+<pre><code>## &gt;lcl|J01636.1_cds_AAA24055.1_4 [gene=lacA] [protein_id=AAA24055.1] [location=5727..6338] [gbkey=CDS]
+## TTGAACATGCCAATGACCGAAAGAATAAGAGCAGGCAAGCTATTTACCGATATGTGCGAAGGCTTACCGGAAAAAAGACTTCGTGGGAAAACGTTAATGTATGAGTTTAATCACTCGCATCCATCAGAAGTTGAAAAAAGAGAAAGCCTGATTAAAGAAATGTTTGCCACGGTAGGGGAAAACGCCTGGGTAGAACCGCCTGTCTATTTCTCTTACGGTTCCAACATCCATATAGGCCGCAATTTTTATGCAAATTTCAATTTAACCATTGTCGATGACTACACGGTAACAATCGGTGATAACGTACTGATTGCACCCAACGTTACTCTTTCCGTTACGGGACACCCTGTACACCATGAATTGAGAAAAAACGGCGAGATGTACTCTTTTCCGATAACGATTGGCAATAACGTCTGGATCGGAAGTCATGTGGTTATTAATCCAGGCGTCACCATCGGGGATAATTCTGTTATTGGCGCGGGTAGTATCGTCACAAAAGACATTCCACCAAACGTCGTGGCGGCTGGCGTTCCTTGTCGGGTTATTCGCGAAATAAACGACCGGGATAAGCACTATTATTTCAAAGATTATAAAGTTGAATCGTCAGTTTAA</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>The homework said: Can you create code that will do the following for <strong>each extracted FASTA sequence?</strong></li>
+</ol>
+<ul>
+<li>Count the number of A,G,C and T?</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="basic-bioinformatics.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of A</span></span>
+<span id="cb37-2"><a href="basic-bioinformatics.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> gene_1.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb37-3"><a href="basic-bioinformatics.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> gene_2.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb37-4"><a href="basic-bioinformatics.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> gene_3.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb37-5"><a href="basic-bioinformatics.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> gene_4.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb37-6"><a href="basic-bioinformatics.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> gene_5.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>##     1739
+##      240
+##      679
+##      240
+##      189</code></pre>
+<p>In this case, because the command <code>grep -v "&gt;" VARIABLE | grep -o "A" | wc -l</code> is the same, the only thing that changes (<strong>THE VARIABLE</strong>) is the gene name</p>
+<div id="how-do-we-fill-up-variables" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> How do we fill up variables?<a href="basic-bioinformatics.html#how-do-we-fill-up-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is the variable? A list of the files of interest. What do all these files have in common?</p>
+<ol style="list-style-type: decimal">
+<li>They start with the word <code>gene</code></li>
+<li>They end with the word <code>.fasta</code></li>
+</ol>
+<p>So, what this means, is that we can create a list of these elements that have things in common!</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="basic-bioinformatics.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div>
+<pre><code>## 01-intro.Rmd
+## 02-cross-refs.Rmd
+## 03-parts.Rmd
+## 04-citations.Rmd
+## 05-blocks.Rmd
+## 06-share.Rmd
+## 07-references.Rmd
+## 08-phylogenetics.Rmd
+## Lab0
+## Lab1
+## Lab2
+## Lab4
+## Lab_3
+## Lab_5
+## Lab_notebook.Rproj
+## README.md
+## Rplots.pdf
+## _book
+## _bookdown.yml
+## _main.Rmd
+## _main.pdf
+## _main.tex
+## _output.yml
+## badada
+## book.bib
+## docs
+## font-awesome.min.css
+## gene_1.fasta
+## gene_2.fasta
+## gene_3.fasta
+## gene_4.fasta
+## gene_5.fasta
+## index.Rmd
+## preamble.tex
+## sequence_1
+## style.css</code></pre>
+<p>A wildcard (<code>*</code>: means ANYTHING) allows you to select something that has a matching pattern with a variable:</p>
+<ol style="list-style-type: decimal">
+<li>They start with the word <code>gene</code>: <code>gene*</code></li>
+</ol>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="basic-bioinformatics.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> gene<span class="pp">*</span></span></code></pre></div>
+<pre><code>## gene_1.fasta
+## gene_2.fasta
+## gene_3.fasta
+## gene_4.fasta
+## gene_5.fasta</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>They end with the word <code>.fasta</code>” <code>*.fasta</code></li>
+</ol>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="basic-bioinformatics.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.fasta</span></code></pre></div>
+<pre><code>## gene_1.fasta
+## gene_2.fasta
+## gene_3.fasta
+## gene_4.fasta
+## gene_5.fasta</code></pre>
+<p>You can put them on a list with any name. In this case, the variable name will be <code>seqfile</code>:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="basic-bioinformatics.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="va">seqfile</span><span class="op">=</span><span class="va">$(</span><span class="fu">ls</span> <span class="pp">*</span>.fasta<span class="va">)</span></span>
+<span id="cb45-2"><a href="basic-bioinformatics.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$seqfile</span></span></code></pre></div>
+<pre><code>## gene_1.fasta gene_2.fasta gene_3.fasta gene_4.fasta gene_5.fasta</code></pre>
+<p>Now, you want to do a simple <code>for loop</code>:</p>
+<pre><code>FOR EACH ELEMENT IN VARIABLE_LIST;
+  DO COMMAND;
+  END</code></pre>
+<p>You command is to say “The gene file is: <code>$VARIABLE</code>”. The <code>$</code> means EACH element of the variable list called <code>$seqfile</code></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="basic-bioinformatics.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seqfile <span class="kw">in</span> <span class="pp">*</span>.fasta<span class="kw">;</span></span>
+<span id="cb48-2"><a href="basic-bioinformatics.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">do</span></span>
+<span id="cb48-3"><a href="basic-bioinformatics.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;The gene file is: </span><span class="va">$seqfile</span><span class="st">&quot;</span></span>
+<span id="cb48-4"><a href="basic-bioinformatics.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div>
+<pre><code>## The gene file is: gene_1.fasta
+## The gene file is: gene_2.fasta
+## The gene file is: gene_3.fasta
+## The gene file is: gene_4.fasta
+## The gene file is: gene_5.fasta</code></pre>
+<p>Now that we know how a loop works, we can use real commands:</p>
+<ul>
+<li>Lets count the number of A’s</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="basic-bioinformatics.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seqfile <span class="kw">in</span> <span class="pp">*</span>.fasta<span class="kw">;</span></span>
+<span id="cb50-2"><a href="basic-bioinformatics.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">do</span></span>
+<span id="cb50-3"><a href="basic-bioinformatics.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">seqname</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="st">&quot;&gt;&quot;</span> <span class="va">$seqfile)</span></span>
+<span id="cb50-4"><a href="basic-bioinformatics.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;Sequence in progress: </span><span class="va">$seqname</span><span class="st">&quot;</span></span>
+<span id="cb50-5"><a href="basic-bioinformatics.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">numA</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> <span class="va">$seqfile</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;A&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span></span>
+<span id="cb50-6"><a href="basic-bioinformatics.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;The number of A&#39;s in: </span><span class="va">$numA</span><span class="st">&quot;</span></span>
+<span id="cb50-7"><a href="basic-bioinformatics.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">numC</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> <span class="va">$seqfile</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;C&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span></span>
+<span id="cb50-8"><a href="basic-bioinformatics.html#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;The number of C&#39;s is: </span><span class="va">$numC</span><span class="st">&quot;</span></span>
+<span id="cb50-9"><a href="basic-bioinformatics.html#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">numT</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> <span class="va">$seqfile</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;T&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span></span>
+<span id="cb50-10"><a href="basic-bioinformatics.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;The number of T&#39;s is: </span><span class="va">$numT</span><span class="st">&quot;</span></span>
+<span id="cb50-11"><a href="basic-bioinformatics.html#cb50-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">numG</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-v</span> <span class="st">&quot;&gt;&quot;</span> <span class="va">$seqfile</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&quot;G&quot;</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span><span class="va">)</span></span>
+<span id="cb50-12"><a href="basic-bioinformatics.html#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;The number of G&#39;s is: </span><span class="va">$numG</span><span class="st">&quot;</span></span>
+<span id="cb50-13"><a href="basic-bioinformatics.html#cb50-13" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;End of sequence </span><span class="va">$seqname</span><span class="st">&quot;</span></span>
+<span id="cb50-14"><a href="basic-bioinformatics.html#cb50-14" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span></span>
+<span id="cb50-15"><a href="basic-bioinformatics.html#cb50-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div>
+<pre><code>## Sequence in progress: &gt;J01636.1 E.coli lactose operon with lacI, lacZ, lacY and lacA genes
+## The number of A&#39;s in:     1739
+## The number of C&#39;s is:     1991
+## The number of T&#39;s is:     1743
+## The number of G&#39;s is:     2004
+## End of sequence &gt;J01636.1 E.coli lactose operon with lacI, lacZ, lacY and lacA genes
+## 
+## Sequence in progress: &gt;lcl|J01636.1_cds_AAA24052.1_1 [gene=lacI] [protein_id=AAA24052.1] [location=79..1161] [gbkey=CDS]
+## The number of A&#39;s in:      240
+## The number of C&#39;s is:      300
+## The number of T&#39;s is:      232
+## The number of G&#39;s is:      311
+## End of sequence &gt;lcl|J01636.1_cds_AAA24052.1_1 [gene=lacI] [protein_id=AAA24052.1] [location=79..1161] [gbkey=CDS]
+## 
+## Sequence in progress: &gt;lcl|J01636.1_cds_AAA24053.1_2 [gene=lacZ] [protein_id=AAA24053.1] [location=1284..4358] [gbkey=CDS]
+## The number of A&#39;s in:      679
+## The number of C&#39;s is:      841
+## The number of T&#39;s is:      668
+## The number of G&#39;s is:      887
+## End of sequence &gt;lcl|J01636.1_cds_AAA24053.1_2 [gene=lacZ] [protein_id=AAA24053.1] [location=1284..4358] [gbkey=CDS]
+## 
+## Sequence in progress: &gt;lcl|J01636.1_cds_AAA24054.1_3 [gene=lacY] [protein_id=AAA24054.1] [location=4410..5663] [gbkey=CDS]
+## The number of A&#39;s in:      240
+## The number of C&#39;s is:      284
+## The number of T&#39;s is:      433
+## The number of G&#39;s is:      297
+## End of sequence &gt;lcl|J01636.1_cds_AAA24054.1_3 [gene=lacY] [protein_id=AAA24054.1] [location=4410..5663] [gbkey=CDS]
+## 
+## Sequence in progress: &gt;lcl|J01636.1_cds_AAA24055.1_4 [gene=lacA] [protein_id=AAA24055.1] [location=5727..6338] [gbkey=CDS]
+## The number of A&#39;s in:      189
+## The number of C&#39;s is:      125
+## The number of T&#39;s is:      161
+## The number of G&#39;s is:      137
+## End of sequence &gt;lcl|J01636.1_cds_AAA24055.1_4 [gene=lacA] [protein_id=AAA24055.1] [location=5727..6338] [gbkey=CDS]</code></pre>
+</div>
+<div id="complete-for-extra-points-if-desired" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Complete, for extra points if desired:<a href="basic-bioinformatics.html#complete-for-extra-points-if-desired" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Count the length of each sequence?</li>
+<li>Count the number of open reading frames (ORF)?</li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>

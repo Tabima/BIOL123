@@ -59,6 +59,9 @@ section-3-processing-local-files-into-the-cluster
 checking-file-types
 fasta-data-handling
 section-4-genbank-files
+for-loops-and-solution-to-the-hw
+how-do-we-fill-up-variables
+complete-for-extra-points-if-desired
 advanced-bioinformatics
 section-1-open-reading-frames-translating-sequences-and-blast-searches-to-identify-the-role-and-functionality-of-a-mystery-gene
 section-2-creating-our-own-searches-using-blast-and-hmmer-in-the-cluster.
@@ -74,9 +77,3 @@ introduction-to-iq-tree
 running-iq-tree-on-protein-data
 running-iq-tree-on-nucelotide-data
 final-phylogenetics-excercise
-multiple-sequence-alignment-in-mafft
-answering-each-part-of-the-question
-number-of-nucleotides
-length-of-sequence
-number-of-orf
-total-script
