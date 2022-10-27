@@ -97,7 +97,7 @@
 -  What are the molecular functions and biological processes that this gene is involved with?
 ```
 
-12. Extract the FASTA protein sequence from the LOC106470356 gene (You can find it on the RefSeq submenu, on the mRNA and Protein segment, click on the NP_001301089.1 link). Then, go to [Pfam scan](http://https://www.ebi.ac.uk/Tools/pfa/pfamscan//) and search the sequence you just copied on the Sequence Search window. In the *Output format* menu, select `Text`. 
+12. Extract the FASTA protein sequence from the LOC106470356 gene (You can find it on the RefSeq submenu, on the mRNA and Protein segment, click on the NP_001301089.1 link). Then, go to [Pfam scan](http://www.ebi.ac.uk/Tools/pfa/pfamscan/) and search the sequence you just copied on the Sequence Search window. In the *Output format* menu, select `Text`. 
 
 After the search is done, click on the link under *Tool Output*. You will see a new page with the output in simple text form. 
 
@@ -112,17 +112,15 @@ Answer the following questions based on the **simple text form** table (I would 
 -  Is this a good E-value to determine a good hit?
 ```
 
-13. Select the <hmm acc> domain name with the best E-value. Go to [PFAM](http://pfam.xfam.org/) and paste the <hmm acc> domain name in the text box in front of the *jump to* link and press GO. Answer these questions:
+13. Select the <hmm acc> domain name with the best E-value. Go to [InterPRO's database](https://www.ebi.ac.uk/interpro/search/text/) and paste the <hmm acc> domain name in the text box in front of the *jump to* link and press GO. Answer these questions:
 
 ```{block, type='rmdquestion'}
 ### Questions 24 - 25
-
--  How many architectures of this domain are found?
--  How many sequences are found that contain this domain? 
+-  What is the name of this PFAM domain? How many protein sequences are found that contain this domain? 
+- How many architectures of this domain are found?
 ```
 
-
-14. Click on the the Species link on the menu on the left. Answer these questions:
+14. Click on the the Taxonomy link on the menu on the left. Answer these questions:
 
 ```{block, type='rmdquestion'}
 ### Question 26
@@ -145,17 +143,27 @@ Answer the following questions based on the **simple text form** table (I would 
 
 Today we are going to learn how to create our own databases in the cluster based on a list of sequences and search to identify query sequences from species of interest.
 
-In our case, we are going to use the database from *Phytophthora-ID*, a database I constructed a while ago to detect species of *Phytophthora* based on the ITS molecular marker.
+In this case, let's do something similar to what most labs have been doing since the COVID pandemic: Lets try and identify several sequences of a region from the **spike protein** from samples across the world: One from Oregon, one from Massachussetts and one from the UK.
+
+The idea is to figure out if each of the sequences belongs to COVID or any other related respiratory viruses such as H1N1, common cold (Rhinovirus) or actual SARS-CoVID-2. 
+
+I have added 11 sequences of idfferent samples of COVID and other related viruses into a file called `coronavirus_references.fasta`. 
+
+This is an evolutionary tree of the reference sequences as described by [Sahu et al. (2021)](https://link.springer.com/article/10.1007/s13337-021-00653-y#Sec2)
+
+![Phylogenetic tree](Lab4/covid_tree.jpg)
+
+So, to do the analysis:
 
 1. Create a new folder inside your home folder called `Lab_4`
 2. Create a second folder inside of `Lab_4` called blastDB and go into it.
-3. Download the sequences from this link `http://phytophthora-id.org/files/Phytophthora-ID-ITS-version-1.17.fasta` into the `Lab_4/blastDB` folder
-4. We are going to use the `unknown_sequences.fasta` file as query for the unknown files
+3. Copy the sequences from  `/home/jtabima/MBB101/lab4/coronavirus_references.fasta` into your `Lab_4/blastDB` folder
+4. We are going to use the `/home/jtabima/MBB101/lab4/unknown_locations.fasta` file as query for the unknown files. Copy it into your folder.
 
 ```{block, type='rmdquestion'}
 ### Question 28 - 29
 
--  How many sequences are in the `unknown_sequences.fasta` and the `Phytophthora-ID-ITS-version-1.17.fasta` files? Add the code you used to check the sequences.
+-  How many sequences are in the `unknown_locations.fasta` and the `coronavirus_references.fasta` files? Add the code you used to check the sequences.
 
 -  Are these files nucleotide or protein sequences? Add the code you added to check the sequences.
 ```
@@ -174,7 +182,7 @@ makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_nam
 
 5. Run the code after modification and make sure it worked by doing an `ls` and checking that the `database_name.nhn`, `database_name.nir`, `database_name.nsq` files are there.
 
-6. Now, we are going to run a BLAST search to identify the unknown sequences in the `unknown_sequences.fasta`
+6. Now, we are going to run a BLAST search to identify the unknown sequences in the `unknown_locations.fasta`
 
 The following is template code to run BLAST:
 
@@ -213,7 +221,7 @@ In the following table, add the top 3 hits for each of the query sequences.
 
 -  Based on your results, what are the most likely identities of each query? Explain why.
 
--  Within the `Phytophthora-ID-ITS-version-1.17.fasta` you can extract the names of each species in the database. What are the species of each of the most likly sequences?
+-  Within the reference FASTA file you can extract the names of each of the best hits of the database. What are the species of each of the most likely sequences?
 ```
 
 ***

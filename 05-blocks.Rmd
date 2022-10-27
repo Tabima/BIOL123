@@ -116,7 +116,7 @@ We have four candidate patterns for this gene:
  
 |Sequence|Ribosomal 27|Ubiquitin|IBR|DNA poly A|
 |---|---|---|---|---|
-|S79522|Yes/No|Yes/No|Yes/No|Yes/No|
+|AAB21188|Yes/No|Yes/No|Yes/No|Yes/No|
  
 ```
  
