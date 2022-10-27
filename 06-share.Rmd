@@ -203,10 +203,12 @@ blast_program -query query_file -db database_name -out output_file -evalue 1e-10
 7. Run the modified code. Check that you have some results by making sure that your `output_file` has content on it.
 
 ```{block, type='rmdquestion'}
-### Questions 34 - 36
+### Question 34 
 
-In the following table, add the top 3 hits for each of the query sequences.
+-In the following table, add the top 3 hits for each of the query sequences.
+```
 
+```
 | qseqid  | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore |
 |---------|--------|--------|--------|----------|---------|--------|------|--------|------|--------|----------|
 | Query_1 |        |        |        |          |         |        |      |        |      |        |          |
@@ -218,7 +220,10 @@ In the following table, add the top 3 hits for each of the query sequences.
 | Query_2 |        |        |        |          |         |        |      |        |      |        |          |
 | Query_2 |        |        |        |          |         |        |      |        |      |        |          |
 | Query_2 |        |        |        |          |         |        |      |        |      |        |          |
+```
 
+```{block, type='rmdquestion'}
+### Questions 35 - 36
 -  Based on your results, what are the most likely identities of each query? Explain why.
 
 -  Within the reference FASTA file you can extract the names of each of the best hits of the database. What are the species of each of the most likely sequences?
