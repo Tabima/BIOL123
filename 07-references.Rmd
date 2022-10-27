@@ -21,12 +21,13 @@ Today, we will use NCBI Homologene.
 -  What gene/genic family is represented in this set of sequences?
 -  Based on the schematics on the right, which domains of the protein are conserved across the different species?
 -  Fill the following table using all the sequences from the homologene info
+```
 
 |Species|Common Name|Protein ID|Protein length|Number of domains found|
 |---|---|---|---|---|
 |*Homo sapiens*|Human|NP_000242.2|Three |(MutS_I, MutS_II, ABC_ATPase)|
 
-````
+
 
 3. Go to the Download links and download the mRNA and Protein sequences in FASTA format
 
