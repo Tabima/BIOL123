@@ -34,14 +34,12 @@ Today, we will use NCBI Homologene.
 
 5. Answer the following questions:
 
-***
-
-> Questions:
-
+```{block, type='rmdquestion'}
+### Questions 5 - 7
 -  What is the number of sequences in each of the files uploaded?
 -  Did you expect this number to be similar or different across the files?
+```
 
-***
 
 ## Multiple sequence alignment in MAFFT
 
@@ -54,21 +52,17 @@ It allows us to do many different kinds of searches, such as local alignments, g
 6. Before you proceed with the alignment, go to the [MAFFT algortihms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) and answer the follwing questions based on the information on the algorithms MAFFT uses:
 
 
-***
-> Questions:
-
+```{block, type='rmdquestion'}
+### Questions 8 - 11
 -  What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i) would you use for the following datasets, and briefly explain your answers:
  - Proteins with multiple conserved domains
  - Proteins with single conserved domains
  - Proteins with a single short domain
- 
-***
+```
 
 7. Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.
 
 To do this, in your `Lab_5` do the following:
-
-* Load the module by using the `module load mafft/7.471` command
 
 * Use the following code for your alignment:
      * For L-INS-i
@@ -89,16 +83,15 @@ Remember to change your `input_file` and `output_file` for the FASTA file and th
 
 8. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](http://msa.biojs.net/app/) on your browser and import your alignment using the Upload button and the Data file link.
 
-9. Add the image of the MSA here:
+```{block, type='rmdquestion'}
+### Question 12
+- Add the image of the MSA
 
-***
-- 
-***
+- Write a short summary of the MSA by playing with the options in the MSA aligner (Are there regions that are highly conserved?  Regions that are not that conserved? What are the species that look more similar to each other?)
 
-10. Write a short summary of the MSA by playing with the options in the MSA aligner (Are there regions that are highly conserved?  Regions that are not that conserved? What are the species that look more similar to each other?)
+```
 
-***
-- 
+
 ***
 
 ## Creating and searching a HMM model using our alignment
@@ -111,10 +104,11 @@ https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_pro
 
 11. Download the new FASTA file to your `Lab_5` folder. Count the number of sequences and answer the next question:
 
-***
+```{block, type='rmdquestion'}
+### Question 13
 -  What is the number of sequences in the downloaded FASTA file?
 
-***
+```
 
 12. Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create a HMM profile of our MSH homologs and then search for the sequences!
 
@@ -125,18 +119,16 @@ The `hmmbuild` program creates a HMM model of your alignment (so, of your conser
 To run it use the following command:
 
 ```
-module load hmmer/3.3
-
 hmmbuild MSH_homolog.hmm alignmnent_file.fasta
 ```
 
 Answer the following question:
 
-***
+```{block, type='rmdquestion'}
+### Question 14
 -  Summarize the process of building a HMM model
 
-***
-
+```
 
 14. Finally, run `hmmsearch` and identify the protein with positive hits. Add them to the following table:
 

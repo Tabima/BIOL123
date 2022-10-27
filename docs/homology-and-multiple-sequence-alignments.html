@@ -241,9 +241,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html"><i class="fa fa-check"></i><b>9</b> Homology and multiple sequence alignments</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene"><i class="fa fa-check"></i><b>9.1</b> Downloading sequences from Homologene</a></li>
-<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#section"><i class="fa fa-check"></i><b>9.2</b> ***</a></li>
-<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#section-1"><i class="fa fa-check"></i><b>9.3</b> ***</a></li>
-<li class="chapter" data-level="9.4" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.4</b> Creating and searching a HMM model using our alignment</a></li>
+<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft"><i class="fa fa-check"></i><b>9.2</b> Multiple sequence alignment in MAFFT</a></li>
+<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching a HMM model using our alignment</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="phylogenetics.html"><a href="phylogenetics.html"><i class="fa fa-check"></i><b>10</b> Phylogenetics</a>
 <ul>
@@ -354,57 +353,137 @@ Three
 </tr>
 </tbody>
 </table>
-<p>
-<p>`<code>&lt;/p&gt; &lt;ol start="3" style="list-style-type: decimal"&gt; &lt;li&gt;&lt;p&gt;Go to the Download links and download the mRNA and Protein sequences in FASTA format&lt;/p&gt;&lt;/li&gt; &lt;li&gt;&lt;p&gt;Connect to the cluster and upload the sequences into a new folder inside of &lt;code&gt;MBB101&lt;/code&gt; called &lt;code&gt;Lab_5&lt;/code&gt;&lt;/p&gt;&lt;/li&gt; &lt;li&gt;&lt;p&gt;Answer the following questions:&lt;/p&gt;&lt;/li&gt; &lt;/ol&gt; &lt;hr /&gt; &lt;blockquote&gt; &lt;p&gt;Questions:&lt;/p&gt; &lt;/blockquote&gt; &lt;ul&gt; &lt;li&gt;What is the number of sequences in each of the files uploaded?&lt;/li&gt; &lt;li&gt;Did you expect this number to be similar or different across the files?&lt;/li&gt; &lt;/ul&gt; &lt;hr /&gt; &lt;h2 id="multiple-sequence-alignment-in-mafft"&gt;Multiple sequence alignment in MAFFT&lt;/h2&gt; &lt;p&gt;Now, we will do some multiple sequence alignments using MAFFT.&lt;/p&gt; &lt;p&gt;If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist.&lt;/p&gt; &lt;p&gt;It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains&lt;/p&gt; &lt;ol start="6" style="list-style-type: decimal"&gt; &lt;li&gt;Before you proceed with the alignment, go to the &lt;a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html"&gt;MAFFT algortihms page&lt;/a&gt; and answer the follwing questions based on the information on the algorithms MAFFT uses:&lt;/li&gt; &lt;/ol&gt; &lt;hr /&gt; &lt;blockquote&gt; &lt;p&gt;Questions:&lt;/p&gt; &lt;/blockquote&gt; &lt;ul&gt; &lt;li&gt;What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i) would you use for the following datasets, and briefly explain your answers:&lt;/li&gt; &lt;li&gt;Proteins with multiple conserved domains&lt;/li&gt; &lt;li&gt;Proteins with single conserved domains&lt;/li&gt; &lt;li&gt;Proteins with a single short domain&lt;/li&gt; &lt;/ul&gt; &lt;hr /&gt; &lt;ol start="7" style="list-style-type: decimal"&gt; &lt;li&gt;Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;To do this, in your &lt;code&gt;Lab_5&lt;/code&gt; do the following:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;p&gt;Load the module by using the &lt;code&gt;module load mafft/7.471&lt;/code&gt; command&lt;/p&gt;&lt;/li&gt; &lt;li&gt;&lt;p&gt;Use the following code for your alignment:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;For L-INS-i&lt;/li&gt; &lt;/ul&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; mafft --localpair --maxiterate 1000 input_file &gt; output_file</code>
-* For E-INS-i</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Go to the Download links and download the mRNA and Protein sequences in FASTA format</p></li>
+<li><p>Connect to the cluster and upload the sequences into a new folder inside of <code>MBB101</code> called <code>Lab_5</code></p></li>
+<li><p>Answer the following questions:</p></li>
+</ol>
+<div class="rmdquestion">
+<h3 id="questions-5---7">
+Questions 5 - 7
+</h3>
+<ul>
+<li>
+What is the number of sequences in each of the files uploaded?
+</li>
+<li>
+Did you expect this number to be similar or different across the
+files?
+</li>
+</ul>
+</div>
+</div>
+<div id="multiple-sequence-alignment-in-mafft" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Multiple sequence alignment in MAFFT<a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, we will do some multiple sequence alignments using MAFFT.</p>
+<p>If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist.</p>
+<p>It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Before you proceed with the alignment, go to the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html">MAFFT algortihms page</a> and answer the follwing questions based on the information on the algorithms MAFFT uses:</li>
+</ol>
+<div class="rmdquestion">
+<h3 id="questions-8---11">
+Questions 8 - 11
+</h3>
+<ul>
+<li>
+What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i)
+would you use for the following datasets, and briefly explain your
+answers:
+</li>
+<li>
+Proteins with multiple conserved domains
+</li>
+<li>
+Proteins with single conserved domains
+</li>
+<li>
+Proteins with a single short domain
+</li>
+</ul>
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.</li>
+</ol>
+<p>To do this, in your <code>Lab_5</code> do the following:</p>
+<ul>
+<li>Use the following code for your alignment:
+<ul>
+<li>For L-INS-i</li>
+</ul>
+<pre><code>mafft --localpair --maxiterate 1000 input_file &gt; output_file</code></pre>
+<ul>
+<li>For E-INS-i</li>
+</ul>
 <pre><code>mafft --genafpair --maxiterate 1000 input_file &gt; output_file
 mafft --genafpair --maxiterate 1000 homologene_prot.fasta &gt; alin.fasta</code></pre>
-<pre><code> * For G-INS-i</code></pre>
-<pre><code>mafft --globalpair --maxiterate 1000 input_file &gt; output_file</code></pre>
+<ul>
+<li>For G-INS-i</li>
+</ul>
+<pre><code>mafft --globalpair --maxiterate 1000 input_file &gt; output_file</code></pre></li>
+</ul>
 <p>Remember to change your <code>input_file</code> and <code>output_file</code> for the FASTA file and the output file (also in FASTA file).</p>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Download your <code>output_file</code> into your local computer. Open the <a href="http://msa.biojs.net/app/">NCBI MSA viewer page</a> on your browser and import your alignment using the Upload button and the Data file link.</p></li>
-<li><p>Add the image of the MSA here:</p></li>
+<li>Download your <code>output_file</code> into your local computer. Open the <a href="http://msa.biojs.net/app/">NCBI MSA viewer page</a> on your browser and import your alignment using the Upload button and the Data file link.</li>
 </ol>
+<div class="rmdquestion">
+<h3 id="question-12">
+Question 12
+</h3>
+<ul>
+<li>
+<p>
+Add the image of the MSA
+</p>
+</li>
+<li>
+<p>
+Write a short summary of the MSA by playing with the options in
+the MSA aligner (Are there regions that are highly conserved? Regions
+that are not that conserved? What are the species that look more similar
+to each other?)
+</p>
+</li>
+</ul>
 </div>
-<div id="section" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> ***<a href="homology-and-multiple-sequence-alignments.html#section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
-<ol start="10" style="list-style-type: decimal">
-<li>Write a short summary of the MSA by playing with the options in the MSA aligner (Are there regions that are highly conserved? Regions that are not that conserved? What are the species that look more similar to each other?)</li>
-</ol>
 </div>
-<div id="section-1" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> ***<a href="homology-and-multiple-sequence-alignments.html#section-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<hr />
-</div>
-<div id="creating-and-searching-a-hmm-model-using-our-alignment" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Creating and searching a HMM model using our alignment<a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="creating-and-searching-a-hmm-model-using-our-alignment" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Creating and searching a HMM model using our alignment<a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:</p>
 <pre><code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_proteins.fasta</code></pre>
 <ol start="11" style="list-style-type: decimal">
 <li>Download the new FASTA file to your <code>Lab_5</code> folder. Count the number of sequences and answer the next question:</li>
 </ol>
-<hr />
+<div class="rmdquestion">
+<h3 id="question-13">
+Question 13
+</h3>
 <ul>
-<li>What is the number of sequences in the downloaded FASTA file?</li>
+<li>
+What is the number of sequences in the downloaded FASTA file?
+</li>
 </ul>
-<hr />
+</div>
 <ol start="12" style="list-style-type: decimal">
 <li><p>Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create a HMM profile of our MSH homologs and then search for the sequences!</p></li>
 <li><p>To create the hmmer profile you need your alignment file of the MSH homologs in protein format, and the <code>hmmbuild</code> program.</p></li>
 </ol>
 <p>The <code>hmmbuild</code> program creates a HMM model of your alignment (so, of your conserved domains!!) that you can use to search using <code>hmmsearch</code> how we did on last class!</p>
 <p>To run it use the following command:</p>
-<pre><code>module load hmmer/3.3
-
-hmmbuild MSH_homolog.hmm alignmnent_file.fasta</code></pre>
+<pre><code>hmmbuild MSH_homolog.hmm alignmnent_file.fasta</code></pre>
 <p>Answer the following question:</p>
-<hr />
+<div class="rmdquestion">
+<h3 id="question-14">
+Question 14
+</h3>
 <ul>
-<li>Summarize the process of building a HMM model</li>
+<li>
+Summarize the process of building a HMM model
+</li>
 </ul>
-<hr />
+</div>
 <ol start="14" style="list-style-type: decimal">
 <li>Finally, run <code>hmmsearch</code> and identify the protein with positive hits. Add them to the following table:</li>
 </ol>
