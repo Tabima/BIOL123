@@ -245,30 +245,58 @@ However, due to an error in the machine, your sequences have been mixed with ano
 
 A BLAST would be too much to run as you have a very small machine in your office, but you remember (thanks to your bioinformatics course ;) ) that you can run HMMER, a faster way of identifying protein sequences using Hidden Markov Models (HMM).
 
-You also remember that [Pfam](http://pfam.xfam.org/) is a great database of protein domains that also contains HMM for these proteins.
+You also remember that [Pfam](http://pfam.xfam.org/), in Interpro, is a great database of protein domains that also contains HMM for these proteins.
 
 Using your bioinformatics software, you discover that there is a reference gene for *Sonic The Hedgehog* in humans, in NCBI, in the accession number [NP_000184.1](http://www.ncbi.nlm.nih.gov/protein/NP_000184.1?report=fasta)
 
-1. Copy the FASTA file and search for the domains in Pfam
+1. Copy the FASTA file and search for the domains in [InterPro]. When the result appears, answer these questions:
 
 ```{block, type='rmdquestion'}
-### Question 35
+### Questions 35-38
 
-- What are the two Pfam-A matches you find?
+- To which InterPro **family** does this protein belong?
+- Look at the **Domains** part of the sequence. Which domains do you see? To which **source database** do they belong (SMART, PFAM)?
+- Which are the two domains from PFAM you can find in this protein?
+- Go to the GO terms part of the results. What do you think is the function of this protein based on the Biological Process information?
 ```
 
-2. Click on each of the domains. Go to the **Curation & model** link on the left.
 
-3. Download the raw HMM for each domain. 
+```{block, type='rmdquestion'}
+### EXTRA CREDIT (2 points)
 
-4. Log into the Cluster. Within the `Lab_4` folder create a `hmm_example` folder.
+- Go to the Predictions section of your results. Hover over each of the annotations and do a summary of the different predictions in this protein (i.e. Is this protein moved outside of the cytoplasm? Where does this protein reside in the cell?)
 
-5. Upload the HMM files and the `oh_this_is_a_mess.fasta` files into the new folder
+** If you draw and include the drawing of the protein you get 5 points total**
+```
+
+2. Under the **InterProScan Search Result** title, you will see a sub-menu that says **entries**. Click on it and in the **1-8 entries ..** click and select **PFAM**. You should see two domains:
+
+```{block, type='rmdquestion'}
+### Question 39:
+
+- Are these two domains the same domains as in Q37?
+```
+
+3. Click on the PFAM profile, go to **Curation** and Download the raw HMM for each domain into a new `hmm_example` folder inside your `Lab_4` folder.
+
+4. InterPro now saves the files as compressed files (`gzip files`). We need to uncompressed them. To do this, you need to rename your files by adding a `.gz`, for example:
+
+```
+mv file.hmm file.hmm.gz
+```
+
+and then uncompress them by using `gunzip`:
+
+```
+gunzip file.hmm.gz
+```
+
+5. Upload the `oh_this_is_a_mess.fasta` file from moodle into the new folder
 
 6. Merge both HMM files into a single file called `SHH.hmm`. Answer the following question:
 
 ```{block, type='rmdquestion'}
-### Questions 36
+### Question 36
 
 -  How would you merge the two files? Add the code below.
 ```

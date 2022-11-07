@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-10-26" />
+<meta name="date" content="2022-11-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -670,31 +670,80 @@ most likely sequences?
 <p>You sequenced one copy of each the genes per species, and translated them intro proteins.</p>
 <p>However, due to an error in the machine, your sequences have been mixed with another hundred protein sequences from other species and genes in a file called <code>oh_this_is_a_mess.fasta</code></p>
 <p>A BLAST would be too much to run as you have a very small machine in your office, but you remember (thanks to your bioinformatics course ;) ) that you can run HMMER, a faster way of identifying protein sequences using Hidden Markov Models (HMM).</p>
-<p>You also remember that <a href="http://pfam.xfam.org/">Pfam</a> is a great database of protein domains that also contains HMM for these proteins.</p>
+<p>You also remember that <a href="http://pfam.xfam.org/">Pfam</a>, in Interpro, is a great database of protein domains that also contains HMM for these proteins.</p>
 <p>Using your bioinformatics software, you discover that there is a reference gene for <em>Sonic The Hedgehog</em> in humans, in NCBI, in the accession number <a href="http://www.ncbi.nlm.nih.gov/protein/NP_000184.1?report=fasta">NP_000184.1</a></p>
 <ol style="list-style-type: decimal">
-<li>Copy the FASTA file and search for the domains in Pfam</li>
+<li>Copy the FASTA file and search for the domains in [InterPro]. When the result appears, answer these questions:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-35">
-Question 35
+<h3 id="questions-35-38">
+Questions 35-38
 </h3>
 <ul>
 <li>
-What are the two Pfam-A matches you find?
+To which InterPro <strong>family</strong> does this protein
+belong?
+</li>
+<li>
+Look at the <strong>Domains</strong> part of the sequence. Which
+domains do you see? To which <strong>source database</strong> do they
+belong (SMART, PFAM)?
+</li>
+<li>
+Which are the two domains from PFAM you can find in this
+protein?
+</li>
+<li>
+Go to the GO terms part of the results. What do you think is the
+function of this protein based on the Biological Process
+information?
 </li>
 </ul>
 </div>
+<div class="rmdquestion">
+<h3 id="extra-credit-2-points">
+EXTRA CREDIT (2 points)
+</h3>
+<ul>
+<li>
+Go to the Predictions section of your results. Hover over each of
+the annotations and do a summary of the different predictions in this
+protein (i.e. Is this protein moved outside of the cytoplasm? Where does
+this protein reside in the cell?)
+</li>
+</ul>
+<p>
+** If you draw and include the drawing of the protein you get 5
+points total**
+</p>
+</div>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Click on each of the domains. Go to the <strong>Curation &amp; model</strong> link on the left.</p></li>
-<li><p>Download the raw HMM for each domain.</p></li>
-<li><p>Log into the Cluster. Within the <code>Lab_4</code> folder create a <code>hmm_example</code> folder.</p></li>
-<li><p>Upload the HMM files and the <code>oh_this_is_a_mess.fasta</code> files into the new folder</p></li>
+<li>Under the <strong>InterProScan Search Result</strong> title, you will see a sub-menu that says <strong>entries</strong>. Click on it and in the <strong>1-8 entries ..</strong> click and select <strong>PFAM</strong>. You should see two domains:</li>
+</ol>
+<div class="rmdquestion">
+<h3 id="question-39">
+Question 39:
+</h3>
+<ul>
+<li>
+Are these two domains the same domains as in Q37?
+</li>
+</ul>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Click on the PFAM profile, go to <strong>Curation</strong> and Download the raw HMM for each domain into a new <code>hmm_example</code> folder inside your <code>Lab_4</code> folder.</p></li>
+<li><p>InterPro now saves the files as compressed files (<code>gzip files</code>). We need to uncompressed them. To do this, you need to rename your files by adding a <code>.gz</code>, for example:</p></li>
+</ol>
+<pre><code>mv file.hmm file.hmm.gz</code></pre>
+<p>and then uncompress them by using <code>gunzip</code>:</p>
+<pre><code>gunzip file.hmm.gz</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Upload the <code>oh_this_is_a_mess.fasta</code> file from moodle into the new folder</p></li>
 <li><p>Merge both HMM files into a single file called <code>SHH.hmm</code>. Answer the following question:</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-36">
-Questions 36
+<h3 id="question-36">
+Question 36
 </h3>
 <ul>
 <li>
