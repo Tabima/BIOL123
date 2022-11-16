@@ -82,7 +82,7 @@ mafft --globalpair --maxiterate 1000 input_file > output_file
 
 Remember to change your `input_file` and `output_file` for the FASTA file and the output file (also in FASTA file).
 
-8. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](http://msa.biojs.net/app/) on your browser and import your alignment using the Upload button and the Data file link.
+8. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) on your browser and import your alignment using the Upload button and the Data file link.
 
 ```{block, type='rmdquestion'}
 ### Question 12
