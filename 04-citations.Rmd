@@ -21,8 +21,8 @@ However, before we start using the command line I decided to make a list of the 
 
 ### Logging in
 
-- Logging into the cluster: `140.232.222.154` in your browser
-- Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): `ssh username@140.232.222.228`
+- Logging into the cluster: `140.232.222.14` in your browser
+- Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): `ssh username@140.232.222.14`
 
 ### Navigating the cluster
 

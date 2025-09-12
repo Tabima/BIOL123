@@ -1,0 +1,156 @@
+---
+title: 'Lab 5 Section_2 - Prasanth P. Prabhu and Rafael H. Levin'
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+
+<h2>
+<span style="color: red;"> 37/50. Use scienfic and code notations where necessary.</span>
+</h2>
+
+# Instructions:
+
+- Section 2 will be done on Nov. 13
+- Lab is due before Nov. 20
+
+## Creating a phylogenetic tree using protein data
+
+One of the most common ways of creating phylogenetic trees is using protein data, as the length of the protein alignment is usually smaller than the nucleotide alignment. 
+
+### Introduction to `IQ-tree`
+
+In this lab, we will use one of the most recent programs to build phylogenetic trees: [`IQ-tree`](http://www.iqtree.org/).
+
+`IQ-tree` uses a maximum likelihood approach and ultra-fast bootstrapping to reconstruct phylogenetic trees. 
+
+`IQ-tree` is a very fast program, and it can use nucleotide, protein and other types of data to reconstruct phylogenies based on maximum likelihood.
+
+In addition, if you remember from the theory lecture, `IQ-tree` also determines the best model for nucleotide/amino-acid substitution for the phylogenetic reconstruction, so pretty much `IQ-tree` can do it all.
+
+## Running IQ-tree on protein data
+
+So, we are going to use the protein alignment that we created last week.
+
+To run IQ-tree, we need two super-simple commands:
+
+1. Load the module for IQ-tree
+
+```
+module load iqtree
+```
+
+2. Use this magical command to run `IQ-tree` and automatically determine the best model of amino-acid evolution, run 1000 ultra-fast bootstraps and obtain the most likely tree.
+
+```
+
+```
+
+3. Answer the following questions:
+
+***
+> 1. Check the output of the program as it runs. According to the output, what is the Best-fit model for our alignment?
+
+The best-fit model for our alignment is LG+I+G4 as chosen according to BIC
+
+> 2. What are the best models according to Akaike information criteria, corrected Akaike information criteria, and Bayesian information criteria? Are they all different?
+
+The best models according to AIC, AICc and BIC are the following:
+AIC: LG+F+I+G4
+AICc: LG+F+I+G4
+BIC: LG+I+G4
+
+> 3. Use code to extract the Log-likelihood of the tree from the `.iqtree` file from the run. What is that value? How did you extracted it? 
+
+We used the grep command to extract the log-likelihood of the tree. The value is -19731.489003
+
+***
+
+4. To view your final phylogenetic tree, download [FigTree](https://github.com/rambaut/figtree/releases) where the `dmg` is for MacOS, the `zip` for Windows, and the `tgz` for Linux. Install the program.
+
+5. Download the `.treefile` file from the cluster to your computer. Open `FigTree` and open the downloaded `.treefile`.
+
+6. You'll see a window like this. It asks you about what name you want to give the labels of the trees. I usually call them *bootstrap*:
+
+
+7. Here's your tree! Now, all Maximum Likelihood trees are unrooted by definition. However, its easier to study the tree if you root it. In this case, you can root it on the node with the longest branch. To do so do `Trees -> Root tree -> Midpoint`.
+
+8. You can also organize the tree for easy viewing by organizing it by early-emerging to late emerging. Use `Trees -> Order nodes -> Increasing` to do so.
+
+9. Finally, observe the bootstrap values by selecting `Node Labels -> Bootstrap`. Good boostrap support values are greater than 60%, highly supported values are greater than 75%. 
+
+10. Answer the following question:
+
+***
+> 4. Summarize your findings (i.e.: Describe the relationships between the species; which nodes are well supported, which nodes are not; does this tree fit the expectation based on the taxonomy of the species used?)
+
+The phylogenetic trees shows that, all the mammals are forming a monophyletic clade with a bootstrap value of 100. They are closely related to the clade containing the insects, having a bootstrap value of 100. All the fungi are monophyletic and are more closely related to animals than plants. 
+
+
+***
+
+## Running IQ-tree on nucelotide data
+
+Now, lets do the same but using the `homologene_nucl.fasta` file you'll find in the moodle page. 
+
+This file has **been previously aligned** using `MAFFT`, so this **SHOULD BE** the same file you got from the `mRNA` homologene file, and we will test this hypothesis. 
+
+11. Align **YOUR** mRNA homologene file you obtained last week using `MAFFT`. Answer the following question.
+
+***
+> 5. Add the code for the MAFFT alignment of your mRNA file. 
+
+mafft --genafpair --maxiterate 1000 input_file > output_file
+
+<span style="color: red;"> CODE NOTATION!! (-5 pts) </span>.
+
+> 6. Why did you decide to use that algorithm?
+
+We use MAFFT because it uses progressive and iterative alignments
+
+
+<span style="color: red;"> Yeah but why did you use this specific algorithm? (-3 pts) </span>.
+
+***
+
+12. Run `IQ-tree` for each of the mRNA alignments. Fill the following table:
+
+
+
+13. Open both trees in FigTree. Answer the following question:
+
+***
+> 7. What is the most striking difference you see?
+
+In the phylogenetic trees all the fungi together with animals forming a clade which are sister to plants. One of the striking difference is that, the tree file from the moodle shows that mice is forming a sister group to all the fungi, rather than to rat. 
+***
+
+14. Open the professor's alignment in the [MSA viewer of NCBI](https://www.ncbi.nlm.nih.gov/projects/msaviewer/). After uploading the sequence, use the `Coloring -> Nucleic Acid Colors` option. Answer the following question:
+
+***
+> 8. There is one sequence that looks very weird (i.e. Colors don't match and there are long strands of insertions and deletions in the region). What sequence do you suspect its weird?
+
+The sequence that is weird is the Mus musculus sequence.
+
+
+<span style="color: red;"> SCIENTIFIC SPECIES NOTATION!! (-5 pts) </span>.
+
+***
+
+15. The professor just noticed that he changed the sequence of *Mus musculus* (`gi|118130707|ref|NM_008628.2|`) and added the reverse strand instead of the forward strand... WHOOPS.
+
+In this case, `MAFFT` can check all the sequences and correct the direction of the strand. Use the `--adjustdirectionaccurately` option of `MAFFT` to run it. 
+
+So, if you used the `E-INS-i` algorithm, the syntax would be like this:
+
+`mafft --adjustdirectionaccurately --genafpair --maxiterate 1000 homologene_nucl.fasta > professor_corrected.fasta`
+
+Using this info, here's the homework:
+
+## Homework: 
+
+> Using the mis-alignment I sent, correct it using the `MAFFT` code above and run the tree again. Does the tree look like the mRNA you obtained? Write a paragraph about the comparison.
+
+Yes,now the both trees are having similar tophology, in which the mice is forming a clade with rat. This clade is sister to the clade containg human,cow and dog. All the fungi where grouped toghter with a bootstrap support of 100% and are more closely related to animals, than plants. 

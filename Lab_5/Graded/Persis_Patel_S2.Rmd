@@ -1,0 +1,172 @@
+---
+title: "Lab 5: Homology and Phylogenetics (Section 2)"
+author: "Henna Patel and Persis Adonteng"
+date: "11/20/2020"
+output: html_document
+---
+<h2>
+<span style="color: red;"> 50/50. EXCELLENT JOB! This is the best lab report. I'm incredibly proud of you two!</span>
+</h2>
+
+
+# Instructions:
+
+- Section 2 will be done on Nov. 13
+- Lab is due before Nov. 20
+
+## Creating a phylogenetic tree using protein data
+
+One of the most common ways of creating phylogenetic trees is using protein data, as the length of the protein alignment is usually smaller than the nucleotide alignment. 
+
+### Introduction to `IQ-tree`
+
+In this lab, we will use one of the most recent programs to build phylogenetic trees: [`IQ-tree`](http://www.iqtree.org/).
+
+`IQ-tree` uses a maximum likelihood approach and ultra-fast bootstrapping to reconstruct phylogenetic trees. 
+
+`IQ-tree` is a very fast program, and it can use nucleotide, protein and other types of data to reconstruct phylogenies based on maximum likelihood.
+
+In addition, if you remember from the theory lecture, `IQ-tree` also determines the best model for nucleotide/amino-acid substitution for the phylogenetic reconstruction, so pretty much `IQ-tree` can do it all.
+
+## Running IQ-tree on protein data
+
+So, we are going to use the protein alignment that we created last week.
+
+To run IQ-tree, we need two super-simple commands:
+
+1. Load the module for IQ-tree
+
+```
+module load iqtree
+```
+
+2. Use this magical command to run `IQ-tree` and automatically determine the best model of amino-acid evolution, run 1000 ultra-fast bootstraps and obtain the most likely tree.
+
+```
+iqtree2 -s your_protein_alignment -B 1000
+```
+
+3. Answer the following questions:
+
+***
+> 1. Check the output of the program as it runs. According to the output, what is the Best-fit model for our alignment?
+
+Answer: The Best-fit model for our alignment is LG+I+G4. 
+
+> 2. What are the best models according to Akaike information criteria, corrected Akaike information criteria, and Bayesian information criteria? Are they all different?
+
+Answer: The best model according to the following criteria are: 
+
+1. Akaike Information Criterion:           LG+F+I+G4
+1. Corrected Akaike Information Criterion: LG+F+I+G4
+1. Bayesian Information Criterion:         LG+I+G4
+
+The Akaike Information criterion model is similar to corrected Akaike Information criterion. However, the Bayesion information criterion is different from the other two models because it has an I after LG+ whereas the other two has a F after LG+. 
+
+\![Criteria](Lab 5 /Screenshots/Screen Shot 2020-11-13 at 3.02.50 PM.png) 
+
+> 3. Use code to extract the Log-likelihood of the tree from the `.iqtree` file from the run. What is that value? How did you extracted it? 
+
+Answer: The Log-likelihood of the tree is -19731.4890 (s.e. 367.1590). 
+The code used to extract it was 
+
+`grep 'Log-likelihood' protein_multiple_alignment.fasta.iqtree` 
+
+\![Likelihood](Lab 5 /Screenshots/Screen Shot 2020-11-13 at 3.15.32 PM.png)
+
+***
+
+4. To view your final phylogenetic tree, download [FigTree](https://github.com/rambaut/figtree/releases) where the `dmg` is for MacOS, the `zip` for Windows, and the `tgz` for Linux. Install the program.
+
+5. Download the `.treefile` file from the cluster to your computer. Open `FigTree` and open the downloaded `.treefile`.
+
+6. You'll see a window like this. It asks you about what name you want to give the labels of the trees. I usually call them *bootstrap*:
+
+
+
+7. Here's your tree! Now, all Maximum Likelihood trees are unrooted by definition. However, its easier to study the tree if you root it. In this case, you can root it on the node with the longest branch. To do so do `Trees -> Root tree -> Midpoint`.
+
+8. You can also organize the tree for easy viewing by organizing it by early-emerging to late emerging. Use `Trees -> Order nodes -> Increasing` to do so.
+
+9. Finally, observe the bootstrap values by selecting `Node Labels -> Bootstrap`. Good boostrap support values are greater than 60%, highly supported values are greater than 75%. 
+
+10. Answer the following question:
+
+***
+> 4. Summarize your findings (i.e.: Describe the relationships between the species; which nodes are well supported, which nodes are not; does this tree fit the expectation based on the taxonomy of the species used?)
+
+Answer: The *M.Musculus*, *R.Norvegicus*, *Homo Sapiens*, and *C.lupus* arrives from a common ancester at 65.9% which is well supported.The *M.Musculus* and *R.Norvegicus* closely related whereas *Homo Sapiens*, and *C.lupus* are more closely related. These species and the *B.taurus* shares a common ancestor at 66.56% then they further evolved. The *B.taurus*, *G.gallus*, *X.tropicalis* and *D.rerio* have a common ancestor at 116.18% which is highly supported. There are no other common ancestors between them.The *D.melanogaster* and *A.gambiae* also derive from the same common ancestor at 116.18%. However, they have along branch which suggests a long change in time before that species evolved and shared a common ancestor at 49.23%. The *S.cerevisiae*, *K.lactis*, *E.gossypii*, *S.pombe*, *M.oryzae*, *N.crassa* and *A.thaliana* are different kind of fungus which shares common ancestor at 124%.The *A.thaliana* doesn't have any other common ancestor showing that it didn't evolve further and it has a long branch indicating long time for change. However, All other kind of fungus evolved further and shares a common ancestor at 98.6%. *M.oryzae*, *N.crassa*, and *S.pombe* share a common ancestor at 90%. There are four nodes below 60% (49.2302%, 34.719%, 43.7776%, 55.3163%) which aren't supported.The nodes between 60% and 75% (62%,65%, 66%,65%) have good support. The majority of the nodes above 75% are highly supported. The tree supports the taxonomy of the species used. 
+
+\![](Lab 5 /Screenshots/Screen Shot 2020-11-20 at 4.47.16 PM.png)
+
+***
+
+## Running IQ-tree on nucelotide data
+Now, lets do the same but using the `homologene_nucl.fasta` file you'll find in the moodle page. 
+
+This file has **been previously aligned** using `MAFFT`, so this **SHOULD BE** the same file you got from the `mRNA` homologene file, and we will test this hypothesis. 
+
+11. Align **YOUR** mRNA homologene file you obtained last week using `MAFFT`. Answer the following question.
+
+***
+> 5. Add the code for the MAFFT alignment of your mRNA file. 
+Answer: The code for the MAFFT alignment used is 
+`mafft --genafpair --maxiterate 1000 homologene.txt > mRNA_alignment.fasta`
+
+\![Code](Lab 5 /Screenshots/Screen Shot 2020-11-13 at 3.56.05 PM.png)
+> 6. Why did you decide to use that algorithm?
+Answer: This algorithm is used for Proteins with multiple conserved domains so we used that one. 
+
+***
+
+12. Run `IQ-tree` for each of the mRNA alignments. Fill the following table
+
+| mRNA file | Best nucleotide model | Likelihood score of tree |
+|---------|--------|--------|--------|----------|
+| Your mRNA file | TIM3+F+I+G4       | Log-likelihood of the tree: -46835.7460 (s.e. 530.3440)       |        |          |    
+| Professor's mRNA file | TIM3+F+R3      | Log-likelihood of the tree: -49890.4731 (s.e. 564.7576)       |        |          |    
+
+\![](Lab 5 /Screenshots/Screen Shot 2020-11-13 at 4.17.33 PM.png)
+
+13. Open both trees in FigTree. Answer the following question:
+
+***
+> 7. What is the most striking difference you see?
+
+Answer: The most \striking difference observed is that the trees are organized differently at the first node. In the professor's tree there is two different branch from the first node with one branch having more nodes whereas the other branch is by itself (*Mus Musculus*, gi|118130707|ref|NM_008628.2|). However, On our tree there are two branches coming out of the first node which further separates into more branches with different nodes. The gene is at the node of 304.698% with a long branch length. The longer branch length suggests that more genetic change has occured over time. *Mus Musculus* is only connected to the first node and has no other connections. Whereas, the gspecies *Mus Musculus* in our tree is connected to a node at 58.112% with other species *R.Norvegicus*. The branch length is much shorter for this gene. The low percentage of 58.112% suggests that this tree branch isn't really supported as compared to the professor's 304.698% which is highly supported branch. 
+
+\![OurTree and Prof.Tree](Lab 5 /Screenshots/Screen Shot 2020-11-16 at 5.21.29 PM.png)
+
+
+
+<span style="color: red;"> Persis and Henna: Are you sure this is the bootstrap support? It cannot be more than 100 for any bootstrap value... Weird. </span>.
+***
+
+14. Open the professor's alignment in the [MSA viewer of NCBI](https://www.ncbi.nlm.nih.gov/projects/msaviewer/). After uploading the sequence, use the `Coloring -> Nucleic Acid Colors` option. Answer the following question:
+
+***
+> 8. There is one sequence that looks very weird (i.e. Colors don't match and there are long strands of insertions and deletions in the region). What sequence do you suspect its weird?
+
+Answer: The sequence is called mod_NM_008628.2 for the organism *Mus Musculus*. 
+
+\![](Lab 5 /Screenshots/Screen Shot 2020-11-13 at 4.33.21 PM.png)
+
+***
+
+15. The professor just noticed that he changed the sequence of *Mus musculus* (`gi|118130707|ref|NM_008628.2|`) and added the reverse strand instead of the forward strand... WHOOPS.
+
+In this case, `MAFFT` can check all the sequences and correct the direction of the strand. Use the `--adjustdirectionaccurately` option of `MAFFT` to run it. 
+
+So, if you used the `E-INS-i` algorithm, the syntax would be like this:
+
+`mafft --adjustdirectionaccurately --genafpair --maxiterate 1000 homologene_nucl.fasta > professor_corrected.fasta`
+
+Using this info, here's the homework:
+
+## Homework: 
+
+> Using the mis-alignment I sent, correct it using the `MAFFT` code above and run the tree again. Does the tree look like the mRNA you obtained? Write a paragraph about the comparison.
+
+Answer: The Professor's corrected tree and our mRNA tree looks the same. While comparing the trees, There no observable differences found. The node labes with the percentage are same in both the trees. Majority of the nodes are over 75% which suggests that the tree branches are highly supported. The species are arranged in the same way and the branch lengths are same as well in both the trees. After the correction in the professor's tree, the species *Mus musculus* (`gi|118130707|ref|NM_008628.2|`) was observed at its original position as in our mRNA tree. 
+
+\![Same](Lab 5 /Screenshots/Screen Shot 2020-11-16 at 6.01.19 PM.png)

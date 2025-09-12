@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Introduction to the Command Line | Introduction to Bioinformatics: Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2025-09-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -125,6 +125,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
@@ -308,8 +312,8 @@ To create our first lines of code to process text files
 <div id="logging-in" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Logging in<a href="introduction-to-the-command-line.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Logging into the cluster: <code>140.232.222.154</code> in your browser</li>
-<li>Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): <code>ssh username@140.232.222.228</code></li>
+<li>Logging into the cluster: <code>140.232.222.14</code> in your browser</li>
+<li>Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): <code>ssh username@140.232.222.14</code></li>
 </ul>
 </div>
 <div id="navigating-the-cluster" class="section level3 hasAnchor" number="6.1.2">
@@ -370,14 +374,14 @@ you?
 </li>
 </ul>
 </div>
-<div class="figure">
-<img src="Lab2/working_directory.png" alt="" />
-<p class="caption">“Where am I?”</p>
+<div class="float">
+<img src="Lab2/working_directory.png" alt="“Where am I?”" />
+<div class="figcaption">“Where am I?”</div>
 </div>
 <p>In addition, in case you forget what is your username, you can always use the command <code>whoami</code>:</p>
-<div class="figure">
-<img src="Lab2/whoami.png" alt="" />
-<p class="caption">“Who am I?”</p>
+<div class="float">
+<img src="Lab2/whoami.png" alt="“Who am I?”" />
+<div class="figcaption">“Who am I?”</div>
 </div>
 <p>This means two things:</p>
 <ol style="list-style-type: decimal">
@@ -401,9 +405,9 @@ Which commands have you already ran?
 </div>
 <p>So, as you know now. To run commands you just write them and that’s it!</p>
 <p>For example: you want to know what time it is? Use the command <code>date</code>:</p>
-<div class="figure">
-<img src="Lab2/date.png" alt="" />
-<p class="caption">“What time is it?”</p>
+<div class="float">
+<img src="Lab2/date.png" alt="“What time is it?”" />
+<div class="figcaption">“What time is it?”</div>
 </div>
 <p>We will learn to use more commands as we use the cluster more and more.</p>
 </div>
@@ -413,9 +417,9 @@ Which commands have you already ran?
 <ol style="list-style-type: decimal">
 <li>Before we start, see if you have any folders in your <code>home</code> folder. Check that with the <code>ls</code> command:</li>
 </ol>
-<div class="figure">
-<img src="Lab2/first_ls.png" alt="" />
-<p class="caption">“Listing files”</p>
+<div class="float">
+<img src="Lab2/first_ls.png" alt="“Listing files”" />
+<div class="figcaption">“Listing files”</div>
 </div>
 <p>If you see nothing new, then that means you have nothing in that folder. That’s good!</p>
 <ol start="2" style="list-style-type: decimal">
@@ -433,16 +437,16 @@ folder?
 </ul>
 </div>
 <p>Exactly, so use that command to create the folder, and then use the <code>ls</code> command to check if the folder was correctly created (<code>ls</code> is short for list, as it lists all of the files within a folder):</p>
-<div class="figure">
-<img src="Lab2/mkdir_ls.png" alt="" />
-<p class="caption">“making our first folder”</p>
+<div class="float">
+<img src="Lab2/mkdir_ls.png" alt="“making our first folder”" />
+<div class="figcaption">“making our first folder”</div>
 </div>
 <p>Nice, the folder has been created!</p>
 <p>To navigate into the new MBB101 folder, use the <code>cd</code> command (<code>cd</code> is short for change directory).</p>
 <p>The syntax of <code>cd</code> is <code>cd destination</code>, so in our case, we would do <code>cd MBB101</code>:</p>
-<div class="figure">
-<img src="Lab2/cd_mbb.png" alt="" />
-<p class="caption">“Changing directories”</p>
+<div class="float">
+<img src="Lab2/cd_mbb.png" alt="“Changing directories”" />
+<div class="figcaption">“Changing directories”</div>
 </div>
 <p>if you see, after our <code>username@smaug</code> we can see now it shows a prompt that says <code>MBB101</code>. This means we have been able to move to our folder!</p>
 <p>You can also check if you are inside the folder of interest by using the <code>pwd</code> command (<code>pwd</code> is short for print working directory)</p>
@@ -466,9 +470,9 @@ a screenshot of the command and the result.
 <p>After creating your <code>Lab_2</code> folder, we need to populate it with files.</p>
 <p>I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: <code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_2/text_file.txt</code>.</p>
 <p>To download the files, use the <code>wget</code> command. (<code>wget</code> is short for web page get):</p>
-<div class="figure">
-<img src="Lab2/wget.png" alt="" />
-<p class="caption">“Downloading text file</p>
+<div class="float">
+<img src="Lab2/wget.png" alt="“Downloading text file" />
+<div class="figcaption">“Downloading text file</div>
 </div>
 <div class="rmdquestion">
 <h3 id="question-5">
@@ -522,9 +526,9 @@ the <code>man</code> command (short for manual).
 </p>
 </div>
 <p>Alright, how does the output of <code>grep</code> looks like?</p>
-<div class="figure">
-<img src="Lab2/grep_dursley.png" alt="" />
-<p class="caption">“grepping for the first time”</p>
+<div class="float">
+<img src="Lab2/grep_dursley.png" alt="“grepping for the first time”" />
+<div class="figcaption">“grepping for the first time”</div>
 </div>
 <p>Ah cool, we can see if the pattern is present or not!</p>
 <div class="rmdquestion">
@@ -629,9 +633,9 @@ What is the absolute path of the
 </ul>
 </div>
 <p>Lets check if it worked:</p>
-<div class="figure">
-<img src="Lab2/cp_file.png" alt="" />
-<p class="caption">copying file</p>
+<div class="float">
+<img src="Lab2/cp_file.png" alt="copying file" />
+<div class="figcaption">copying file</div>
 </div>
 <hr />
 </div>

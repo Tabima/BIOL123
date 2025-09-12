@@ -1,0 +1,225 @@
+---
+title: "Lab 5: Homology and Phylogenetics (Section 1)"
+author: "Rafael H. Levin and Prasanth P. Prabhu"
+date: "10/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<h2>
+<span style="color: red;"> 45/50. Good job!</span>
+</h2>
+
+
+# Instructions:
+
+- Section 1 will be done on Oct. 30
+- Section 2 will be done on Nov. 6 
+- Lab is due before Nov. 13
+
+
+# Section 1: Homology and multiple sequence alignments
+
+## Downloading sequences from Homologene
+
+If you remember, homologous genes are genes that share common ancestry and can be functionally similar. 
+
+There are many ways to obtain homologous genes. For example, running OrthoMCL/OrthoFinder in a set of genomes will identify all the genes of interest between the set of genomes.
+
+In other cases, we can obtain genes of interest from online databases, such as the OrthoMCL DB or NCBI homologene.
+
+Today, we will use NCBI Homologene. 
+
+1. Go to this [link](https://www.ncbi.nlm.nih.gov/homologene/210)
+
+2. Answer these questions:
+
+***
+
+> Questions:
+
+> 1. What number of homologene is this?
+
+The homologene number is 210 conserved in Eukaryota
+
+> 2. What gene/genic family is represented in this set of sequences?
+
+The genic family is the MutS family, involved in DNA mismatch repair
+
+> 3. Based on the schematics on the right, which domains of the protein are conserved across the different species?
+
+MutS_I & MutS_II doamins are conserved across the different species
+
+> 4. Fill the following table using all the sequences from the homologene info
+
+| Species        | Common Name           | Protein ID     | Protein Length | Number of Domains |
+|----------------|-----------------------|----------------|----------------|-------------------|
+| H.sapiens      | Human                 | NP_000242.1    | 934            | 3                 |
+| C.lupus        | Dog                   | XP_538482.2    | 934            | 3                 |
+| B.taurus       | Cattle                | NP_001029756.1 | 934            | 4                 |
+| M.musculus     | House Mouse           | NP_032654.1    | 935            | 4                 |
+| R.norvegicus   | Norway Rat            | NP_112320.1    | 933            | 3                 |
+| G.gallus       | Chicken               | XP_426110.4    | 968            | 4                 |
+| X.tropicalis   | Tropical clawed frog  | XP_002935427.2 | 932            | 4                 |
+| D.rerio        | Zebrafisf             | NP_998689.1    | 936            | 3                 |
+| D.melanogaster | Fruit Fly             | NP_001246031.1 | 917            | 4                 |
+| A.gambiae      | Anopheles mosquito    | XP_319476.4    | 881            | 3                 |
+| S.cerevisiae   | Brewer's yeast        | NP_014551.1    | 964            | 4                 |
+| K.lactis       | Kluyveromyces lactis  | XP_455202.1    | 956            | 3                 |
+| E.gossypii     | Eremothecium gossypii | NP_986150.1    | 956            | 4                 |
+| S.pombe        | Fission Yeast         | XP_001713136.1 | 982            | 3                 |
+| M.oryzae       | Magnaporthe grisea    | XP_003718090.1 | 924            | 4                 |
+| N.crassa       | Neurospora crassa     | XP_959643.1    | 937            | 4                 |
+| A.thaliana     | Thale Cress           | NP_566804.3    | 937            | 4                 |
+
+
+***
+
+3. Go to the Download links and download the mRNA and Protein sequences in FASTA format
+
+4. Connect to the cluster and upload the sequences into a new folder inside of `MBB101` called `Lab_5`
+
+5. Answer the following questions:
+
+***
+
+> Questions:
+
+> 5. What is the number of sequences in each of the files uploaded?
+
+There is 17 sequences for each file
+
+> 6. Did you expect this number to be similar or different across the files?
+
+I expected it to be the same number because one mRNA codes for one protein (in this case...)
+
+***
+
+## Multiple sequence alignment in MAFFT
+
+Now, we will do some multiple sequence alignments using MAFFT.
+
+If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist. 
+
+It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains
+
+6. Before you proceed with the alignment, go to the [MAFFT algortihms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) and answer the follwing questions based on the information on the algorithms MAFFT uses:
+
+
+***
+> Questions:
+
+> 7. What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i) would you use for the following datasets, and briefly explain your answers:
+
+ - Proteins with multiple conserved domains
+ 
+  E-INS-1
+ 
+ - Proteins with single conserved domains
+ 
+  L-INS-i
+ 
+ - Proteins with a single short domain
+ 
+  G-INS-i
+  
+<span style="color: red;"> You're missing the brief explanation here (-5 pts) </span>.
+  
+***
+
+7. Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.
+
+To do this, in your `Lab_5` do the following:
+
+* Load the module by using the `module load mafft/7.471` command
+
+* Use the following code for your alignment:
+     * For L-INS-i
+```
+mafft --localpair --maxiterate 1000 input_file > output_file
+```
+     * For E-INS-i
+```
+mafft --genafpair --maxiterate 1000 input_file > output_file
+mafft --genafpair --maxiterate 1000 homologene_prot.fasta > alin.fasta
+```
+     * For G-INS-i
+```
+mafft --globalpair --maxiterate 1000 input_file > output_file
+```
+
+Remember to change your `input_file` and `output_file` for the FASTA file and the output file (also in FASTA file).
+
+8. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](http://msa.biojs.net/app/) on your browser and import your alignment using the Upload button and the Data file link.
+
+9. Add the image of the MSA here:
+
+***
+> 8. 
+
+\![MSAsreenshot](biojs-msa.png)
+
+***
+
+10. Write a short summary of the MSA by playing with the options in the MSA aligner (Are there regions that are highly conserved?  Regions that are not that conserved? What are the species that look more similar to each other?)
+
+***
+> 9.
+
+Many regions in the MSA are highly conserved. AA 196-260, 270-348, 416-740, 776-944 seems to be 4 very conserved regions, which We hypothesize correspond to domains I, II, III and ABC_ATPase from the MutS family. Between domains we find short segments that are not conserved, which we hypothesize correspond to inter-domain loops.
+
+
+***
+
+## Creating and searching a HMM model using our alignment
+
+Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:
+
+```
+https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_proteins.fasta
+```
+
+11. Download the new FASTA file to your `Lab_5` folder. Count the number of sequences and answer the next question:
+
+***
+> 10. What is the number of sequences in the downloaded FASTA file?
+
+There are 101 sequences.
+
+***
+
+12. Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create a HMM profile of our MSH homologs and then search for the sequences!
+
+13. To create the hmmer profile you need your alignment file of the MSH homologs in protein format, and the `hmmbuild` program.
+
+The `hmmbuild` program creates a HMM model of your alignment (so, of your conserved domains!!) that you can use to search using `hmmsearch` how we did on last class!
+
+To run it use the following command:
+
+```
+module load hmmer/3.3
+
+hmmbuild MSH_homolog.hmm alignmnent_file.fasta
+```
+
+Answer the following question:
+
+***
+> 11. Summarize the process of building a HMM model
+
+In the HMM model, the sequences are first aligned and each position is compared individually with each other. The amino acid that is present in the highest frequency is the one chosen by the program. For example, if position one in 100 different sequences has 70 Met, 15 Arg and 15 Ile, the Met amino acid will be chosen as the most prevalent one.
+
+***
+
+
+14. Finally, run `hmmsearch` and identify the protein with positive hits. Add them to the following table:
+
+Target Name       | Full Sequence E-value | Full Seq. Score | Best 1 domain E-value | Best 1 domain score |
+|-------------------|-----------------------|-----------------|-----------------------|---------------------|
+| John_cena_protein | 0                     | 1598            | 0                     | 1597.8              |
+| XP_012783992.1    | 0                     | 1393            | 9.2e-282              | 929.6               |
+
+
