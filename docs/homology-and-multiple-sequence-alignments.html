@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Homology and multiple sequence alignments | Introduction to Bioinformatics: Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2025-09-12" />
+<meta name="date" content="2025-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +61,7 @@ set in the _output.yml file.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -287,73 +288,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="homology-and-multiple-sequence-alignments" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Homology and multiple sequence alignments<a href="homology-and-multiple-sequence-alignments.html#homology-and-multiple-sequence-alignments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Homologous genes are genes that share common ancestry and can be functionally similar. These homologous genes can be identified between different samples, species, ect, based on similarity and other metrics such as inflation in MCL, ect.</p>
+<p>Orthologous genes are genes that share common ancestry and can be functionally similar. These genes can be identified between different samples, species, ect, based on similarity and other metrics such as inflation in MCL, ect.</p>
 <p>In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing its differences and similarities with multiple sequence alignments.</p>
 <div id="downloading-sequences-from-homologene" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Downloading sequences from Homologene<a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are many ways to obtain homologous genes. For example, running <code>OrthoMCL/OrthoFinder</code> in a set of genomes will identify all the genes of interest between the set of genomes.</p>
-<p>In other cases, we can obtain genes of interest from online databases, such as the <a href="https://orthomcl.org/orthomcl/app"><code>OrthoMCL DB</code></a> or <a href="https://www.ncbi.nlm.nih.gov/homologene/210"><code>NCBI homologene</code></a>.</p>
-<p>Today, we will use NCBI Homologene.</p>
+<p>In other cases, we can obtain genes of interest from online databases, such as the <a href="https://orthomcl.org/orthomcl/app"><code>OrthoMCL DB</code></a> or <a href="https://www.ncbi.nlm.nih.gov/homologene/210"><code>NCBI</code></a>.</p>
+<p>Today, we will use a set of genes of unknown function that can be found in our Canvas page. Look for the <code>homologene_mRNA.fasta</code> and <code>homologene_protein.fasta</code> files in <strong>Week 10, Lab Data</strong>.</p>
 <ol style="list-style-type: decimal">
-<li>Go to this <a href="https://www.ncbi.nlm.nih.gov/homologene/210">link</a></li>
-</ol>
-<div class="rmdquestion">
-<h3 id="questions-1---4">
-Questions 1 - 4
-</h3>
-<ul>
-<li>
-What number of homologene is this?
-</li>
-<li>
-What gene/genic family is represented in this set of sequences?
-</li>
-<li>
-Based on the schematics on the right, which domains of the protein
-are conserved across the different species?
-</li>
-<li>
-Fill the following table using all the sequences from the homologene
-info
-</li>
-</ul>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>Species</th>
-<th>Common Name</th>
-<th>Protein ID</th>
-<th>Protein length</th>
-<th>Number of domains found</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>Homo sapiens</em></td>
-<td>Human</td>
-<td>NP_000242.2</td>
-<td>Three</td>
-<td>(MutS_I, MutS_II, ABC_ATPase)</td>
-</tr>
-</tbody>
-</table>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Go to the Download links and download the mRNA and Protein sequences in FASTA format</p></li>
 <li><p>Connect to the cluster and upload the sequences into a new folder inside of <code>MBB101</code> called <code>Lab_5</code></p></li>
 <li><p>Answer the following questions:</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-5---7">
-Questions 5 - 7
+<h3 id="questions-1---2">
+Questions 1 - 2
 </h3>
 <ul>
 <li>
 What is the number of sequences in each of the files uploaded?
 </li>
 <li>
-Did you expect this number to be similar or different across the
-files?
+Choose one of the sequences and check their function in Interpro.
+What is it?
 </li>
 </ul>
 </div>
@@ -363,12 +319,12 @@ files?
 <p>Now, we will do some multiple sequence alignments using MAFFT.</p>
 <p>If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist.</p>
 <p>It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains</p>
-<ol start="6" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>Before you proceed with the alignment, go to the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html">MAFFT algortihms page</a> and answer the follwing questions based on the information on the algorithms MAFFT uses:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-8---11">
-Questions 8 - 11
+<h3 id="questions-3---6">
+Questions 3 - 6
 </h3>
 <ul>
 <li>
@@ -387,7 +343,7 @@ Proteins with a single short domain
 </li>
 </ul>
 </div>
-<ol start="7" style="list-style-type: decimal">
+<ol start="4" style="list-style-type: decimal">
 <li>Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.</li>
 </ol>
 <p>To do this, in your <code>Lab_5</code> do the following:</p>
@@ -408,12 +364,12 @@ mafft --genafpair --maxiterate 1000 homologene_prot.fasta &gt; alin.fasta</code>
 <pre><code>mafft --globalpair --maxiterate 1000 input_file &gt; output_file</code></pre></li>
 </ul>
 <p>Remember to change your <code>input_file</code> and <code>output_file</code> for the FASTA file and the output file (also in FASTA file).</p>
-<ol start="8" style="list-style-type: decimal">
+<ol start="5" style="list-style-type: decimal">
 <li>Download your <code>output_file</code> into your local computer. Open the <a href="https://www.ncbi.nlm.nih.gov/projects/msaviewer/">NCBI MSA viewer page</a> on your browser and import your alignment using the Upload button and the Data file link.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-12">
-Question 12
+<h3 id="question-7">
+Question 7
 </h3>
 <ul>
 <li>
@@ -437,12 +393,12 @@ to each other?)
 <h2><span class="header-section-number">9.3</span> Creating and searching a HMM model using our alignment<a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:</p>
 <pre><code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_proteins.fasta</code></pre>
-<ol start="11" style="list-style-type: decimal">
+<ol start="6" style="list-style-type: decimal">
 <li>Download the new FASTA file to your <code>Lab_5</code> folder. Count the number of sequences and answer the next question:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-13">
-Question 13
+<h3 id="question-8">
+Question 8
 </h3>
 <ul>
 <li>
@@ -450,7 +406,7 @@ What is the number of sequences in the downloaded FASTA file?
 </li>
 </ul>
 </div>
-<ol start="12" style="list-style-type: decimal">
+<ol start="7" style="list-style-type: decimal">
 <li><p>Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create a HMM profile of our MSH homologs and then search for the sequences!</p></li>
 <li><p>To create the hmmer profile you need your alignment file of the MSH homologs in protein format, and the <code>hmmbuild</code> program.</p></li>
 </ol>
@@ -459,8 +415,8 @@ What is the number of sequences in the downloaded FASTA file?
 <pre><code>hmmbuild MSH_homolog.hmm alignmnent_file.fasta</code></pre>
 <p>Answer the following question:</p>
 <div class="rmdquestion">
-<h3 id="question-14">
-Question 14
+<h3 id="question-9">
+Question 9
 </h3>
 <ul>
 <li>
@@ -468,7 +424,7 @@ Summarize the process of building a HMM model
 </li>
 </ul>
 </div>
-<ol start="14" style="list-style-type: decimal">
+<ol start="9" style="list-style-type: decimal">
 <li>Finally, run <code>hmmsearch</code> and identify the protein with positive hits. Add them to the following table:</li>
 </ol>
 <table>
@@ -521,42 +477,42 @@ Summarize the process of building a HMM model
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
