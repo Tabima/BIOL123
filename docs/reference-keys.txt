@@ -68,7 +68,7 @@ section-2-creating-our-own-searches-using-blast-and-hmmer-in-the-cluster.
 creating-databases-using-blast
 using-hmmer-to-search-for-proteins-with-domains-of-interest
 homology-and-multiple-sequence-alignments
-downloading-sequences-from-homologene
+downloading-orthologous-sequences
 multiple-sequence-alignment-in-mafft
 creating-and-searching-a-hmm-model-using-our-alignment
 phylogenetics

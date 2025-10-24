@@ -4,7 +4,7 @@ Orthologous genes are genes that share common ancestry and can be functionally s
 
 In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing its differences and similarities with multiple sequence alignments.
 
-## Downloading sequences from Homologene
+## Downloading Orthologous Sequences 
 
 There are many ways to obtain homologous genes. For example, running `OrthoMCL/OrthoFinder` in a set of genomes will identify all the genes of interest between the set of genomes.
 
