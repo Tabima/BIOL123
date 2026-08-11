@@ -23,7 +23,7 @@ links-figures-and-tables
 hyperlinks
 figures
 tables
-r-markdown-excerise
+r-markdown-exercise
 additional-information-on-markdown
 introduction-to-the-command-line
 commonly-used-commands
@@ -47,7 +47,7 @@ basic-bioinformatics
 section-1-basic-commands-for-sequence-data
 downloading-the-datasets
 counting-basic-patterns-for-dna-data
-counting-basic-patterns-for-aminoacid-data
+counting-basic-patterns-for-amino-acid-data
 section-2-creating-pipelines
 what-is-a-pipeline
 pipeline-example-using-dna-data
@@ -70,13 +70,13 @@ using-hmmer-to-search-for-proteins-with-domains-of-interest
 homology-and-multiple-sequence-alignments
 downloading-sequences-from-homologene
 multiple-sequence-alignment-in-mafft
-creating-and-searching-a-hmm-model-using-our-alignment
+creating-and-searching-an-hmm-model-using-our-alignment
 phylogenetics
 introduction-to-iq-tree
 running-iq-tree-on-protein-data
-running-iq-tree-on-nucelotide-data
-final-phylogenetics-excercise
-answering-each-part-of-the-question
+running-iq-tree-on-nucleotide-data
+final-phylogenetics-exercise
+answering-each-part-of-the-questions
 number-of-nucleotides
 length-of-sequence
 number-of-orf

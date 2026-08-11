@@ -1,6 +1,6 @@
 # Basic bioinformatics
 
-The next chapters focus on the analysis of molecular sequence data in using command line. 
+The next chapters focus on the analysis of molecular sequence data using the command line. 
 Nothing too fancy, just some basic commands to look at the data files and summarize information from the sequences.
 
 ## Section 1: Basic commands for sequence data
@@ -10,8 +10,8 @@ Nothing too fancy, just some basic commands to look at the data files and summar
 We are going to use two main datasets:
 
 ```
-https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/AAB21188.seq
-https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
+https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_3/AAB21188.seq
+https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_3/S79522.seq
 ```
 
 1. Create a folder called `Lab_3` in your home folder at the cluster
@@ -21,7 +21,7 @@ https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
 ```{block, type='rmdquestion'}
 ### Question 1
 
--  What commands you used to download the files?
+-  What commands did you use to download the files?
 ```
 
 3. Check the files. Answer the following questions:
@@ -36,7 +36,7 @@ https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
 ```{block, type='rmdquestion'}
 ### Question 3
 
-- What kind of of sequence (DNA/RNA/Protein)  is the `AAB21188.seq` file? Add the command you used to answer the question.
+- What kind of sequence (DNA/RNA/Protein) is the `AAB21188.seq` file? Add the command you used to answer the question.
 ```
 
 ***
@@ -45,7 +45,7 @@ https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_3/S79522.seq
 
 Ok, after checking the files we know now that the `S79522.seq` file contains a DNA sequence. 
 
-Lets do some command line exercises with it. Answer all of these questions:
+Let's do some command line exercises with it. Answer all of these questions:
 
 ```{block, type='rmdquestion'}
 ### Question 4
@@ -86,9 +86,9 @@ Lets do some command line exercises with it. Answer all of these questions:
 
 ***
 
-### Counting basic patterns for Aminoacid data
+### Counting basic patterns for Amino Acid data
 
-Ok, after checking the files we know now that the `AAB21188.seq` file contains a aminoacid sequence. 
+Ok, after checking the files we know now that the `AAB21188.seq` file contains an amino acid sequence. 
 
 ```{block, type='rmdquestion'}
 ### Question 10
@@ -99,7 +99,7 @@ Ok, after checking the files we know now that the `AAB21188.seq` file contains a
 ```{block, type='rmdquestion'}
 ### Question 11
 
-- Select two aminoacids of interest and count them. Please add the command used to count them.
+- Select two amino acids of interest and count them. Please add the command used to count them.
 ```
 
 
@@ -141,7 +141,7 @@ Think about this as a logical set of steps (or, a *pseudocode*):
 3. Extract the matches to `U`
 4. Count those matches
 
-Using the command line the intructions would be like:
+Using the command line the instructions would be like:
  
  ```
  cat file.txt
@@ -150,17 +150,17 @@ Using the command line the intructions would be like:
  wc -l U_ocurrences.txt
  ```
  
-This code works, but its quite useless as it forces us to create two independent files: `file_rna.txt` and `U_ocurrences.txt`. 
+This code works, but it's quite useless as it forces us to create two independent files: `file_rna.txt` and `U_ocurrences.txt`. 
  
 Imagine that the output of these files were large and you had no space left in your hard drive! You would have to run everything again from the beginning!
  
-One of the options is to use pipelines, using the **pipe (`|`) modifier**. This modifier works as an `an then`. 
+One of the options is to use pipelines, using the **pipe (`|`) modifier**. This modifier works as an "and then". 
  
 So for example, a command that is like this: `ls -lrt | grep seq | wc -l` can be read as:
  
-Make a list of all the files **and then** extract all the matches to `seq` **and then** count the number of occurences.
+Make a list of all the files **and then** extract all the matches to `seq` **and then** count the number of occurrences.
  
- So, we can totally use this with out data.
+ So, we can totally use this with our data.
  
 #### Pipeline example using DNA data
  
@@ -171,9 +171,9 @@ Before we start, let me introduce you to two elements:
 
 ##### Variables
 
-Variables can be defined as **a place to temporarly store a piece of information**.
+Variables can be defined as **a place to temporarily store a piece of information**.
 
-For example, you wallet is a variable that is full of your money. 
+For example, your wallet is a variable that is full of your money. 
 
 So, if you have $10 in your wallet, then your variable is:
 
@@ -193,7 +193,7 @@ For example, if you tell the command to `echo 'hello'`, this will happen:
 echo 'hello'
 ```
 
-Meaning that you can tell it to say whatever you want to say. If you want to add spaces or other weird characters, make sure you surrond the statement with single quotes
+Meaning that you can tell it to say whatever you want to say. If you want to add spaces or other weird characters, make sure you surround the statement with single quotes
 
 ```{bash}
 echo 'This is the best course ever'
@@ -218,20 +218,20 @@ If you don't add it this is what happens:
 echo statement
 ```
 
-So, you are just printing the word statement. Interesting ah?
+So, you are just printing the word statement. Interesting, right?
 
 #### Using a pipeline as an example of variables and pipes
 
-Now, lets say we want to count all the nucelotides in our DNA file independently. 
+Now, let's say we want to count all the nucleotides in our DNA file independently. 
 
-So, we want to extract each nucleotides, starting from the `A`, using `grep -c A`, and then counting lines with `wc -l`:
+So, we want to extract each nucleotide, starting from the `A`, using `grep -c A`, and then counting lines with `wc -l`:
 
 ```{bash}
 grep -o A Lab_3/S79522.seq | wc -l
 ```
 
 ```{block, type='rmdquestion'}
-### Question 12
+### Question 13
 
 - Did these results match what you did at the beginning of the lab? Expand briefly your answer.
 ```
@@ -244,7 +244,7 @@ nucA=$(grep -o A Lab_3/S79522.seq | wc -l)
 echo $nucA
 ```
 
-WOW! that was easy!
+Wow! That was easy!
 
 Now, if you want to add more variables you can do it like this:
 
@@ -256,19 +256,19 @@ echo 'Number of A:'$nucA
 echo 'Number of C:'$nucC
 ```
 
-Right here, stop and make the same sound a rooster makes. Then answer the following questions:
+Answer the following questions, please:
 
 ```{block, type='rmdquestion'}
-### Question 13
+### Question 14
 
-- How would you count the other nucleotides?. Add the code below:
+- How would you count the other nucleotides? Add the code below:
 ```
 
 
 ```{block, type='rmdquestion'}
-### Question 14 
+### Question 15 
 
-- Write a set of instructions to count ten of the aminoacids in the `AAB21188.seq` file. 
+- Write a set of instructions to count ten of the amino acids in the `AAB21188.seq` file. 
 ```
 
 
@@ -279,7 +279,7 @@ Right here, stop and make the same sound a rooster makes. Then answer the follow
 So, we know how to download files from different sources into the cluster. Today, we are going to learn how to move files from and to the cluster.
 
 
-1. Download the `sequence_1` and `sequence_2` files from the moodle.
+1. Download the `sequence_1` and `sequence_2` files from Moodle.
 
 2. Create a new folder called `mystery_genes` in your `Lab_3` folder
 
@@ -288,7 +288,7 @@ So, we know how to download files from different sources into the cluster. Today
 4. Check if the files are there. 
 
 ```{block, type='rmdquestion'}
-### Question 15
+### Question 16
 
 - How did you check if the files were correctly uploaded?
 ```
@@ -300,13 +300,13 @@ If you remember, we saw some file types for sequence data in the theory class. T
 We are going to deal with these files today, and see how we can extract important information from these files.
 
 ```{block, type='rmdquestion'}
-### Question 16
+### Question 17
 
-- Briefly summarize what is a FASTA and what is a GenBank file (one sentence each)
+- Briefly summarize what a FASTA file is and what a GenBank file is (one sentence each)
 ```
 
 ```{block, type='rmdquestion'}
-### Question 17
+### Question 18
 
 - Can these formats include RNA, DNA and Aminoacid data? (Yes/No answer)
 ```
@@ -314,20 +314,20 @@ We are going to deal with these files today, and see how we can extract importan
 Now, use your knowledge of the command line to answer these questions:
 
 ```{block, type='rmdquestion'}
-### Question 18
+### Question 19
 
 - What format is the `sequence_1` file in? (FASTA or GenBank) Briefly explain your answer.
 - What format is the `sequence_2` file in? (FASTA or GenBank) Briefly explain your answer.
 ```
 
-If you answered correclty, you have seen that `sequence_1` is in FASTA format, while `sequence_2` is in GenBank format.
+If you answered correctly, you have seen that `sequence_1` is in FASTA format, while `sequence_2` is in GenBank format.
 
 ### FASTA: Data handling
 
 ```{block, type='rmdquestion'}
-### Question 19
+### Question 20
 
-- How many lines does the `sequence_1` file has?
+- How many lines does the `sequence_1` file have?
 - How can you count the number of SEQUENCES that exist in the `sequence_1` file? 
 - What is the number of sequences in the `sequence_1` file? Is this result different than the number of lines in the file? Why? 
 ```
@@ -338,14 +338,14 @@ This means that for this particular FASTA file, you can extract each sequence in
 
 For example:
 - lines 1 and 2 have the first sequence
-- lines 2 and 3 the second
+- lines 3 and 4 have the second
 
 and so on.
 
 That means we can extract each sequence. You can do this using the `sed` command in the following way
 
 ```bash
-sed -n 'staring_line,ending_line p' file_with_sequences
+sed -n 'starting_line,ending_line p' file_with_sequences
 ```
 
 So, for example, to extract the first sequence in FASTA format:
@@ -354,13 +354,13 @@ So, for example, to extract the first sequence in FASTA format:
 sed -n '1,2 p' sequence_1
 ```
 
-Now, because this is extracting in a fasta file, you will get the header and the sequence data. To only see the sequence data, use `grep` to extract all lines that DON'T have a `>` symbol. You can pipe the results of `sed` into `grep`!
+Now, because we are extracting from a FASTA file, you will get the header and the sequence data. To only see the sequence data, use `grep` to extract all lines that DON'T have a `>` symbol. You can pipe the results of `sed` into `grep`!
 
 ```bash
 sed -n '1,2 p' sequence_1 | grep -v ">" 
 ```
 
-in this case, we had to put the `>` symbol between quotes because without them then the command line creates a new file.
+In this case, we had to put the `>` symbol between quotes, because without them the command line interprets it as a redirect and creates a new file.
 
 Finally, we can even count the length of the sequence:
 
@@ -404,18 +404,18 @@ Present the code and the results
 
 GenBank files are more complex than FASTA files. 
 
-1. These files are supremely complex to analyse only using the command line. However, we can take a look a this data and answer a simple question using the command line:
+1. These files are quite complex to analyze using only the command line. However, we can take a look a this data and answer a simple question using the command line:
 
 ```{block, type='rmdquestion'}
-### Question 21
+### Question 22
 
-- How many lines does the `sequence_2` file has?
+- How many lines does the `sequence_2` file have?
 ```
 
 2. Open the file using `less -NS` and answer the following questions:
 
 ```{block, type='rmdquestion'}
-### Question 22
+### Question 23
 
 - If you were looking for the information on the gene that codes for `lacZ`, what line would you use?
 - What species is this gene taken from?
@@ -424,7 +424,7 @@ GenBank files are more complex than FASTA files.
 ```
 
 ```{block, type='rmdquestion'}
-### Question 23
+### Question 24
 
 Genic regions on GenBank files are represented by three different types: `mRNA`, `gene`, `CDS`. 
 
@@ -474,7 +474,7 @@ sed -n '9,10 p' sequence_1 > gene_5.fasta
 cat gene_5.fasta
 ```
 
-2. The homework said:  Can you create code that will do the following for **each extracted FASTA sequence?**
+2. Recall what the homework asked: create code that will do the following for **each extracted FASTA sequence**:
 
 - Count the number of A,G,C and T?
 
@@ -499,7 +499,7 @@ What is the variable? A list of the files of interest. What do all these files h
 So, what this means, is that we can create a list of these elements that have things in common!
 
 ```{bash}
-ls
+ls Lab_3/mystery_genes
 ```
 
 A wildcard (`*`: means ANYTHING) allows you to select something that has a matching pattern with a variable:
@@ -510,7 +510,7 @@ A wildcard (`*`: means ANYTHING) allows you to select something that has a match
 ls gene*
 ```
 
-2. They end with the word `.fasta`" `*.fasta`
+2. They end with the word `.fasta`: `*.fasta`
 
 ```{bash}
 ls *.fasta
@@ -542,7 +542,7 @@ for seqfile in *.fasta;
 
 Now that we know how a loop works, we can use real commands:
 
-- Lets count the number of A's
+- Let's count the number of A's
 
 ```{bash}
 for seqfile in *.fasta;

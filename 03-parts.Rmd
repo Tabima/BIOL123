@@ -10,7 +10,7 @@
 4. To understand the importance of replicable and reproducible notebooks
 ```
 
-The electronic lab notebooks we will use will in class will be created as `R Markdown documents`. 
+The electronic lab notebooks we will use in class will be created as `R Markdown documents`. 
 
 Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -22,17 +22,17 @@ As mentioned above, Markdown is a simple formatting syntax for authoring HTML, P
 
 We will use R Markdown as it will allow us to create documents that we can modify in different computers (as long as we have R and R Studio).
 
-We will call these documents *Electronic Lab Notebooks (ELS)*. These ELS' will be used to write down what you have done in class, save the results and the commands and also will tell us  where the files you are using will be at.
+We will call these documents *Electronic Lab Notebooks (ELN)*. These ELNs will be used to write down what you have done in class, save the results and commands, and also tell us where the files you are using are located.
 
-But, before we go into the super complex part of it, lets learn the basics of R markdown.
+But before we go into the more complex part of it, let's learn the basics of R Markdown.
 
 ***
 
 ## Basics of Markdown
 
-So, the idea to use the R markdown file as a E-notebook we need to understand what the syntax is. 
+So, the idea is to use the R Markdown file as an E-notebook, which means we need to understand what the syntax is. 
 
-> Syntax: a set of rules for or an analysis of the syntax of a language
+> Syntax: a set of rules governing how the elements of a language are structured and interpreted
 
 ### Basic syntax 
 
@@ -42,7 +42,7 @@ So you'll see that all of these sentences are in simple format.
 
 In addition, if you surround words with certain elements, it can become a word in **bold** or in *italics*. 
 
-In this case, when I add a `**` before and after the word I want to highlight, the word becomes a bold word. When I add a `**` before and after the word I want to highlight, the word becomes a word in italics.
+In this case, when I add a `**` before and after the word I want to highlight, the word becomes bold. When I add a single `*` before and after the word instead, the word becomes italic.
 
 If you want to add a header, or a subtitle, start a sentence with `#`. One `#` means main header, two will be a subtitle, and so on.
 
@@ -50,7 +50,7 @@ If you want to add a header, or a subtitle, start a sentence with `#`. One `#` m
 
 Markdown allows you to create unformatted lines, or lines of code. In these lines you can add the code you are using for certain steps, or to illustrate examples.
 
-To create a code in-line, just add a ``(backtick)` between the line of code
+To create in-line code, just enclose the line of code between two backticks (`` ` ``)
 
 #### Example of inline code:
 
@@ -58,7 +58,7 @@ Similarity searches were done using `blastn` with default parameters and an expe
 
 #### Example of code blocks:
 
-To create a code block, start a region with three ``(backticks)`. Add the code in the line after the backticks and then close with three additional backticks.
+To create a code block, start a region with three backticks (```), add the code on the line after the backticks, and then close with three additional backticks.
 
 ```
 This is a code-block
@@ -97,7 +97,7 @@ To create ordered lists, add a number with a period before each element. The num
 1. Make the bed
 1. Lie down again
 
-You can also make nested lists! Nested lists can are done by creating list using **4** spaces:
+You can also make nested lists! Nested lists can be created by indenting with **4** spaces:
 
 **Code:**
 
@@ -105,7 +105,7 @@ You can also make nested lists! Nested lists can are done by creating list using
 1. This week:
     - Homework
     - Breakfast
-    - Cats litter
+    - Cat litter
 2. This weekend
     - Nothing
 ```
@@ -115,7 +115,7 @@ You can also make nested lists! Nested lists can are done by creating list using
 1. This week:
     - Homework
     - Breakfast
-    - Cats litter
+    - Cat litter
 2. This weekend
     - Nothing
    
@@ -135,13 +135,13 @@ Finally, we can add links, figures and tables in the Markdown document
 
 #### Hyperlinks
 
-To add a link in markdown, just use the `[link name](link address)` syntax, where you add the link of interest in the parenthesis and a generic name for the link between the square brackets.
+To add a link in markdown, just use the `[link name](link address)` syntax, where you add the link of interest in the parentheses and a generic name for the link between the square brackets.
 
 For example, if I want to link NCBI, then the code should be `[NCBI](ncbi.nlm.nih.gov/)`, and it will look like this: [NCBI](ncbi.nlm.nih.gov/) 
 
 #### Figures
 
-To add a figure from the internet you use a similar syntax than what we used in the *links* section, but with a exclamation mark at the beginning of the syntax: `![Clark Logo](https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)` results in
+To add a figure from the internet you use a similar syntax than what we used in the *links* section, but with an exclamation mark at the beginning of the syntax: `![Clark Logo](https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)` results in
 
 ![Clark Logo](https://www.clarku.edu/wp-content/themes/clarku/assets/img/main-logo.svg)
 
@@ -149,18 +149,18 @@ You can also add images that are not online. For this, you can just upload the i
  
 ### Tables
 
-Finally, lets learn how to add tables. 
+Finally, let's learn how to add tables. 
 
-Tables in markdown can be annoying, but gladly there are online elements that will help us with tables.
+Tables in markdown can be annoying, but thankfully there are online tools that will help us with tables.
 
-However, lets start basic. A table can be created by having list of words and separating them with hyphens `-` (for the first row), and then separating each column with a pipe `|`:
+However, let's start with the basics. A table can be created by having list of words and separating them with hyphens `-` (for the first row), and then separating each column with a pipe `|`:
 
 Header One| Header Two
 ------------ | -------------
 Cell [1,1] | Cell [1,2]
 Cell [2,1] | Cell [2,2]
 
-So, you can imagine that creating a gigantic table is a mess. Imagine creating the table from the syllabus into Markdown?
+So, you can imagine that creating a gigantic table by hand is a mess -- imagine creating the table from the syllabus in Markdown!
 
 
 Do not worry, use this [amazing page](https://www.tablesgenerator.com/markdown_tables) to copy and paste **any** Excel/CSV/Table and turn it into Markdown!
@@ -186,10 +186,10 @@ Just copy and paste it from the page:
 
 ***
 
-## R Markdown Excerise:
+## R Markdown Exercise:
 
 ```{block, type='rmdquestion'}
-Create a Markdown page that describes yourself in a simple manner. Use as many element of syntax as possible, like *bold text*, **italics**, lists, tables and even add a picture of yourself. You can make it a very simple resume, a simple CV or just a small paragraph of you and your likes.
+Create a Markdown page that describes yourself in a simple manner. Use as many elements of syntax as possible, like *bold text*, **italics**, lists, tables and even add a picture of yourself. You can make it a very simple resume, a simple CV or just a small paragraph of you and your likes.
 ```
 
 ***

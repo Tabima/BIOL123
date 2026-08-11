@@ -23,11 +23,11 @@
 ```{block, type='rmdquestion'}
 ### Questions 1 - 5
 
--  How many ORF do you find in the sequence?
+-  How many ORFs do you find in the sequence?
 -  Which ORF is the longest, how long it is (Both in NT and AA), and in which strand (Plus or minus) is located?
--  In what frame does the longest ORF is in? What does this mean?
+-  In what frame is the longest ORF? What does this mean?
 -  Click on Display ORF and copy and paste the Protein sequence and the nucleotide sequence of the longest ORF here
--  Is there any ORF on the backwards direction? (-)
+-  Is there any ORF in the reverse direction? (-)
 ```
 
 
@@ -37,15 +37,15 @@
 ```{block, type='rmdquestion'}
 ### Question 6
 
--  This is DNA data, so what kinds of BLAST's can you use? 
+-  This is DNA data, so what kinds of BLAST can you use? 
 ```
 
-4. First, lets do a nucleotide BLAST. Click on nucleotide BLAST, and copy and paste your original sequence. Now, select the **Nucleotide collection** database and run a megablast. Answer the following questions:
+4. First, let's do a nucleotide BLAST. Click on nucleotide BLAST, and copy and paste your original sequence. Now, select the **Nucleotide collection** database and run a megablast. Answer the following questions:
 
 ```{block, type='rmdquestion'}
 ### Questions 7-8
 
--  What are the best 3 hits. Why do you consider them the best hits?
+-  What are the best 3 hits? Why do you consider them the best hits?
 -  Include the accession numbers of the best three hits.
 ```
 
@@ -61,7 +61,7 @@
 
 
 ```{block, type='rmdquestion'}
-### Questions 10
+### Question 10
 -  What species has the highest score? What about the other species? Are they closely related to each other?
 ```
 
@@ -70,7 +70,7 @@
 ```{block, type='rmdquestion'}
 ### Questions 11 - 12
 
--  What kind of is this? A FASTA or a GenBank
+-  What kind of file is this? A FASTA or a GenBank file?
 -  Copy and paste the protein region coded by the CDS
 ```
 
@@ -81,7 +81,7 @@
 
 -  What's the name of the gene?
 -  Check the organism's name. Is this what you found at the beginning of the lab?
--  Go to the genomic regions? How many exons does the gene has? How did you come to this conclusion?
+-  Go to the genomic regions. How many exons does the gene have? How did you come to this conclusion?
 ```
 
 10. Go down to the NCBI Reference Sequences (RefSeq) - mRNA and Proteins section. 
@@ -89,7 +89,7 @@
 11. Click on the UniProtKB/Swiss-Prot link. Answer the following questions
 
 ```{block, type='rmdquestion'}
-### Questions 16-  19
+### Questions 16-19
 
 -  What database are we in?
 -  Is the organism still the same?
@@ -143,11 +143,11 @@ Answer the following questions based on the **simple text form** table (I would 
 
 Today we are going to learn how to create our own databases in the cluster based on a list of sequences and search to identify query sequences from species of interest.
 
-In this case, let's do something similar to what most labs have been doing since the COVID pandemic: Lets try and identify several sequences of a region from the **spike protein** from samples across the world: One from Oregon, one from Massachussetts and one from the UK.
+In this case, let's do something similar to what most labs have been doing since the COVID pandemic: let's try to identify several sequences of a region from the **spike protein** from samples across the world: One from Oregon, one from Massachusetts, and one from the UK.
 
-The idea is to figure out if each of the sequences belongs to COVID or any other related respiratory viruses such as H1N1, common cold (Rhinovirus) or actual SARS-CoVID-2. 
+The idea is to figure out if each of the sequences belongs to COVID or any other related respiratory viruses such as H1N1, common cold (Rhinovirus) or SARS-CoV-2. 
 
-I have added 11 sequences of idfferent samples of COVID and other related viruses into a file called `coronavirus_references.fasta`. 
+I have added 11 sequences of different samples of COVID and other related viruses into a file called `coronavirus_references.fasta`. 
 
 This is an evolutionary tree of the reference sequences as described by [Sahu et al. (2021)](https://link.springer.com/article/10.1007/s13337-021-00653-y#Sec2)
 
@@ -175,7 +175,7 @@ makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_nam
 ```
 
 ```{block, type='rmdquestion'}
-### Question 30
+### Questions 30-31
 - What is a BLAST database? Why do we care about them?
 -  Modify the template code by changing the `list_of_reference_seq`, `type_of_molecule` and `database_name` and add it below.
 ```
@@ -191,7 +191,7 @@ blast_program -query query_file -db database_name -out output_file -evalue 1e-10
 ```
 
 ```{block, type='rmdquestion'}
-### Questions 31 - 33
+### Questions 32-34
 
 -  Modify the template code by changing the `blast_program` to the blast program we should be using (blastp, blastn, tblastn, tblastx). Explain your answer briefly.
 
@@ -203,9 +203,9 @@ blast_program -query query_file -db database_name -out output_file -evalue 1e-10
 7. Run the modified code. Check that you have some results by making sure that your `output_file` has content on it.
 
 ```{block, type='rmdquestion'}
-### Question 34 
+### Question 35
 
--In the following table, add the top 3 hits for each of the query sequences.
+- In the following table, add the top 3 hits for each of the query sequences.
 ```
 
 ```
@@ -223,7 +223,7 @@ blast_program -query query_file -db database_name -out output_file -evalue 1e-10
 ```
 
 ```{block, type='rmdquestion'}
-### Questions 35 - 36
+### Questions 36-37
 -  Based on your results, what are the most likely identities of each query? Explain why.
 
 -  Within the reference FASTA file you can extract the names of each of the best hits of the database. What are the species of each of the most likely sequences?
@@ -235,11 +235,11 @@ blast_program -query query_file -db database_name -out output_file -evalue 1e-10
 
 We are going to learn also how to use the information from databases to identify genes of interest that can serve us.
 
-In this case, you are a Veterinarian Bioinformatitian. 
+In this case, you are a veterinary bioinformatician. 
 
 You have detected that a community of three animals (A chicken, *Gallus gallus*; a dog, *Canis familiaris*; and a cow, *Bos taurus*) that may have a disease associated with a mutation on the [Sonic The Hedgehog gene](https://medlineplus.gov/genetics/gene/shh/#resources).
 
-You sequenced one copy of each the genes per species, and translated them intro proteins. 
+You sequenced one copy of each of the genes per species, and translated them into proteins. 
 
 However, due to an error in the machine, your sequences have been mixed with another hundred protein sequences from other species and genes in a file called `oh_this_is_a_mess.fasta`
 
@@ -249,10 +249,10 @@ You also remember that [Pfam](http://pfam.xfam.org/), in Interpro, is a great da
 
 Using your bioinformatics software, you discover that there is a reference gene for *Sonic The Hedgehog* in humans, in NCBI, in the accession number [NP_000184.1](http://www.ncbi.nlm.nih.gov/protein/NP_000184.1?report=fasta)
 
-1. Copy the FASTA file and search for the domains in [InterPro]. When the result appears, answer these questions:
+1. Copy the FASTA file and search for the domains in [InterPro](https://www.ebi.ac.uk/interpro/search/sequence/). When the result appears, answer these questions:
 
 ```{block, type='rmdquestion'}
-### Questions 35-38
+### Questions 38-41
 
 - To which InterPro **family** does this protein belong?
 - Look at the **Domains** part of the sequence. Which domains do you see? To which **source database** do they belong (SMART, PFAM)?
@@ -272,14 +272,14 @@ Using your bioinformatics software, you discover that there is a reference gene 
 2. Under the **InterProScan Search Result** title, you will see a sub-menu that says **entries**. Click on it and in the **1-8 entries ..** click and select **PFAM**. You should see two domains:
 
 ```{block, type='rmdquestion'}
-### Question 39:
+### Question 42
 
-- Are these two domains the same domains as in Q37?
+- Are these two domains the same domains as in Q40?
 ```
 
 3. Click on the PFAM profile, go to **Curation** and Download the raw HMM for each domain into a new `hmm_example` folder inside your `Lab_4` folder.
 
-4. InterPro now saves the files as compressed files (`gzip files`). We need to uncompressed them. To do this, you need to rename your files by adding a `.gz`, for example:
+4. InterPro now saves the files as compressed files (`gzip files`). We need to uncompress them. To do this, you need to rename your files by adding a `.gz`, for example:
 
 ```
 mv file.hmm file.hmm.gz
@@ -291,12 +291,12 @@ and then uncompress them by using `gunzip`:
 gunzip file.hmm.gz
 ```
 
-5. Upload the `oh_this_is_a_mess.fasta` file from moodle into the new folder
+5. Upload the `oh_this_is_a_mess.fasta` file from Moodle into the new folder
 
 6. Merge both HMM files into a single file called `SHH.hmm`. Answer the following question:
 
 ```{block, type='rmdquestion'}
-### Question 36
+### Question 43
 
 -  How would you merge the two files? Add the code below.
 ```
@@ -309,7 +309,7 @@ hmmsearch --tblout output_table HMM_file query_sequences
 ```
 
 ```{block, type='rmdquestion'}
-### Question 37
+### Question 44
 
 -  Modify the template code by changing the `output_table`, `HMM_file` and `query_sequences` and add it below.
 ```
@@ -319,7 +319,7 @@ hmmsearch --tblout output_table HMM_file query_sequences
 11. Check the `output_table` file. 
 
 ```{block, type='rmdquestion'}
-### Question 38
+### Questions 45-46
 
 - Could you find the sequences of interest? Explain the results below:
 

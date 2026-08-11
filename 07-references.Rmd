@@ -1,8 +1,8 @@
 # Homology and multiple sequence alignments
 
-Homologous genes are genes that share common ancestry and can be functionally similar. These homologous genes can be identified between different samples, species, ect, based on similarity and other metrics such as inflation in MCL, ect.
+Homologous genes are genes that share common ancestry and can be functionally similar. These homologous genes can be identified between different samples, species, etc., based on similarity and other metrics such as inflation in MCL, etc.
 
-In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing its differences and similarities with multiple sequence alignments.
+In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing their differences and similarities with multiple sequence alignments.
 
 ## Downloading sequences from Homologene
 
@@ -20,7 +20,7 @@ Today, we will use NCBI Homologene.
 -  What number of homologene is this?
 -  What gene/genic family is represented in this set of sequences?
 -  Based on the schematics on the right, which domains of the protein are conserved across the different species?
--  Fill the following table using all the sequences from the homologene info
+-  Fill in the following table using all the sequences from the homologene info
 ```
 
 |Species|Common Name|Protein ID|Protein length|Number of domains found|
@@ -29,11 +29,11 @@ Today, we will use NCBI Homologene.
 
 
 
-3. Go to the Download links and download the mRNA and Protein sequences in FASTA format
+2. Go to the Download links and download the mRNA and Protein sequences in FASTA format
 
-4. Connect to the cluster and upload the sequences into a new folder inside of `MBB101` called `Lab_5`
+3. Connect to the cluster and upload the sequences into a new folder inside of `BIOL123` called `Lab_5`
 
-5. Answer the following questions:
+4. Answer the following questions:
 
 ```{block, type='rmdquestion'}
 ### Questions 5 - 7
@@ -50,18 +50,18 @@ If we remember from class, MAFFT is one of the most complete multiple sequence a
 
 It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains
 
-6. Before you proceed with the alignment, go to the [MAFFT algortihms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) and answer the follwing questions based on the information on the algorithms MAFFT uses:
+5. Before you proceed with the alignment, go to the [MAFFT algorithms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) and answer the following questions based on the information on the algorithms MAFFT uses:
 
 
 ```{block, type='rmdquestion'}
 ### Questions 8 - 11
 -  What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i) would you use for the following datasets, and briefly explain your answers:
- - Proteins with multiple conserved domains
- - Proteins with single conserved domains
- - Proteins with a single short domain
+    - Proteins with multiple conserved domains
+    - Proteins with single conserved domains
+    - Proteins with a single short domain
 ```
 
-7. Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.
+6. Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.
 
 To do this, in your `Lab_5` do the following:
 
@@ -73,7 +73,6 @@ mafft --localpair --maxiterate 1000 input_file > output_file
      * For E-INS-i
 ```
 mafft --genafpair --maxiterate 1000 input_file > output_file
-mafft --genafpair --maxiterate 1000 homologene_prot.fasta > alin.fasta
 ```
      * For G-INS-i
 ```
@@ -82,7 +81,7 @@ mafft --globalpair --maxiterate 1000 input_file > output_file
 
 Remember to change your `input_file` and `output_file` for the FASTA file and the output file (also in FASTA file).
 
-8. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) on your browser and import your alignment using the Upload button and the Data file link.
+7. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) on your browser and import your alignment using the Upload button and the Data file link.
 
 ```{block, type='rmdquestion'}
 ### Question 12
@@ -95,15 +94,15 @@ Remember to change your `input_file` and `output_file` for the FASTA file and th
 
 ***
 
-## Creating and searching a HMM model using our alignment
+## Creating and searching an HMM model using our alignment
 
 Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:
 
 ```
-https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_proteins.fasta
+https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_5/mess_with_human_proteins.fasta
 ```
 
-11. Download the new FASTA file to your `Lab_5` folder. Count the number of sequences and answer the next question:
+8. Download the new FASTA file to your `Lab_5` folder. Count the number of sequences and answer the next question:
 
 ```{block, type='rmdquestion'}
 ### Question 13
@@ -111,27 +110,27 @@ https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_5/mess_with_human_pro
 
 ```
 
-12. Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create a HMM profile of our MSH homologs and then search for the sequences!
+9. Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create an HMM profile of our MSH homologs and then search for the sequences!
 
-13. To create the hmmer profile you need your alignment file of the MSH homologs in protein format, and the `hmmbuild` program.
+10. To create the HMMER profile you need your alignment file of the MSH homologs in protein format, and the `hmmbuild` program.
 
-The `hmmbuild` program creates a HMM model of your alignment (so, of your conserved domains!!) that you can use to search using `hmmsearch` how we did on last class!
+The `hmmbuild` program creates an HMM model of your alignment (so, of your conserved domains!) that you can use to search using `hmmsearch`, the same way we did in our last class!
 
 To run it use the following command:
 
 ```
-hmmbuild MSH_homolog.hmm alignmnent_file.fasta
+hmmbuild MSH_homolog.hmm alignment_file.fasta
 ```
 
 Answer the following question:
 
 ```{block, type='rmdquestion'}
 ### Question 14
--  Summarize the process of building a HMM model
+-  Summarize the process of building an HMM model
 
 ```
 
-14. Finally, run `hmmsearch` and identify the protein with positive hits. Add them to the following table:
+11. Finally, run `hmmsearch` and identify the protein with positive hits. Add them to the following table:
 
 | Target Name  | Full Sequence E-value | Full Seq. Score | Best 1 domain E-value | Best 1 domain score |
 |---------|--------|--------|--------|----------|

@@ -11,7 +11,7 @@
 
 The UNIX command line is a program that will interpret commands, in the form of text instructions, for the computer to be executed.
 
-This means that you can tell the computer to `list files` or `print text in the screen` or `do a mathematical operation` using a set of commands and the computer will exacute them and provide you with an answer.
+This means that you can tell the computer to `list files` or `print text in the screen` or `do a mathematical operation` using a set of commands and the computer will execute them and provide you with an answer.
 
 However, before we start using the command line I decided to make a list of the most commonly used commands in UNIX for your future reference.
 
@@ -22,7 +22,7 @@ However, before we start using the command line I decided to make a list of the 
 ### Logging in
 
 - Logging into the cluster: `140.232.222.14` in your browser
-- Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): `ssh username@140.232.222.14`
+- Logging into the cluster via FTP to upload/download files (e.g. Filezilla, Cyberduck): `ssh username@140.232.222.14`
 
 ### Navigating the cluster
 
@@ -36,13 +36,13 @@ However, before we start using the command line I decided to make a list of the 
 ### Moving and downloading files
 
 - Copying a file: `cp file destination`
-- Renaming a file/Moving a file: `mv file distination_or_new_name`
-- Downloading a file: `wget web_adress_of_the_file`
+- Renaming a file/Moving a file: `mv file destination_or_new_name`
+- Downloading a file: `wget web_address_of_the_file`
 - Removing a file `rm file`
 
 ### Editing files
 
-- Edit a text file: `nano` (However, we will try and use atom for now)
+- Edit a text file: `nano` (However, we will try to use Atom for now)
 - Counting the number of lines, words and bytes of a file: `wc`
 - Match a pattern and extract text: `grep pattern_of_interest`
 - Match and replace a pattern in a text file: `sed 's/match/replacement/g'`
@@ -51,23 +51,23 @@ However, before we start using the command line I decided to make a list of the 
 
 ## Section 1: Basics of the command line 
 
-Today, we will do very basic things on the cluster. First, we will learn about our whereabouts (where is our `home` folder), then we will learn how to `create a folder` for the lab within your home folder. Then, we will create a folder for lab 2 and download a file to it. Finally, we will do a similar exercise to the one in class, and count the number of occurences in a text file.
+Today, we will do very basic things on the cluster. First, we will learn about our whereabouts (where is our `home` folder), then we will learn how to `create a folder` for the lab within your home folder. Then, we will create a folder for lab 2 and download a file to it. Finally, we will do a similar exercise to the one in class, and count the number of occurrences in a text file.
 
 ### Logging into the cluster.
 
-1. Log into your R studio session through your browser as indicated above
+1. Log into your RStudio session through your browser as indicated above
 2. Go to the `Terminal` tab in the Command Pane Viewer in the bottom of your screen
 
->WELCOME TO SMAUG!!
+> WELCOME TO SMAUG!!
 
 ### Where are we? Who am I?
 
-First thing: You land into the magical real of the cluster. Now... where are you?
+First thing: you land in the magical realm of the cluster. Now... where are you?
 
 ```{block, type='rmdquestion'}
 ### Question 1
 
-- What command would you use to check in which working directory are you?
+- What command would you use to check which working directory you are in?
 ```
 
 
@@ -154,7 +154,7 @@ I have created a file for us to do a quick and fun exercise today and have uploa
 
 To download the files, use the `wget` command. (`wget` is short for web page get): 
 
-!["Downloading text file](Lab2/wget.png)
+!["Downloading text file"](Lab2/wget.png)
 
 ```{block, type='rmdquestion'}
 ### Question 5
@@ -165,16 +165,16 @@ To download the files, use the `wget` command. (`wget` is short for web page get
 ```{block, type='rmdquestion'}
 ### Question 6
 
-- How many lines does this file has? What command from the list above would you use to count the number of lines? What are the three outputs from the command?
+- How many lines does this file have? What command from the list above would you use to count the number of lines? What are the three outputs from the command?
 ``` 
 
 ***
 
 ### Extracting patterns from a text file
 
-Finally, lets do the examples from Monday's course:
+Finally, let's do the examples from Monday's course:
 
-* How many times is the word “Dursley” found in the document?
+* How many times is the word "Dursley" found in the document?
 * How many times is Harry mentioned?
 * How was the weather on that Tuesday?
 
@@ -193,7 +193,7 @@ In this case, we are using two more arguments after the `grep` command: The patt
 To learn how to use these commands, we can google the command or use the `man` command (short for manual). 
 ```
 
-Alright, how does the output of `grep` looks like?
+Alright, what does the output of `grep` look like?
 
 !["grepping for the first time"](Lab2/grep_dursley.png)
 
@@ -201,11 +201,11 @@ Ah cool, we can see if the pattern is present or not!
 
 
 ```{block, type='rmdquestion'}
-#### Question 7
+### Question 7
 
-- What happens if you try and answer these questions using `grep`? 
+- What happens if you try to answer these questions using `grep`? 
 
-   * How many times is the word “Dursley” found in the document?
+   * How many times is the word "Dursley" found in the document?
    * How many times is Harry mentioned?
    * How was the weather on that Tuesday?
 
@@ -215,7 +215,7 @@ Summarize how `grep` can help you with finding these patterns of interest.
 ```{block, type='rmdquestion'}
 ### Question 8
 
-- Using the `man grep` command, how can you use grep to count for an occurrence of a text string. For example, can grep count the number of times the word `Dursley` exists in the file? Write the command you would use and the results.
+- Using the `man grep` command, how can you use grep to count the number of occurrences of a text string? For example, can grep count the number of times the word `Dursley` exists in the file? Write the command you would use and the results.
 ```
 
 ***
@@ -232,7 +232,7 @@ For example, what is the path of the `text_file.txt` we were working on?
 ```{block, type='rmdquestion'}
 ### Question 9
 
-- Using the `readlink -f` command, can you indicate what is the full path of this file?.
+- Using the `readlink -f` command, can you indicate what the full path of this file is?
 ```
 
 ```{block, type='rmdquestion'}
@@ -247,7 +247,7 @@ We want to modify the `text_file.txt` to add, remove, replace or count elements 
 
 So, the idea is to create a new folder inside your `Lab_2/` folder, named `modified/`.
 
-Create the folder and copy the `text_file.txt` file into a new file called `modified_file.txt` in a new folder called `modified/` using the `cp` command
+Create the folder and copy the `text_file.txt` file into a new file called `modified_file.txt` in a new folder called `modified/` using the `cp` command.
 
 
 ```{block, type='rmdquestion'}
@@ -262,7 +262,7 @@ Create the folder and copy the `text_file.txt` file into a new file called `modi
 - What is the absolute path of the `modified_file.txt`?
 ```
 
-Lets check if it worked:
+Let's check if it worked:
 
 ![copying file](Lab2/cp_file.png)
 
@@ -270,11 +270,11 @@ Lets check if it worked:
 
 ### Replacing patterns using `sed`
 
-So, if you recall the theory class, we learnt about the `sed` command to replace patterns. 
+So, if you recall the theory class, we learned about the `sed` command to replace patterns. 
 
 The idea is that you will replace some patterns in the `modified_file.txt` file and then check if the results make sense.
 
-1. Change the `Dursley` patterns into `Potter` and save the file as `potter.txt` using the `sed s/Dursley/Potter/g modified_file.txt > potter.txt` command.
+1. Change the `Dursley` patterns to `Potter` and save the file as `potter.txt` using the `sed s/Dursley/Potter/g modified_file.txt > potter.txt` command.
 
 
 ```{block, type='rmdquestion'}
@@ -296,7 +296,7 @@ The idea is that you will replace some patterns in the `modified_file.txt` file 
 ```
 
 ```{block, type='rmdquestion'}
-### Question 17
+### Question 16
 
 Count the number of lines of the `potter.txt` file and compare them to the original file.
 
@@ -307,13 +307,13 @@ Count the number of lines of the `potter.txt` file and compare them to the origi
 4. Extract all the lines that say `Potter` from `potter.txt` into a new file called `potter_lines.txt`. 
 
 ```{block, type='rmdquestion'}
-### Question 18
+### Question 17
 
 - Present the syntax to execute the previous instruction.
 ```
 
 ```{block, type='rmdquestion'}
-### Question 19
+### Question 18
 
 - What are the number of lines that say `Potter` in the file? Is the number different from questions 14 and 15? Explain your answer very briefly.
 ```
@@ -322,21 +322,21 @@ Count the number of lines of the `potter.txt` file and compare them to the origi
 
 ### Removing files, renaming files and creating symbolic links
 
-Now that we are done with creating files and modifing them, we need to remove all the files we are not using anymore. The `rm` command will allow us to do that.
+Now that we are done creating files and modifying them, we need to remove all the files we are not using anymore. The `rm` command will allow us to do that.
 
 1. Remove the `potter_lines.txt` and the `modified_file.txt` files from the folder. 
 
 ```{block, type='rmdquestion'}
-### Question 20
+### Question 19
 
 - What are the commands you used to remove the files? How can you make sure the files do not exist anymore?
 ```
 
 
-2. Rename the `potter.txt` file as `Potter_story.txt` using the` mv` command as such `mv potter.txt Potter_story.txt`.
+2. Rename the `potter.txt` file as `Potter_story.txt` using the `mv` command, as such: `mv potter.txt Potter_story.txt`.
 
 ```{block, type='rmdquestion'}
-### Question 22
+### Question 20
 
 - Explain the syntax of the previous command briefly.
 ```
@@ -345,13 +345,13 @@ Now that we are done with creating files and modifing them, we need to remove al
 3. Go back to your `Lab_2/` folder (remember to use the `cd ..` command) and create a symbolic link of your `Potter_story.txt` file into the `Lab_2/` folder using the `ln -s modified/Potter_story.txt .`. 
 
 ```{block, type='rmdquestion'}
-### Question 23
+### Question 21
 
 - Explain the syntax of the previous command briefly.
 ```
 
 ```{block, type='rmdquestion'}
-### Question 24
+### Question 22
 
 - Use the ls -l command while in your `Lab_2/` folder. What is a weird pattern you see on the new `Potter_story.txt` file? Is that its absolute or its relative path?
 ```

@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Introduction to the Command Line | Introduction to Bioinformatics: Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2025-09-12" />
+<meta name="date" content="2026-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +61,7 @@ set in the _output.yml file.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -180,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="rmark.html"><a href="rmark.html#links-figures-and-tables"><i class="fa fa-check"></i><b>5.2.5</b> Links, figures and tables</a></li>
 <li class="chapter" data-level="5.2.6" data-path="rmark.html"><a href="rmark.html#tables"><i class="fa fa-check"></i><b>5.2.6</b> Tables</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="rmark.html"><a href="rmark.html#r-markdown-excerise"><i class="fa fa-check"></i><b>5.3</b> R Markdown Excerise:</a></li>
+<li class="chapter" data-level="5.3" data-path="rmark.html"><a href="rmark.html#r-markdown-exercise"><i class="fa fa-check"></i><b>5.3</b> R Markdown Exercise:</a></li>
 <li class="chapter" data-level="5.4" data-path="rmark.html"><a href="rmark.html#additional-information-on-markdown"><i class="fa fa-check"></i><b>5.4</b> Additional information on Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introduction-to-the-command-line.html"><a href="introduction-to-the-command-line.html"><i class="fa fa-check"></i><b>6</b> Introduction to the Command Line</a>
@@ -215,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#downloading-the-datasets"><i class="fa fa-check"></i><b>7.1.1</b> Downloading the datasets</a></li>
 <li class="chapter" data-level="7.1.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-dna-data"><i class="fa fa-check"></i><b>7.1.2</b> Counting basic patterns for DNA data</a></li>
-<li class="chapter" data-level="7.1.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-aminoacid-data"><i class="fa fa-check"></i><b>7.1.3</b> Counting basic patterns for Aminoacid data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-amino-acid-data"><i class="fa fa-check"></i><b>7.1.3</b> Counting basic patterns for Amino Acid data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-2-creating-pipelines"><i class="fa fa-check"></i><b>7.2</b> Section 2: Creating pipelines</a>
 <ul>
@@ -246,18 +247,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene"><i class="fa fa-check"></i><b>9.1</b> Downloading sequences from Homologene</a></li>
 <li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft"><i class="fa fa-check"></i><b>9.2</b> Multiple sequence alignment in MAFFT</a></li>
-<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching a HMM model using our alignment</a></li>
+<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-an-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching an HMM model using our alignment</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="phylogenetics.html"><a href="phylogenetics.html"><i class="fa fa-check"></i><b>10</b> Phylogenetics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="phylogenetics.html"><a href="phylogenetics.html#introduction-to-iq-tree"><i class="fa fa-check"></i><b>10.1</b> Introduction to <code>IQ-tree</code></a></li>
 <li class="chapter" data-level="10.2" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-protein-data"><i class="fa fa-check"></i><b>10.2</b> Running IQ-tree on protein data</a></li>
-<li class="chapter" data-level="10.3" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-nucelotide-data"><i class="fa fa-check"></i><b>10.3</b> Running IQ-tree on nucelotide data</a></li>
-<li class="chapter" data-level="10.4" data-path="phylogenetics.html"><a href="phylogenetics.html#final-phylogenetics-excercise"><i class="fa fa-check"></i><b>10.4</b> Final Phylogenetics excercise:</a></li>
+<li class="chapter" data-level="10.3" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-nucleotide-data"><i class="fa fa-check"></i><b>10.3</b> Running IQ-tree on nucleotide data</a></li>
+<li class="chapter" data-level="10.4" data-path="phylogenetics.html"><a href="phylogenetics.html#final-phylogenetics-exercise"><i class="fa fa-check"></i><b>10.4</b> Final Phylogenetics exercise:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><i class="fa fa-check"></i>Creating a simple multiFASTA analyzer program in the command line</a>
 <ul>
-<li class="chapter" data-level="10.5" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#answering-each-part-of-the-question"><i class="fa fa-check"></i><b>10.5</b> Answering each part of the question:</a>
+<li class="chapter" data-level="10.5" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#answering-each-part-of-the-questions"><i class="fa fa-check"></i><b>10.5</b> Answering each part of the questions:</a>
 <ul>
 <li class="chapter" data-level="10.5.1" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#number-of-nucleotides"><i class="fa fa-check"></i><b>10.5.1</b> Number of nucleotides</a></li>
 <li class="chapter" data-level="10.5.2" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#length-of-sequence"><i class="fa fa-check"></i><b>10.5.2</b> Length of sequence</a></li>
@@ -304,7 +305,7 @@ To create our first lines of code to process text files
 </ol>
 </div>
 <p>The UNIX command line is a program that will interpret commands, in the form of text instructions, for the computer to be executed.</p>
-<p>This means that you can tell the computer to <code>list files</code> or <code>print text in the screen</code> or <code>do a mathematical operation</code> using a set of commands and the computer will exacute them and provide you with an answer.</p>
+<p>This means that you can tell the computer to <code>list files</code> or <code>print text in the screen</code> or <code>do a mathematical operation</code> using a set of commands and the computer will execute them and provide you with an answer.</p>
 <p>However, before we start using the command line I decided to make a list of the most commonly used commands in UNIX for your future reference.</p>
 <hr />
 <div id="commonly-used-commands" class="section level2 hasAnchor" number="6.1">
@@ -313,7 +314,7 @@ To create our first lines of code to process text files
 <h3><span class="header-section-number">6.1.1</span> Logging in<a href="introduction-to-the-command-line.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Logging into the cluster: <code>140.232.222.14</code> in your browser</li>
-<li>Logging into the cluster via FTP to upload/download files (i.e Filezilla, Cyber Duck): <code>ssh username@140.232.222.14</code></li>
+<li>Logging into the cluster via FTP to upload/download files (e.g. Filezilla, Cyberduck): <code>ssh username@140.232.222.14</code></li>
 </ul>
 </div>
 <div id="navigating-the-cluster" class="section level3 hasAnchor" number="6.1.2">
@@ -331,15 +332,15 @@ To create our first lines of code to process text files
 <h3><span class="header-section-number">6.1.3</span> Moving and downloading files<a href="introduction-to-the-command-line.html#moving-and-downloading-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Copying a file: <code>cp file destination</code></li>
-<li>Renaming a file/Moving a file: <code>mv file distination_or_new_name</code></li>
-<li>Downloading a file: <code>wget web_adress_of_the_file</code></li>
+<li>Renaming a file/Moving a file: <code>mv file destination_or_new_name</code></li>
+<li>Downloading a file: <code>wget web_address_of_the_file</code></li>
 <li>Removing a file <code>rm file</code></li>
 </ul>
 </div>
 <div id="editing-files" class="section level3 hasAnchor" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Editing files<a href="introduction-to-the-command-line.html#editing-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Edit a text file: <code>nano</code> (However, we will try and use atom for now)</li>
+<li>Edit a text file: <code>nano</code> (However, we will try to use Atom for now)</li>
 <li>Counting the number of lines, words and bytes of a file: <code>wc</code></li>
 <li>Match a pattern and extract text: <code>grep pattern_of_interest</code></li>
 <li>Match and replace a pattern in a text file: <code>sed 's/match/replacement/g'</code></li>
@@ -349,11 +350,11 @@ To create our first lines of code to process text files
 </div>
 <div id="section-1-basics-of-the-command-line" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Section 1: Basics of the command line<a href="introduction-to-the-command-line.html#section-1-basics-of-the-command-line" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Today, we will do very basic things on the cluster. First, we will learn about our whereabouts (where is our <code>home</code> folder), then we will learn how to <code>create a folder</code> for the lab within your home folder. Then, we will create a folder for lab 2 and download a file to it. Finally, we will do a similar exercise to the one in class, and count the number of occurences in a text file.</p>
+<p>Today, we will do very basic things on the cluster. First, we will learn about our whereabouts (where is our <code>home</code> folder), then we will learn how to <code>create a folder</code> for the lab within your home folder. Then, we will create a folder for lab 2 and download a file to it. Finally, we will do a similar exercise to the one in class, and count the number of occurrences in a text file.</p>
 <div id="logging-into-the-cluster." class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Logging into the cluster.<a href="introduction-to-the-command-line.html#logging-into-the-cluster." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Log into your R studio session through your browser as indicated above</li>
+<li>Log into your RStudio session through your browser as indicated above</li>
 <li>Go to the <code>Terminal</code> tab in the Command Pane Viewer in the bottom of your screen</li>
 </ol>
 <blockquote>
@@ -362,15 +363,15 @@ To create our first lines of code to process text files
 </div>
 <div id="where-are-we-who-am-i" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Where are we? Who am I?<a href="introduction-to-the-command-line.html#where-are-we-who-am-i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First thing: You land into the magical real of the cluster. Now… where are you?</p>
+<p>First thing: you land in the magical realm of the cluster. Now… where are you?</p>
 <div class="rmdquestion">
 <h3 id="question-1">
 Question 1
 </h3>
 <ul>
 <li>
-What command would you use to check in which working directory are
-you?
+What command would you use to check which working directory you are
+in?
 </li>
 </ul>
 </div>
@@ -471,8 +472,8 @@ a screenshot of the command and the result.
 <p>I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: <code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_2/text_file.txt</code>.</p>
 <p>To download the files, use the <code>wget</code> command. (<code>wget</code> is short for web page get):</p>
 <div class="float">
-<img src="Lab2/wget.png" alt="“Downloading text file" />
-<div class="figcaption">“Downloading text file</div>
+<img src="Lab2/wget.png" alt="“Downloading text file”" />
+<div class="figcaption">“Downloading text file”</div>
 </div>
 <div class="rmdquestion">
 <h3 id="question-5">
@@ -491,7 +492,7 @@ Question 6
 </h3>
 <ul>
 <li>
-How many lines does this file has? What command from the list above
+How many lines does this file have? What command from the list above
 would you use to count the number of lines? What are the three outputs
 from the command?
 </li>
@@ -501,7 +502,7 @@ from the command?
 </div>
 <div id="extracting-patterns-from-a-text-file" class="section level3 hasAnchor" number="6.2.6">
 <h3><span class="header-section-number">6.2.6</span> Extracting patterns from a text file<a href="introduction-to-the-command-line.html#extracting-patterns-from-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, lets do the examples from Monday’s course:</p>
+<p>Finally, let’s do the examples from Monday’s course:</p>
 <ul>
 <li>How many times is the word “Dursley” found in the document?</li>
 <li>How many times is Harry mentioned?</li>
@@ -525,20 +526,20 @@ To learn how to use these commands, we can google the command or use
 the <code>man</code> command (short for manual).
 </p>
 </div>
-<p>Alright, how does the output of <code>grep</code> looks like?</p>
+<p>Alright, what does the output of <code>grep</code> look like?</p>
 <div class="float">
 <img src="Lab2/grep_dursley.png" alt="“grepping for the first time”" />
 <div class="figcaption">“grepping for the first time”</div>
 </div>
 <p>Ah cool, we can see if the pattern is present or not!</p>
 <div class="rmdquestion">
-<h4 id="question-7">
+<h3 id="question-7">
 Question 7
-</h4>
+</h3>
 <ul>
 <li>
 <p>
-What happens if you try and answer these questions using
+What happens if you try to answer these questions using
 <code>grep</code>?
 </p>
 <ul>
@@ -566,9 +567,9 @@ Question 8
 <ul>
 <li>
 Using the <code>man grep</code> command, how can you use grep to
-count for an occurrence of a text string. For example, can grep count
-the number of times the word <code>Dursley</code> exists in the file?
-Write the command you would use and the results.
+count the number of occurrences of a text string? For example, can grep
+count the number of times the word <code>Dursley</code> exists in the
+file? Write the command you would use and the results.
 </li>
 </ul>
 </div>
@@ -587,8 +588,8 @@ Question 9
 </h3>
 <ul>
 <li>
-Using the <code>readlink -f</code> command, can you indicate what is
-the full path of this file?.
+Using the <code>readlink -f</code> command, can you indicate what
+the full path of this file is?
 </li>
 </ul>
 </div>
@@ -609,7 +610,7 @@ file?
 <h3><span class="header-section-number">6.3.2</span> Creating copies of a file into a new folder.<a href="introduction-to-the-command-line.html#creating-copies-of-a-file-into-a-new-folder." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We want to modify the <code>text_file.txt</code> to add, remove, replace or count elements in a new version of it.</p>
 <p>So, the idea is to create a new folder inside your <code>Lab_2/</code> folder, named <code>modified/</code>.</p>
-<p>Create the folder and copy the <code>text_file.txt</code> file into a new file called <code>modified_file.txt</code> in a new folder called <code>modified/</code> using the <code>cp</code> command</p>
+<p>Create the folder and copy the <code>text_file.txt</code> file into a new file called <code>modified_file.txt</code> in a new folder called <code>modified/</code> using the <code>cp</code> command.</p>
 <div class="rmdquestion">
 <h3 id="question-11">
 Question 11
@@ -632,7 +633,7 @@ What is the absolute path of the
 </li>
 </ul>
 </div>
-<p>Lets check if it worked:</p>
+<p>Let’s check if it worked:</p>
 <div class="float">
 <img src="Lab2/cp_file.png" alt="copying file" />
 <div class="figcaption">copying file</div>
@@ -641,10 +642,10 @@ What is the absolute path of the
 </div>
 <div id="replacing-patterns-using-sed" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Replacing patterns using <code>sed</code><a href="introduction-to-the-command-line.html#replacing-patterns-using-sed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So, if you recall the theory class, we learnt about the <code>sed</code> command to replace patterns.</p>
+<p>So, if you recall the theory class, we learned about the <code>sed</code> command to replace patterns.</p>
 <p>The idea is that you will replace some patterns in the <code>modified_file.txt</code> file and then check if the results make sense.</p>
 <ol style="list-style-type: decimal">
-<li>Change the <code>Dursley</code> patterns into <code>Potter</code> and save the file as <code>potter.txt</code> using the <code>sed s/Dursley/Potter/g modified_file.txt &gt; potter.txt</code> command.</li>
+<li>Change the <code>Dursley</code> patterns to <code>Potter</code> and save the file as <code>potter.txt</code> using the <code>sed s/Dursley/Potter/g modified_file.txt &gt; potter.txt</code> command.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-13">
@@ -680,8 +681,8 @@ Harry was mentioned? Why?
 </ul>
 </div>
 <div class="rmdquestion">
-<h3 id="question-17">
-Question 17
+<h3 id="question-16">
+Question 16
 </h3>
 <p>
 Count the number of lines of the <code>potter.txt</code> file and
@@ -698,8 +699,8 @@ Is the number of lines similar between <code>potter.txt</code> and
 <li>Extract all the lines that say <code>Potter</code> from <code>potter.txt</code> into a new file called <code>potter_lines.txt</code>.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-18">
-Question 18
+<h3 id="question-17">
+Question 17
 </h3>
 <ul>
 <li>
@@ -708,8 +709,8 @@ Present the syntax to execute the previous instruction.
 </ul>
 </div>
 <div class="rmdquestion">
-<h3 id="question-19">
-Question 19
+<h3 id="question-18">
+Question 18
 </h3>
 <ul>
 <li>
@@ -723,13 +724,13 @@ answer very briefly.
 </div>
 <div id="removing-files-renaming-files-and-creating-symbolic-links" class="section level3 hasAnchor" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Removing files, renaming files and creating symbolic links<a href="introduction-to-the-command-line.html#removing-files-renaming-files-and-creating-symbolic-links" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now that we are done with creating files and modifing them, we need to remove all the files we are not using anymore. The <code>rm</code> command will allow us to do that.</p>
+<p>Now that we are done creating files and modifying them, we need to remove all the files we are not using anymore. The <code>rm</code> command will allow us to do that.</p>
 <ol style="list-style-type: decimal">
 <li>Remove the <code>potter_lines.txt</code> and the <code>modified_file.txt</code> files from the folder.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-20">
-Question 20
+<h3 id="question-19">
+Question 19
 </h3>
 <ul>
 <li>
@@ -739,11 +740,11 @@ sure the files do not exist anymore?
 </ul>
 </div>
 <ol start="2" style="list-style-type: decimal">
-<li>Rename the <code>potter.txt</code> file as <code>Potter_story.txt</code> using the<code>mv</code> command as such <code>mv potter.txt Potter_story.txt</code>.</li>
+<li>Rename the <code>potter.txt</code> file as <code>Potter_story.txt</code> using the <code>mv</code> command, as such: <code>mv potter.txt Potter_story.txt</code>.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-22">
-Question 22
+<h3 id="question-20">
+Question 20
 </h3>
 <ul>
 <li>
@@ -755,8 +756,8 @@ Explain the syntax of the previous command briefly.
 <li>Go back to your <code>Lab_2/</code> folder (remember to use the <code>cd ..</code> command) and create a symbolic link of your <code>Potter_story.txt</code> file into the <code>Lab_2/</code> folder using the <code>ln -s modified/Potter_story.txt .</code>.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-23">
-Question 23
+<h3 id="question-21">
+Question 21
 </h3>
 <ul>
 <li>
@@ -765,8 +766,8 @@ Explain the syntax of the previous command briefly.
 </ul>
 </div>
 <div class="rmdquestion">
-<h3 id="question-24">
-Question 24
+<h3 id="question-22">
+Question 22
 </h3>
 <ul>
 <li>
@@ -800,42 +801,42 @@ file? Is that its absolute or its relative path?
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

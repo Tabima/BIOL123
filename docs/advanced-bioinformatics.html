@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Advanced Bioinformatics | Introduction to Bioinformatics: Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2025-09-12" />
+<meta name="date" content="2026-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +61,7 @@ set in the _output.yml file.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -180,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="rmark.html"><a href="rmark.html#links-figures-and-tables"><i class="fa fa-check"></i><b>5.2.5</b> Links, figures and tables</a></li>
 <li class="chapter" data-level="5.2.6" data-path="rmark.html"><a href="rmark.html#tables"><i class="fa fa-check"></i><b>5.2.6</b> Tables</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="rmark.html"><a href="rmark.html#r-markdown-excerise"><i class="fa fa-check"></i><b>5.3</b> R Markdown Excerise:</a></li>
+<li class="chapter" data-level="5.3" data-path="rmark.html"><a href="rmark.html#r-markdown-exercise"><i class="fa fa-check"></i><b>5.3</b> R Markdown Exercise:</a></li>
 <li class="chapter" data-level="5.4" data-path="rmark.html"><a href="rmark.html#additional-information-on-markdown"><i class="fa fa-check"></i><b>5.4</b> Additional information on Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introduction-to-the-command-line.html"><a href="introduction-to-the-command-line.html"><i class="fa fa-check"></i><b>6</b> Introduction to the Command Line</a>
@@ -215,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#downloading-the-datasets"><i class="fa fa-check"></i><b>7.1.1</b> Downloading the datasets</a></li>
 <li class="chapter" data-level="7.1.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-dna-data"><i class="fa fa-check"></i><b>7.1.2</b> Counting basic patterns for DNA data</a></li>
-<li class="chapter" data-level="7.1.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-aminoacid-data"><i class="fa fa-check"></i><b>7.1.3</b> Counting basic patterns for Aminoacid data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#counting-basic-patterns-for-amino-acid-data"><i class="fa fa-check"></i><b>7.1.3</b> Counting basic patterns for Amino Acid data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="basic-bioinformatics.html"><a href="basic-bioinformatics.html#section-2-creating-pipelines"><i class="fa fa-check"></i><b>7.2</b> Section 2: Creating pipelines</a>
 <ul>
@@ -246,18 +247,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene"><i class="fa fa-check"></i><b>9.1</b> Downloading sequences from Homologene</a></li>
 <li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft"><i class="fa fa-check"></i><b>9.2</b> Multiple sequence alignment in MAFFT</a></li>
-<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-a-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching a HMM model using our alignment</a></li>
+<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-an-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching an HMM model using our alignment</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="phylogenetics.html"><a href="phylogenetics.html"><i class="fa fa-check"></i><b>10</b> Phylogenetics</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="phylogenetics.html"><a href="phylogenetics.html#introduction-to-iq-tree"><i class="fa fa-check"></i><b>10.1</b> Introduction to <code>IQ-tree</code></a></li>
 <li class="chapter" data-level="10.2" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-protein-data"><i class="fa fa-check"></i><b>10.2</b> Running IQ-tree on protein data</a></li>
-<li class="chapter" data-level="10.3" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-nucelotide-data"><i class="fa fa-check"></i><b>10.3</b> Running IQ-tree on nucelotide data</a></li>
-<li class="chapter" data-level="10.4" data-path="phylogenetics.html"><a href="phylogenetics.html#final-phylogenetics-excercise"><i class="fa fa-check"></i><b>10.4</b> Final Phylogenetics excercise:</a></li>
+<li class="chapter" data-level="10.3" data-path="phylogenetics.html"><a href="phylogenetics.html#running-iq-tree-on-nucleotide-data"><i class="fa fa-check"></i><b>10.3</b> Running IQ-tree on nucleotide data</a></li>
+<li class="chapter" data-level="10.4" data-path="phylogenetics.html"><a href="phylogenetics.html#final-phylogenetics-exercise"><i class="fa fa-check"></i><b>10.4</b> Final Phylogenetics exercise:</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><i class="fa fa-check"></i>Creating a simple multiFASTA analyzer program in the command line</a>
 <ul>
-<li class="chapter" data-level="10.5" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#answering-each-part-of-the-question"><i class="fa fa-check"></i><b>10.5</b> Answering each part of the question:</a>
+<li class="chapter" data-level="10.5" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#answering-each-part-of-the-questions"><i class="fa fa-check"></i><b>10.5</b> Answering each part of the questions:</a>
 <ul>
 <li class="chapter" data-level="10.5.1" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#number-of-nucleotides"><i class="fa fa-check"></i><b>10.5.1</b> Number of nucleotides</a></li>
 <li class="chapter" data-level="10.5.2" data-path="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html"><a href="creating-a-simple-multifasta-analyzer-program-in-the-command-line.html#length-of-sequence"><i class="fa fa-check"></i><b>10.5.2</b> Length of sequence</a></li>
@@ -318,21 +319,21 @@ Questions 1 - 5
 </h3>
 <ul>
 <li>
-How many ORF do you find in the sequence?
+How many ORFs do you find in the sequence?
 </li>
 <li>
 Which ORF is the longest, how long it is (Both in NT and AA), and in
 which strand (Plus or minus) is located?
 </li>
 <li>
-In what frame does the longest ORF is in? What does this mean?
+In what frame is the longest ORF? What does this mean?
 </li>
 <li>
 Click on Display ORF and copy and paste the Protein sequence and the
 nucleotide sequence of the longest ORF here
 </li>
 <li>
-Is there any ORF on the backwards direction? (-)
+Is there any ORF in the reverse direction? (-)
 </li>
 </ul>
 </div>
@@ -345,12 +346,12 @@ Question 6
 </h3>
 <ul>
 <li>
-This is DNA data, so what kinds of BLAST’s can you use?
+This is DNA data, so what kinds of BLAST can you use?
 </li>
 </ul>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>First, lets do a nucleotide BLAST. Click on nucleotide BLAST, and copy and paste your original sequence. Now, select the <strong>Nucleotide collection</strong> database and run a megablast. Answer the following questions:</li>
+<li>First, let’s do a nucleotide BLAST. Click on nucleotide BLAST, and copy and paste your original sequence. Now, select the <strong>Nucleotide collection</strong> database and run a megablast. Answer the following questions:</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="questions-7-8">
@@ -358,7 +359,7 @@ Questions 7-8
 </h3>
 <ul>
 <li>
-What are the best 3 hits. Why do you consider them the best
+What are the best 3 hits? Why do you consider them the best
 hits?
 </li>
 <li>
@@ -384,8 +385,8 @@ Explain why briefly.
 <li>Go to the Taxonomy window of the BLAST results. Answer the following question:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-10">
-Questions 10
+<h3 id="question-10">
+Question 10
 </h3>
 <ul>
 <li>
@@ -403,7 +404,7 @@ Questions 11 - 12
 </h3>
 <ul>
 <li>
-What kind of is this? A FASTA or a GenBank
+What kind of file is this? A FASTA or a GenBank file?
 </li>
 <li>
 Copy and paste the protein region coded by the CDS
@@ -426,8 +427,8 @@ Check the organism’s name. Is this what you found at the beginning
 of the lab?
 </li>
 <li>
-Go to the genomic regions? How many exons does the gene has? How did
-you come to this conclusion?
+Go to the genomic regions. How many exons does the gene have? How
+did you come to this conclusion?
 </li>
 </ul>
 </div>
@@ -436,8 +437,8 @@ you come to this conclusion?
 <li><p>Click on the UniProtKB/Swiss-Prot link. Answer the following questions</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-16--19">
-Questions 16- 19
+<h3 id="questions-16-19">
+Questions 16-19
 </h3>
 <ul>
 <li>
@@ -533,9 +534,9 @@ paragraphs are more than enough.
 <div id="creating-databases-using-blast" class="section level3 hasAnchor" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Creating databases using BLAST<a href="advanced-bioinformatics.html#creating-databases-using-blast" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Today we are going to learn how to create our own databases in the cluster based on a list of sequences and search to identify query sequences from species of interest.</p>
-<p>In this case, let’s do something similar to what most labs have been doing since the COVID pandemic: Lets try and identify several sequences of a region from the <strong>spike protein</strong> from samples across the world: One from Oregon, one from Massachussetts and one from the UK.</p>
-<p>The idea is to figure out if each of the sequences belongs to COVID or any other related respiratory viruses such as H1N1, common cold (Rhinovirus) or actual SARS-CoVID-2.</p>
-<p>I have added 11 sequences of idfferent samples of COVID and other related viruses into a file called <code>coronavirus_references.fasta</code>.</p>
+<p>In this case, let’s do something similar to what most labs have been doing since the COVID pandemic: let’s try to identify several sequences of a region from the <strong>spike protein</strong> from samples across the world: One from Oregon, one from Massachusetts, and one from the UK.</p>
+<p>The idea is to figure out if each of the sequences belongs to COVID or any other related respiratory viruses such as H1N1, common cold (Rhinovirus) or SARS-CoV-2.</p>
+<p>I have added 11 sequences of different samples of COVID and other related viruses into a file called <code>coronavirus_references.fasta</code>.</p>
 <p>This is an evolutionary tree of the reference sequences as described by <a href="https://link.springer.com/article/10.1007/s13337-021-00653-y#Sec2">Sahu et al. (2021)</a></p>
 <div class="float">
 <img src="Lab4/covid_tree.jpg" alt="Phylogenetic tree" />
@@ -572,8 +573,8 @@ added to check the sequences.
 <p>Now, we are going to <strong>create the BLAST database</strong>. To create this we will use the following template of code:</p>
 <pre><code>makeblastdb -in list_of_reference_seq -dbtype type_of_molecule -out database_name</code></pre>
 <div class="rmdquestion">
-<h3 id="question-30">
-Question 30
+<h3 id="questions-30-31">
+Questions 30-31
 </h3>
 <ul>
 <li>
@@ -593,8 +594,8 @@ Modify the template code by changing the
 <p>The following is template code to run BLAST:</p>
 <pre><code>blast_program -query query_file -db database_name -out output_file -evalue 1e-10 -outfmt 6 -max_target_seqs 7</code></pre>
 <div class="rmdquestion">
-<h3 id="questions-31---33">
-Questions 31 - 33
+<h3 id="questions-32-34">
+Questions 32-34
 </h3>
 <ul>
 <li>
@@ -625,13 +626,15 @@ mean.
 <li>Run the modified code. Check that you have some results by making sure that your <code>output_file</code> has content on it.</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-34">
-Question 34
+<h3 id="question-35">
+Question 35
 </h3>
-<p>
--In the following table, add the top 3 hits for each of the query
+<ul>
+<li>
+In the following table, add the top 3 hits for each of the query
 sequences.
-</p>
+</li>
+</ul>
 </div>
 <pre><code>| qseqid  | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore |
 |---------|--------|--------|--------|----------|---------|--------|------|--------|------|--------|----------|
@@ -645,8 +648,8 @@ sequences.
 | Query_2 |        |        |        |          |         |        |      |        |      |        |          |
 | Query_2 |        |        |        |          |         |        |      |        |      |        |          |</code></pre>
 <div class="rmdquestion">
-<h3 id="questions-35---36">
-Questions 35 - 36
+<h3 id="questions-36-37">
+Questions 36-37
 </h3>
 <ul>
 <li>
@@ -669,19 +672,19 @@ most likely sequences?
 <div id="using-hmmer-to-search-for-proteins-with-domains-of-interest" class="section level3 hasAnchor" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Using HMMER to search for proteins with domains of interest<a href="advanced-bioinformatics.html#using-hmmer-to-search-for-proteins-with-domains-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We are going to learn also how to use the information from databases to identify genes of interest that can serve us.</p>
-<p>In this case, you are a Veterinarian Bioinformatitian.</p>
+<p>In this case, you are a veterinary bioinformatician.</p>
 <p>You have detected that a community of three animals (A chicken, <em>Gallus gallus</em>; a dog, <em>Canis familiaris</em>; and a cow, <em>Bos taurus</em>) that may have a disease associated with a mutation on the <a href="https://medlineplus.gov/genetics/gene/shh/#resources">Sonic The Hedgehog gene</a>.</p>
-<p>You sequenced one copy of each the genes per species, and translated them intro proteins.</p>
+<p>You sequenced one copy of each of the genes per species, and translated them into proteins.</p>
 <p>However, due to an error in the machine, your sequences have been mixed with another hundred protein sequences from other species and genes in a file called <code>oh_this_is_a_mess.fasta</code></p>
 <p>A BLAST would be too much to run as you have a very small machine in your office, but you remember (thanks to your bioinformatics course ;) ) that you can run HMMER, a faster way of identifying protein sequences using Hidden Markov Models (HMM).</p>
 <p>You also remember that <a href="http://pfam.xfam.org/">Pfam</a>, in Interpro, is a great database of protein domains that also contains HMM for these proteins.</p>
 <p>Using your bioinformatics software, you discover that there is a reference gene for <em>Sonic The Hedgehog</em> in humans, in NCBI, in the accession number <a href="http://www.ncbi.nlm.nih.gov/protein/NP_000184.1?report=fasta">NP_000184.1</a></p>
 <ol style="list-style-type: decimal">
-<li>Copy the FASTA file and search for the domains in [InterPro]. When the result appears, answer these questions:</li>
+<li>Copy the FASTA file and search for the domains in <a href="https://www.ebi.ac.uk/interpro/search/sequence/">InterPro</a>. When the result appears, answer these questions:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="questions-35-38">
-Questions 35-38
+<h3 id="questions-38-41">
+Questions 38-41
 </h3>
 <ul>
 <li>
@@ -725,29 +728,29 @@ points total**
 <li>Under the <strong>InterProScan Search Result</strong> title, you will see a sub-menu that says <strong>entries</strong>. Click on it and in the <strong>1-8 entries ..</strong> click and select <strong>PFAM</strong>. You should see two domains:</li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-39">
-Question 39:
+<h3 id="question-42">
+Question 42
 </h3>
 <ul>
 <li>
-Are these two domains the same domains as in Q37?
+Are these two domains the same domains as in Q40?
 </li>
 </ul>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Click on the PFAM profile, go to <strong>Curation</strong> and Download the raw HMM for each domain into a new <code>hmm_example</code> folder inside your <code>Lab_4</code> folder.</p></li>
-<li><p>InterPro now saves the files as compressed files (<code>gzip files</code>). We need to uncompressed them. To do this, you need to rename your files by adding a <code>.gz</code>, for example:</p></li>
+<li><p>InterPro now saves the files as compressed files (<code>gzip files</code>). We need to uncompress them. To do this, you need to rename your files by adding a <code>.gz</code>, for example:</p></li>
 </ol>
 <pre><code>mv file.hmm file.hmm.gz</code></pre>
 <p>and then uncompress them by using <code>gunzip</code>:</p>
 <pre><code>gunzip file.hmm.gz</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Upload the <code>oh_this_is_a_mess.fasta</code> file from moodle into the new folder</p></li>
+<li><p>Upload the <code>oh_this_is_a_mess.fasta</code> file from Moodle into the new folder</p></li>
 <li><p>Merge both HMM files into a single file called <code>SHH.hmm</code>. Answer the following question:</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-36">
-Question 36
+<h3 id="question-43">
+Question 43
 </h3>
 <ul>
 <li>
@@ -760,8 +763,8 @@ How would you merge the two files? Add the code below.
 </ol>
 <pre><code>hmmsearch --tblout output_table HMM_file query_sequences</code></pre>
 <div class="rmdquestion">
-<h3 id="question-37">
-Question 37
+<h3 id="question-44">
+Question 44
 </h3>
 <ul>
 <li>
@@ -776,8 +779,8 @@ below.
 <li><p>Check the <code>output_table</code> file.</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-38">
-Question 38
+<h3 id="questions-45-46">
+Questions 45-46
 </h3>
 <ul>
 <li>
@@ -819,42 +822,42 @@ of domains? Type of domains?)
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-share.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-share.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
