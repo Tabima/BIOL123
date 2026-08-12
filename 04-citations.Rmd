@@ -149,7 +149,7 @@ You can also check if you are inside the folder of interest by using the `pwd` c
 
 After creating your `Lab_2` folder, we need to populate it with files.
 
-I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: `https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_2/text_file.txt`. 
+I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: `https://raw.githubusercontent.com/Tabima/BIOL123/refs/heads/main/Lab2/text_file.txt`. 
 
 To download the files, use the `wget` command. (`wget` is short for web page get): 
 
