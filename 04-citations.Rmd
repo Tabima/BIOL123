@@ -21,8 +21,7 @@ However, before we start using the command line I decided to make a list of the 
 
 ### Logging in
 
-- Logging into the cluster: `140.232.222.14` in your browser
-- Logging into the cluster via FTP to upload/download files (e.g. Filezilla, Cyberduck): `ssh username@140.232.222.14`
+- Logging into the cluster: `140.232.222.14:8787` in your browser
 
 ### Navigating the cluster
 
@@ -80,7 +79,7 @@ In addition, in case you forget what is your username, you can always use the co
 
 This means two things:
 
-1. Our home directory, where all of your files are, is located within the `/Smaug_SSD/MBB101/username` folder
+1. Our home directory, where all of your files are, is located within the `/Smaug_SSD/BIOL123_2026/username` folder
 2. Our username, in case we forget it, can always be remembered.
 
 ### Running basic commands
@@ -127,20 +126,20 @@ Exactly, so use that command to create the folder, and then use the `ls` command
 
 Nice, the folder has been created! 
 
-To navigate into the new MBB101 folder, use the `cd` command (`cd` is short for change directory).
+To navigate into the new BIOL123 folder, use the `cd` command (`cd` is short for change directory).
 
-The syntax of `cd` is `cd destination`, so in our case, we would do `cd MBB101`:
+The syntax of `cd` is `cd destination`, so in our case, we would do `cd BIOL123`:
 
 !["Changing directories"](Lab2/cd_mbb.png)
 
-if you see, after our `username@smaug` we can see now it shows a prompt that says `MBB101`. This means we have been able to move to our folder! 
+if you see, after our `username@smaug` we can see now it shows a prompt that says `BIOL123`. This means we have been able to move to our folder! 
 
 You can also check if you are inside the folder of interest by using the `pwd` command (`pwd` is short for print working directory)
 
 ```{block, type='rmdquestion'}
 ### Question 4
 
-- Create a folder within MBB101 called Lab_2. How would you do it? Add a screenshot of the command and the result.
+- Create a folder within BIOL123 called Lab_2. How would you do it? Add a screenshot of the command and the result.
 ```
 
 
@@ -150,7 +149,7 @@ You can also check if you are inside the folder of interest by using the `pwd` c
 
 After creating your `Lab_2` folder, we need to populate it with files.
 
-I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: `https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_2/text_file.txt`. 
+I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: `https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_2/text_file.txt`. 
 
 To download the files, use the `wget` command. (`wget` is short for web page get): 
 
@@ -174,21 +173,21 @@ To download the files, use the `wget` command. (`wget` is short for web page get
 
 Finally, let's do the examples from Monday's course:
 
-* How many times is the word "Dursley" found in the document?
-* How many times is Harry mentioned?
-* How was the weather on that Tuesday?
+* How many times is the word "Crawler" found in the document?
+* How many times is the cat mentioned?
+* How much time was left in the count-down timer ?
 
 To find and match a pattern, we can use the command `grep`. (`grep` is short for `g/re/p`: globally search for a regular expression and print matching lines)
 
-So, if we want to find out if the word "Dursley" is mentioned in the document we use the command:
+So, if we want to find out if the word "Crawler" is mentioned in the document we use the command:
 
-`grep Dursley text_file.txt`
+`grep Crawler text_file.txt`
 
 ```{block, type='rmdwarning'}
 
 **NOTE: Before you run the command, do you see anything weird?**
 
-In this case, we are using two more arguments after the `grep` command: The pattern of interest we want (Dursley) and the file that we want to search in (text_file.txt).
+In this case, we are using two more arguments after the `grep` command: The pattern of interest we want (Crawler) and the file that we want to search in (text_file.txt).
 
 To learn how to use these commands, we can google the command or use the `man` command (short for manual). 
 ```
@@ -205,9 +204,9 @@ Ah cool, we can see if the pattern is present or not!
 
 - What happens if you try to answer these questions using `grep`? 
 
-   * How many times is the word "Dursley" found in the document?
-   * How many times is Harry mentioned?
-   * How was the weather on that Tuesday?
+* How many times is the word "Crawler" found in the document?
+* How many times is the cat mentioned?
+* How much time was left in the count-down timer?
 
 Summarize how `grep` can help you with finding these patterns of interest.
 ```
@@ -215,7 +214,7 @@ Summarize how `grep` can help you with finding these patterns of interest.
 ```{block, type='rmdquestion'}
 ### Question 8
 
-- Using the `man grep` command, how can you use grep to count the number of occurrences of a text string? For example, can grep count the number of times the word `Dursley` exists in the file? Write the command you would use and the results.
+- Using the `man grep` command, how can you use grep to count the number of occurrences of a text string? For example, can grep count the number of times the word `Crawler` exists in the file? Write the command you would use and the results.
 ```
 
 ***
@@ -274,7 +273,7 @@ So, if you recall the theory class, we learned about the `sed` command to replac
 
 The idea is that you will replace some patterns in the `modified_file.txt` file and then check if the results make sense.
 
-1. Change the `Dursley` patterns to `Potter` and save the file as `potter.txt` using the `sed s/Dursley/Potter/g modified_file.txt > potter.txt` command.
+1. Change the `Donut` patterns to `Javier` and save the file as `new_cat.txt` using the `sed s/Donut/Javier/g modified_file.txt > new_cat.txt` command.
 
 
 ```{block, type='rmdquestion'}
@@ -286,25 +285,25 @@ The idea is that you will replace some patterns in the `modified_file.txt` file 
 ```{block, type='rmdquestion'}
 ### Question 14
 
-- Check the number of occurrences of the word `Potter` in the `potter.txt` file using `grep`. 
+- Check the number of occurrences of the word `Donut` in the `new_cat.txt` file using `grep`. 
 ```
 
 ```{block, type='rmdquestion'}
 ### Question 15
 
-- How many times does the word `Potter` appear? Is it the same number as in question 7 when you checked the number of times that Harry was mentioned? Why?
+- How many times does the word `Donut` appear? Is it the same number as in question 7 when you checked the number of times that Harry was mentioned? Why?
 ```
 
 ```{block, type='rmdquestion'}
 ### Question 16
 
-Count the number of lines of the `potter.txt` file and compare them to the original file.
+Count the number of lines of the `new_cat.txt` file and compare them to the original file.
 
-- Is the number of lines similar between `potter.txt` and `modified_file.txt`? Very briefly justify your answer.
+- Is the number of lines similar between `new_cat.txt` and `modified_file.txt`? Very briefly justify your answer.
 ```
 
 
-4. Extract all the lines that say `Potter` from `potter.txt` into a new file called `potter_lines.txt`. 
+4. Extract all the lines that say `Javier` from `new_cat.txt` into a new file called `Javier_lines.txt`. 
 
 ```{block, type='rmdquestion'}
 ### Question 17
@@ -315,7 +314,7 @@ Count the number of lines of the `potter.txt` file and compare them to the origi
 ```{block, type='rmdquestion'}
 ### Question 18
 
-- What are the number of lines that say `Potter` in the file? Is the number different from questions 14 and 15? Explain your answer very briefly.
+- What are the number of lines that say `Javier` in the file? Is the number different from questions 14 and 15? Explain your answer very briefly.
 ```
 
 ***
@@ -333,7 +332,7 @@ Now that we are done creating files and modifying them, we need to remove all th
 ```
 
 
-2. Rename the `potter.txt` file as `Potter_story.txt` using the `mv` command, as such: `mv potter.txt Potter_story.txt`.
+2. Rename the `new_cat.txt` file as `javier_cat.txt` using the `mv` command, as such: `mv new_cat.txt javier_cat.txt`.
 
 ```{block, type='rmdquestion'}
 ### Question 20
@@ -342,7 +341,7 @@ Now that we are done creating files and modifying them, we need to remove all th
 ```
 
 
-3. Go back to your `Lab_2/` folder (remember to use the `cd ..` command) and create a symbolic link of your `Potter_story.txt` file into the `Lab_2/` folder using the `ln -s modified/Potter_story.txt .`. 
+3. Go back to your `Lab_2/` folder (remember to use the `cd ..` command) and create a symbolic link of your `Potter_story.txt` file into the `Lab_2/` folder using the `ln -s modified/javier_cat.txt .`. 
 
 ```{block, type='rmdquestion'}
 ### Question 21
@@ -353,5 +352,5 @@ Now that we are done creating files and modifying them, we need to remove all th
 ```{block, type='rmdquestion'}
 ### Question 22
 
-- Use the ls -l command while in your `Lab_2/` folder. What is a weird pattern you see on the new `Potter_story.txt` file? Is that its absolute or its relative path?
+- Use the ls -l command while in your `Lab_2/` folder. What is a weird pattern you see on the new `javier_cat.txt` file? Is that its absolute or its relative path?
 ```

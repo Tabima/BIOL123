@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Introduction to the Command Line | Introduction to Bioinformatics: Excercise Guidebook" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-08-10" />
+<meta name="date" content="2026-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,12 +162,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="software.html"><a href="software.html#how-to-install-r"><i class="fa fa-check"></i><b>3.1</b> How to install R?</a></li>
 <li class="chapter" data-level="3.2" data-path="software.html"><a href="software.html#how-to-install-rstudio"><i class="fa fa-check"></i><b>3.2</b> How to install RStudio?</a></li>
-<li class="chapter" data-level="3.3" data-path="software.html"><a href="software.html#how-to-install-atom"><i class="fa fa-check"></i><b>3.3</b> How to install Atom?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="testing-the-software.html"><a href="testing-the-software.html"><i class="fa fa-check"></i><b>4</b> Testing the software</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="testing-the-software.html"><a href="testing-the-software.html#testing-r-and-rstudio"><i class="fa fa-check"></i><b>4.1</b> Testing R and RStudio</a></li>
-<li class="chapter" data-level="4.2" data-path="testing-the-software.html"><a href="testing-the-software.html#testing-atom"><i class="fa fa-check"></i><b>4.2</b> Testing Atom</a></li>
+<li class="chapter" data-level="4.2" data-path="testing-the-software.html"><a href="testing-the-software.html#testing-the-editing-features-of-r-studio"><i class="fa fa-check"></i><b>4.2</b> Testing the editing features of R Studio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="rmark.html"><a href="rmark.html"><i class="fa fa-check"></i><b>5</b> Introduction to electronic notebooks in R Markdown</a>
 <ul>
@@ -313,8 +312,7 @@ To create our first lines of code to process text files
 <div id="logging-in" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Logging in<a href="introduction-to-the-command-line.html#logging-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Logging into the cluster: <code>140.232.222.14</code> in your browser</li>
-<li>Logging into the cluster via FTP to upload/download files (e.g. Filezilla, Cyberduck): <code>ssh username@140.232.222.14</code></li>
+<li>Logging into the cluster: <code>140.232.222.14:8787</code> in your browser</li>
 </ul>
 </div>
 <div id="navigating-the-cluster" class="section level3 hasAnchor" number="6.1.2">
@@ -386,7 +384,7 @@ in?
 </div>
 <p>This means two things:</p>
 <ol style="list-style-type: decimal">
-<li>Our home directory, where all of your files are, is located within the <code>/Smaug_SSD/MBB101/username</code> folder</li>
+<li>Our home directory, where all of your files are, is located within the <code>/Smaug_SSD/BIOL123_2026/username</code> folder</li>
 <li>Our username, in case we forget it, can always be remembered.</li>
 </ol>
 </div>
@@ -443,13 +441,13 @@ folder?
 <div class="figcaption">“making our first folder”</div>
 </div>
 <p>Nice, the folder has been created!</p>
-<p>To navigate into the new MBB101 folder, use the <code>cd</code> command (<code>cd</code> is short for change directory).</p>
-<p>The syntax of <code>cd</code> is <code>cd destination</code>, so in our case, we would do <code>cd MBB101</code>:</p>
+<p>To navigate into the new BIOL123 folder, use the <code>cd</code> command (<code>cd</code> is short for change directory).</p>
+<p>The syntax of <code>cd</code> is <code>cd destination</code>, so in our case, we would do <code>cd BIOL123</code>:</p>
 <div class="float">
 <img src="Lab2/cd_mbb.png" alt="“Changing directories”" />
 <div class="figcaption">“Changing directories”</div>
 </div>
-<p>if you see, after our <code>username@smaug</code> we can see now it shows a prompt that says <code>MBB101</code>. This means we have been able to move to our folder!</p>
+<p>if you see, after our <code>username@smaug</code> we can see now it shows a prompt that says <code>BIOL123</code>. This means we have been able to move to our folder!</p>
 <p>You can also check if you are inside the folder of interest by using the <code>pwd</code> command (<code>pwd</code> is short for print working directory)</p>
 <div class="rmdquestion">
 <h3 id="question-4">
@@ -457,8 +455,8 @@ Question 4
 </h3>
 <ul>
 <li>
-Create a folder within MBB101 called Lab_2. How would you do it? Add
-a screenshot of the command and the result.
+Create a folder within BIOL123 called Lab_2. How would you do it?
+Add a screenshot of the command and the result.
 </li>
 </ul>
 </div>
@@ -469,7 +467,7 @@ a screenshot of the command and the result.
 <div id="downloading-files-into-the-cluster." class="section level3 hasAnchor" number="6.2.5">
 <h3><span class="header-section-number">6.2.5</span> Downloading files into the cluster.<a href="introduction-to-the-command-line.html#downloading-files-into-the-cluster." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After creating your <code>Lab_2</code> folder, we need to populate it with files.</p>
-<p>I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: <code>https://raw.githubusercontent.com/Tabima/MBB101/master/Lab_2/text_file.txt</code>.</p>
+<p>I have created a file for us to do a quick and fun exercise today and have uploaded it to a public repository of files called GitHub, at this link: <code>https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_2/text_file.txt</code>.</p>
 <p>To download the files, use the <code>wget</code> command. (<code>wget</code> is short for web page get):</p>
 <div class="float">
 <img src="Lab2/wget.png" alt="“Downloading text file”" />
@@ -504,13 +502,13 @@ from the command?
 <h3><span class="header-section-number">6.2.6</span> Extracting patterns from a text file<a href="introduction-to-the-command-line.html#extracting-patterns-from-a-text-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, let’s do the examples from Monday’s course:</p>
 <ul>
-<li>How many times is the word “Dursley” found in the document?</li>
-<li>How many times is Harry mentioned?</li>
-<li>How was the weather on that Tuesday?</li>
+<li>How many times is the word “Crawler” found in the document?</li>
+<li>How many times is the cat mentioned?</li>
+<li>How much time was left in the count-down timer ?</li>
 </ul>
 <p>To find and match a pattern, we can use the command <code>grep</code>. (<code>grep</code> is short for <code>g/re/p</code>: globally search for a regular expression and print matching lines)</p>
-<p>So, if we want to find out if the word “Dursley” is mentioned in the document we use the command:</p>
-<p><code>grep Dursley text_file.txt</code></p>
+<p>So, if we want to find out if the word “Crawler” is mentioned in the document we use the command:</p>
+<p><code>grep Crawler text_file.txt</code></p>
 <div class="rmdwarning">
 <p>
 <strong>NOTE: Before you run the command, do you see anything
@@ -518,7 +516,7 @@ weird?</strong>
 </p>
 <p>
 In this case, we are using two more arguments after the
-<code>grep</code> command: The pattern of interest we want (Dursley) and
+<code>grep</code> command: The pattern of interest we want (Crawler) and
 the file that we want to search in (text_file.txt).
 </p>
 <p>
@@ -542,17 +540,22 @@ Question 7
 What happens if you try to answer these questions using
 <code>grep</code>?
 </p>
-<ul>
-<li>
-How many times is the word “Dursley” found in the document?
 </li>
 <li>
-How many times is Harry mentioned?
+<p>
+How many times is the word “Crawler” found in the
+document?
+</p>
 </li>
 <li>
-How was the weather on that Tuesday?
+<p>
+How many times is the cat mentioned?
+</p>
 </li>
-</ul>
+<li>
+<p>
+How much time was left in the count-down timer?
+</p>
 </li>
 </ul>
 <p>
@@ -568,7 +571,7 @@ Question 8
 <li>
 Using the <code>man grep</code> command, how can you use grep to
 count the number of occurrences of a text string? For example, can grep
-count the number of times the word <code>Dursley</code> exists in the
+count the number of times the word <code>Crawler</code> exists in the
 file? Write the command you would use and the results.
 </li>
 </ul>
@@ -645,7 +648,7 @@ What is the absolute path of the
 <p>So, if you recall the theory class, we learned about the <code>sed</code> command to replace patterns.</p>
 <p>The idea is that you will replace some patterns in the <code>modified_file.txt</code> file and then check if the results make sense.</p>
 <ol style="list-style-type: decimal">
-<li>Change the <code>Dursley</code> patterns to <code>Potter</code> and save the file as <code>potter.txt</code> using the <code>sed s/Dursley/Potter/g modified_file.txt &gt; potter.txt</code> command.</li>
+<li>Change the <code>Donut</code> patterns to <code>Javier</code> and save the file as <code>new_cat.txt</code> using the <code>sed s/Donut/Javier/g modified_file.txt &gt; new_cat.txt</code> command.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-13">
@@ -663,8 +666,8 @@ Question 14
 </h3>
 <ul>
 <li>
-Check the number of occurrences of the word <code>Potter</code> in
-the <code>potter.txt</code> file using <code>grep</code>.
+Check the number of occurrences of the word <code>Donut</code> in
+the <code>new_cat.txt</code> file using <code>grep</code>.
 </li>
 </ul>
 </div>
@@ -674,7 +677,7 @@ Question 15
 </h3>
 <ul>
 <li>
-How many times does the word <code>Potter</code> appear? Is it the
+How many times does the word <code>Donut</code> appear? Is it the
 same number as in question 7 when you checked the number of times that
 Harry was mentioned? Why?
 </li>
@@ -685,18 +688,18 @@ Harry was mentioned? Why?
 Question 16
 </h3>
 <p>
-Count the number of lines of the <code>potter.txt</code> file and
+Count the number of lines of the <code>new_cat.txt</code> file and
 compare them to the original file.
 </p>
 <ul>
 <li>
-Is the number of lines similar between <code>potter.txt</code> and
+Is the number of lines similar between <code>new_cat.txt</code> and
 <code>modified_file.txt</code>? Very briefly justify your answer.
 </li>
 </ul>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>Extract all the lines that say <code>Potter</code> from <code>potter.txt</code> into a new file called <code>potter_lines.txt</code>.</li>
+<li>Extract all the lines that say <code>Javier</code> from <code>new_cat.txt</code> into a new file called <code>Javier_lines.txt</code>.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-17">
@@ -714,7 +717,7 @@ Question 18
 </h3>
 <ul>
 <li>
-What are the number of lines that say <code>Potter</code> in the
+What are the number of lines that say <code>Javier</code> in the
 file? Is the number different from questions 14 and 15? Explain your
 answer very briefly.
 </li>
@@ -740,7 +743,7 @@ sure the files do not exist anymore?
 </ul>
 </div>
 <ol start="2" style="list-style-type: decimal">
-<li>Rename the <code>potter.txt</code> file as <code>Potter_story.txt</code> using the <code>mv</code> command, as such: <code>mv potter.txt Potter_story.txt</code>.</li>
+<li>Rename the <code>new_cat.txt</code> file as <code>javier_cat.txt</code> using the <code>mv</code> command, as such: <code>mv new_cat.txt javier_cat.txt</code>.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-20">
@@ -753,7 +756,7 @@ Explain the syntax of the previous command briefly.
 </ul>
 </div>
 <ol start="3" style="list-style-type: decimal">
-<li>Go back to your <code>Lab_2/</code> folder (remember to use the <code>cd ..</code> command) and create a symbolic link of your <code>Potter_story.txt</code> file into the <code>Lab_2/</code> folder using the <code>ln -s modified/Potter_story.txt .</code>.</li>
+<li>Go back to your <code>Lab_2/</code> folder (remember to use the <code>cd ..</code> command) and create a symbolic link of your <code>Potter_story.txt</code> file into the <code>Lab_2/</code> folder using the <code>ln -s modified/javier_cat.txt .</code>.</li>
 </ol>
 <div class="rmdquestion">
 <h3 id="question-21">
@@ -772,8 +775,8 @@ Question 22
 <ul>
 <li>
 Use the ls -l command while in your <code>Lab_2/</code> folder. What
-is a weird pattern you see on the new <code>Potter_story.txt</code>
-file? Is that its absolute or its relative path?
+is a weird pattern you see on the new <code>javier_cat.txt</code> file?
+Is that its absolute or its relative path?
 </li>
 </ul>
 </div>

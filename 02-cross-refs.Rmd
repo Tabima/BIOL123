@@ -9,7 +9,7 @@
 3. To perform basic tests of functionality of these programs
 ```
 
-As I mentioned in the previous chapter, we are going to use *R, RStudio* and the basic *UNIX command line* for our exercises, as well as *Atom*, a basic text editor that's widely used in programming to view and edit files.
+As I mentioned in the previous chapter, we are going to use *R, RStudio* and the basic *UNIX command line* for our exercises, as well to view and edit files.
 
 *For this course we WON'T need to install R or RStudio on our computers! We will use a webpage that has R and RStudio*. That being said, I'll leave this guide in case you want to install it in the future.
 
@@ -44,27 +44,21 @@ As I mentioned in the previous chapter, we are going to use *R, RStudio* and the
 
 3. Click on the version recommended for your system. save the .exe/.dmg file on your computer, double-click it to open, and then drag and drop it to your applications folder.
 
-## How to install Atom?
-
-1. Go to the atom webpage at [https://atom.io/](https://atom.io/)
-2. Click on Download.
-3. 
-  - In Mac OS: Move the application to the Applications folder
-  - In Windows: Execute the `AtomSetup.exe` file
-
 ***
 
 # Testing the software
 
 ## Testing R and RStudio
 
-1.  Go to http://140.232.222.154:8787
+1.  Go to http://140.232.222.14:8787
 
 2. Log in using your Clark username *without* the `@clarku.edu` (e.g. my user would be `jtabima`) and the `BIOL123` password, all in capital letters
 
 3. You should see a window like this:
 
 ![RStudio panels](Lab0/R_panels.png)
+
+Welcome to SMAUG! This is our processing machine for BIOL123.
 
 You should have three panes open (or probably four). The one on the left that says `R version XXX` is your *console*. Most of the code goes there, both input and output. 
 
@@ -81,17 +75,15 @@ Finally, the lower right has the *Files, Plots, Packages, Help, and Viewer panes
 We will talk on class about R notebooks and why they are important for our course!
 
 
-## Testing Atom
+## Testing the editing features of R Studio
 
-1. To test Atom, download the `atom_test` file from the Moodle page
+1. To test the text editor in R studio, download the `Test for editor` file from the [Canvas page](https://canvas.clarku.edu/courses/21486/modules/items/879290)
 
-2. Open Atom in Applications
+2.Upload the file into your R studio server instance at SMAUG using hte 
 
 3. Use `File -> Open` and open `atom_test`
 
-4. You should see this:
+4. You should be able to read a text file!
 
-![RStudio panels](Lab0/atom_screen.png)
-
-We will use Atom to open more of these kinds of files that have no programs associated with them! Atom can open any text file that is unformatted, as well as many scripts and programs. We won't go so deep into these other elements (Remember, this is an *Introduction* course!) but we can discuss them in the lab.
+We will use RStudio to open more of these kinds of files that have no programs associated with them! RStudio can open any text file that is un-formatted, as well as many scripts and programs. We won't go so deep into these other elements (Remember, this is an *Introduction* course!) but we can discuss them in the lab.
 

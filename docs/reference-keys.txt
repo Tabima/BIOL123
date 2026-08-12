@@ -6,10 +6,9 @@ do-we-need-to-know-how-to-program
 software
 how-to-install-r
 how-to-install-rstudio
-how-to-install-atom
 testing-the-software
 testing-r-and-rstudio
-testing-atom
+testing-the-editing-features-of-r-studio
 rmark
 markdown-formats
 basics-of-markdown
