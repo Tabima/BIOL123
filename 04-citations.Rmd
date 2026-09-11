@@ -291,7 +291,7 @@ The idea is that you will replace some patterns in the `modified_file.txt` file 
 ```{block, type='rmdquestion'}
 ### Question 15
 
-- How many times does the word `Donut` appear? Is it the same number as in question 7 when you checked the number of times that Harry was mentioned? Why?
+- How many times does the word `Donut` appear? Is it the same number as in question 7 when you checked the number of times that Donut was mentioned? Why?
 ```
 
 ```{block, type='rmdquestion'}
