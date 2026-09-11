@@ -126,20 +126,20 @@ Exactly, so use that command to create the folder, and then use the `ls` command
 
 Nice, the folder has been created! 
 
-To navigate into the new BIOL123 folder, use the `cd` command (`cd` is short for change directory).
+To navigate into the new `MBB101` folder, use the `cd` command (`cd` is short for change directory).
 
-The syntax of `cd` is `cd destination`, so in our case, we would do `cd BIOL123`:
+The syntax of `cd` is `cd destination`, so in our case, we would do `cd MBB101`:
 
 !["Changing directories"](Lab2/cd_mbb.png)
 
-if you see, after our `username@smaug` we can see now it shows a prompt that says `BIOL123`. This means we have been able to move to our folder! 
+if you see, after our `username@smaug` we can see now it shows a prompt that says `MBB101`. This means we have been able to move to our folder! 
 
 You can also check if you are inside the folder of interest by using the `pwd` command (`pwd` is short for print working directory)
 
 ```{block, type='rmdquestion'}
 ### Question 4
 
-- Create a folder within BIOL123 called Lab_2. How would you do it? Add a screenshot of the command and the result.
+- Create a folder within `MBB101` called Lab_2. How would you do it? Add a screenshot of the command and the result.
 ```
 
 
@@ -323,7 +323,7 @@ Count the number of lines of the `new_cat.txt` file and compare them to the orig
 
 Now that we are done creating files and modifying them, we need to remove all the files we are not using anymore. The `rm` command will allow us to do that.
 
-1. Remove the `potter_lines.txt` and the `modified_file.txt` files from the folder. 
+1. Remove the `Javier_lines.txt` and the `modified_file.txt` files from the folder. 
 
 ```{block, type='rmdquestion'}
 ### Question 19
@@ -341,7 +341,7 @@ Now that we are done creating files and modifying them, we need to remove all th
 ```
 
 
-3. Go back to your `Lab_2/` folder (remember to use the `cd ..` command) and create a symbolic link of your `Potter_story.txt` file into the `Lab_2/` folder using the `ln -s modified/javier_cat.txt .`. 
+3. Go back to your `Lab_2/` folder (remember to use the `cd ..` command) and create a symbolic link of your `javier_cat.txt` file into the `Lab_2/` folder using the `ln -s modified/javier_cat.txt .`. 
 
 ```{block, type='rmdquestion'}
 ### Question 21
