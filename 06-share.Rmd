@@ -157,8 +157,8 @@ So, to do the analysis:
 
 1. Create a new folder inside your home folder called `Lab_4`
 2. Create a second folder inside of `Lab_4` called blastDB and go into it.
-3. Copy the sequences from  `/home/jtabima/MBB101/lab4/coronavirus_references.fasta` into your `Lab_4/blastDB` folder
-4. We are going to use the `/home/jtabima/MBB101/lab4/unknown_locations.fasta` file as query for the unknown files. Copy it into your folder.
+3. Copy the sequences from  `/course_data/BIOL123_2026/data/coronavirus_references.fasta` into your `Lab_4/blastDB` folder
+4. We are going to use the `/course_data/BIOL123_2026/data/unknown_locations.fasta` file as query for the unknown files. Copy it into your folder.
 
 ```{block, type='rmdquestion'}
 ### Question 28 - 29
