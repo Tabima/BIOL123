@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-10-06" />
+<meta name="date" content="2026-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,9 +244,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html"><i class="fa fa-check"></i><b>9</b> Homology and multiple sequence alignments</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene"><i class="fa fa-check"></i><b>9.1</b> Downloading sequences from Homologene</a></li>
-<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft"><i class="fa fa-check"></i><b>9.2</b> Multiple sequence alignment in MAFFT</a></li>
-<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-an-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching an HMM model using our alignment</a></li>
+<li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-0-load-the-tools"><i class="fa fa-check"></i><b>9.1</b> Part 0: Load the tools</a></li>
+<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-1-get-the-sequences"><i class="fa fa-check"></i><b>9.2</b> Part 1: Get the sequences</a></li>
+<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-2-align-with-mafft-online-and-choose-the-best-algorithm"><i class="fa fa-check"></i><b>9.3</b> Part 2: Align with MAFFT (online) and choose the best algorithm</a></li>
+<li class="chapter" data-level="9.4" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-3-build-a-tree-from-the-alignment"><i class="fa fa-check"></i><b>9.4</b> Part 3: Build a tree from the alignment</a></li>
+<li class="chapter" data-level="9.5" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-4-where-are-the-most-and-fewest-changes"><i class="fa fa-check"></i><b>9.5</b> Part 4: Where are the most (and fewest) changes?</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-1-measure-conservation-at-every-position"><i class="fa fa-check"></i><b>9.5.1</b> Step 1: Measure conservation at every position</a></li>
+<li class="chapter" data-level="9.5.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-2-use-human-residue-numbers"><i class="fa fa-check"></i><b>9.5.2</b> Step 2: Use human residue numbers</a></li>
+<li class="chapter" data-level="9.5.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-3-find-the-proteins-domains"><i class="fa fa-check"></i><b>9.5.3</b> Step 3: Find the protein’s domains</a></li>
+<li class="chapter" data-level="9.5.4" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-4-plot-conservation-along-the-protein-with-the-domains"><i class="fa fa-check"></i><b>9.5.4</b> Step 4: Plot conservation along the protein with the domains</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-5-real-world-connection-mutations-that-cause-disease"><i class="fa fa-check"></i><b>9.6</b> Part 5: Real-world connection: mutations that cause disease</a></li>
+<li class="chapter" data-level="9.7" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#wrap-up"><i class="fa fa-check"></i><b>9.7</b> Wrap-up</a></li>
+<li class="chapter" data-level="9.8" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#challenge-optional"><i class="fa fa-check"></i><b>9.8</b> Challenge (optional)</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="phylogenetics.html"><a href="phylogenetics.html"><i class="fa fa-check"></i><b>10</b> Phylogenetics</a>
 <ul>
@@ -288,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Introduction to Bioinformatics: Excercise Guidebook</h1>
 <p class="author"><em>Javier F. Tabima Restrepo</em></p>
-<p class="date"><em>2026-10-06</em></p>
+<p class="date"><em>2026-10-28</em></p>
 </div>
 <div id="intro" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> MBB101/BIOL123 (Introduction to Bioinformatics) Excercise Guidebook<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>

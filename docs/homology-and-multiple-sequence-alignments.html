@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Javier F. Tabima Restrepo" />
 
 
-<meta name="date" content="2026-10-06" />
+<meta name="date" content="2026-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,9 +244,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html"><i class="fa fa-check"></i><b>9</b> Homology and multiple sequence alignments</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene"><i class="fa fa-check"></i><b>9.1</b> Downloading sequences from Homologene</a></li>
-<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft"><i class="fa fa-check"></i><b>9.2</b> Multiple sequence alignment in MAFFT</a></li>
-<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-an-hmm-model-using-our-alignment"><i class="fa fa-check"></i><b>9.3</b> Creating and searching an HMM model using our alignment</a></li>
+<li class="chapter" data-level="9.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-0-load-the-tools"><i class="fa fa-check"></i><b>9.1</b> Part 0: Load the tools</a></li>
+<li class="chapter" data-level="9.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-1-get-the-sequences"><i class="fa fa-check"></i><b>9.2</b> Part 1: Get the sequences</a></li>
+<li class="chapter" data-level="9.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-2-align-with-mafft-online-and-choose-the-best-algorithm"><i class="fa fa-check"></i><b>9.3</b> Part 2: Align with MAFFT (online) and choose the best algorithm</a></li>
+<li class="chapter" data-level="9.4" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-3-build-a-tree-from-the-alignment"><i class="fa fa-check"></i><b>9.4</b> Part 3: Build a tree from the alignment</a></li>
+<li class="chapter" data-level="9.5" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-4-where-are-the-most-and-fewest-changes"><i class="fa fa-check"></i><b>9.5</b> Part 4: Where are the most (and fewest) changes?</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-1-measure-conservation-at-every-position"><i class="fa fa-check"></i><b>9.5.1</b> Step 1: Measure conservation at every position</a></li>
+<li class="chapter" data-level="9.5.2" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-2-use-human-residue-numbers"><i class="fa fa-check"></i><b>9.5.2</b> Step 2: Use human residue numbers</a></li>
+<li class="chapter" data-level="9.5.3" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-3-find-the-proteins-domains"><i class="fa fa-check"></i><b>9.5.3</b> Step 3: Find the protein’s domains</a></li>
+<li class="chapter" data-level="9.5.4" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#step-4-plot-conservation-along-the-protein-with-the-domains"><i class="fa fa-check"></i><b>9.5.4</b> Step 4: Plot conservation along the protein with the domains</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#part-5-real-world-connection-mutations-that-cause-disease"><i class="fa fa-check"></i><b>9.6</b> Part 5: Real-world connection: mutations that cause disease</a></li>
+<li class="chapter" data-level="9.7" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#wrap-up"><i class="fa fa-check"></i><b>9.7</b> Wrap-up</a></li>
+<li class="chapter" data-level="9.8" data-path="homology-and-multiple-sequence-alignments.html"><a href="homology-and-multiple-sequence-alignments.html#challenge-optional"><i class="fa fa-check"></i><b>9.8</b> Challenge (optional)</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="phylogenetics.html"><a href="phylogenetics.html"><i class="fa fa-check"></i><b>10</b> Phylogenetics</a>
 <ul>
@@ -287,218 +298,345 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="homology-and-multiple-sequence-alignments" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Homology and multiple sequence alignments<a href="homology-and-multiple-sequence-alignments.html#homology-and-multiple-sequence-alignments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Homologous genes are genes that share common ancestry and can be functionally similar. These homologous genes can be identified between different samples, species, etc., based on similarity and other metrics such as inflation in MCL, etc.</p>
-<p>In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing their differences and similarities with multiple sequence alignments.</p>
-<div id="downloading-sequences-from-homologene" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Downloading sequences from Homologene<a href="homology-and-multiple-sequence-alignments.html#downloading-sequences-from-homologene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are many ways to obtain homologous genes. For example, running <code>OrthoMCL/OrthoFinder</code> in a set of genomes will identify all the genes of interest between the set of genomes.</p>
-<p>In other cases, we can obtain genes of interest from online databases, such as the <a href="https://orthomcl.org/orthomcl/app"><code>OrthoMCL DB</code></a> or <a href="https://www.ncbi.nlm.nih.gov/homologene/210"><code>NCBI homologene</code></a>.</p>
-<p>Today, we will use NCBI Homologene.</p>
-<ol style="list-style-type: decimal">
-<li>Go to this <a href="https://www.ncbi.nlm.nih.gov/homologene/210">link</a></li>
-</ol>
+<p>Homologous genes share a common ancestor. When we line up homologous sequences in a <strong>multiple sequence alignment (MSA)</strong>, we can see which positions changed over evolution and which stayed the same, and that tells us what parts of a protein matter.</p>
+<p>In this lab you will follow the workflow real researchers use:</p>
+<p><strong>get sequences → align them → build a tree → find where the protein changes (and where it doesn’t)</strong></p>
+<p>Our protein is <strong>MSH2</strong>, a DNA mismatch repair protein. In humans, damage to MSH2 causes Lynch syndrome, a hereditary cancer predisposition. By the end you will be able to answer: <em>which parts of this protein are the most important, and how can we tell?</em></p>
+<hr />
+<div id="part-0-load-the-tools" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Part 0: Load the tools<a href="homology-and-multiple-sequence-alignments.html#part-0-load-the-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The packages are already installed on the cluster. In RStudio, create a new R Markdown file called <code>Lab_5.Rmd</code> in your <code>BIOL123/Lab_5</code> folder, and load them:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="homology-and-multiple-sequence-alignments.html#cb58-1" tabindex="-1"></a><span class="fu">library</span>(Biostrings)   <span class="co"># reading and handling sequences</span></span>
+<span id="cb58-2"><a href="homology-and-multiple-sequence-alignments.html#cb58-2" tabindex="-1"></a><span class="fu">library</span>(ggmsa)        <span class="co"># drawing alignments</span></span>
+<span id="cb58-3"><a href="homology-and-multiple-sequence-alignments.html#cb58-3" tabindex="-1"></a><span class="fu">library</span>(phangorn)     <span class="co"># building trees</span></span>
+<span id="cb58-4"><a href="homology-and-multiple-sequence-alignments.html#cb58-4" tabindex="-1"></a><span class="fu">library</span>(dplyr)        <span class="co"># data wrangling</span></span>
+<span id="cb58-5"><a href="homology-and-multiple-sequence-alignments.html#cb58-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># plotting</span></span>
+<span id="cb58-6"><a href="homology-and-multiple-sequence-alignments.html#cb58-6" tabindex="-1"></a><span class="fu">library</span>(tibble)       <span class="co"># tables</span></span></code></pre></div>
+<hr />
+</div>
+<div id="part-1-get-the-sequences" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Part 1: Get the sequences<a href="homology-and-multiple-sequence-alignments.html#part-1-get-the-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will download manually reviewed MSH2 proteins from UniProt (a curated protein database) directly into R:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="homology-and-multiple-sequence-alignments.html#cb59-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://rest.uniprot.org/uniprotkb/stream?format=fasta&amp;query=%28gene%3AMSH2%29+AND+%28reviewed%3Atrue%29&quot;</span></span>
+<span id="cb59-2"><a href="homology-and-multiple-sequence-alignments.html#cb59-2" tabindex="-1"></a><span class="fu">download.file</span>(url, <span class="st">&quot;msh2_all.fasta&quot;</span>)</span>
+<span id="cb59-3"><a href="homology-and-multiple-sequence-alignments.html#cb59-3" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="homology-and-multiple-sequence-alignments.html#cb59-4" tabindex="-1"></a>seqs <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(<span class="st">&quot;msh2_all.fasta&quot;</span>)</span>
+<span id="cb59-5"><a href="homology-and-multiple-sequence-alignments.html#cb59-5" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="homology-and-multiple-sequence-alignments.html#cb59-6" tabindex="-1"></a><span class="co"># UniProt names are long, so keep only the short ID (like MSH2_HUMAN)</span></span>
+<span id="cb59-7"><a href="homology-and-multiple-sequence-alignments.html#cb59-7" tabindex="-1"></a><span class="fu">names</span>(seqs) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;^sp</span><span class="sc">\\</span><span class="st">|[^|]+</span><span class="sc">\\</span><span class="st">|([^ ]+) .*&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, <span class="fu">names</span>(seqs))</span>
+<span id="cb59-8"><a href="homology-and-multiple-sequence-alignments.html#cb59-8" tabindex="-1"></a>seqs</span></code></pre></div>
+<p>To keep things manageable, we will use the human sequence plus 14 others:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="homology-and-multiple-sequence-alignments.html#cb60-1" tabindex="-1"></a> <span class="co"># Lets save the sequences in a file for us to use them in different programs</span></span>
+<span id="cb60-2"><a href="homology-and-multiple-sequence-alignments.html#cb60-2" tabindex="-1"></a><span class="fu">writeXStringSet</span>(seqs, <span class="st">&quot;msh2_subset.fasta&quot;</span>)</span></code></pre></div>
 <div class="rmdquestion">
-<h3 id="questions-1---4">
-Questions 1 - 4
+<h3 id="questions-1---3">
+Questions 1 - 3
 </h3>
 <ul>
 <li>
-What number of homologene is this?
+How many sequences are in <code>msh2_subset.fasta</code>?
 </li>
 <li>
-What gene/genic family is represented in this set of sequences?
+Which species are in your set? (The ID ending tells you the species,
+for example <code>_HUMAN</code>, <code>_MOUSE</code>,
+<code>_YEAST</code>.)
 </li>
 <li>
-Based on the schematics on the right, which domains of the protein
-are conserved across the different species?
-</li>
-<li>
-Fill in the following table using all the sequences from the
-homologene info
-</li>
-</ul>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>Species</th>
-<th>Common Name</th>
-<th>Protein ID</th>
-<th>Protein length</th>
-<th>Number of domains found</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>Homo sapiens</em></td>
-<td>Human</td>
-<td>NP_000242.2</td>
-<td>Three</td>
-<td>(MutS_I, MutS_II, ABC_ATPase)</td>
-</tr>
-</tbody>
-</table>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Go to the Download links and download the mRNA and Protein sequences in FASTA format</p></li>
-<li><p>Connect to the cluster and upload the sequences into a new folder inside of <code>BIOL123</code> called <code>Lab_5</code></p></li>
-<li><p>Answer the following questions:</p></li>
-</ol>
-<div class="rmdquestion">
-<h3 id="questions-5---7">
-Questions 5 - 7
-</h3>
-<ul>
-<li>
-What is the number of sequences in each of the files uploaded?
-</li>
-<li>
-Did you expect this number to be similar or different across the
-files?
-</li>
-</ul>
-</div>
-</div>
-<div id="multiple-sequence-alignment-in-mafft" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Multiple sequence alignment in MAFFT<a href="homology-and-multiple-sequence-alignments.html#multiple-sequence-alignment-in-mafft" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now, we will do some multiple sequence alignments using MAFFT.</p>
-<p>If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist.</p>
-<p>It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains</p>
-<ol start="5" style="list-style-type: decimal">
-<li>Before you proceed with the alignment, go to the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html">MAFFT algorithms page</a> and answer the following questions based on the information on the algorithms MAFFT uses:</li>
-</ol>
-<div class="rmdquestion">
-<h3 id="questions-8---11">
-Questions 8 - 11
-</h3>
-<ul>
-<li>
-What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i)
-would you use for the following datasets, and briefly explain your
-answers:
-<ul>
-<li>
-Proteins with multiple conserved domains
-</li>
-<li>
-Proteins with single conserved domains
-</li>
-<li>
-Proteins with a single short domain
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<ol start="6" style="list-style-type: decimal">
-<li>Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.</li>
-</ol>
-<p>To do this, in your <code>Lab_5</code> do the following:</p>
-<ul>
-<li>Use the following code for your alignment:
-<ul>
-<li>For L-INS-i</li>
-</ul>
-<pre><code>mafft --localpair --maxiterate 1000 input_file &gt; output_file</code></pre>
-<ul>
-<li>For E-INS-i</li>
-</ul>
-<pre><code>mafft --genafpair --maxiterate 1000 input_file &gt; output_file</code></pre>
-<ul>
-<li>For G-INS-i</li>
-</ul>
-<pre><code>mafft --globalpair --maxiterate 1000 input_file &gt; output_file</code></pre></li>
-</ul>
-<p>Remember to change your <code>input_file</code> and <code>output_file</code> for the FASTA file and the output file (also in FASTA file).</p>
-<ol start="7" style="list-style-type: decimal">
-<li>Download your <code>output_file</code> into your local computer. Open the <a href="https://www.ncbi.nlm.nih.gov/projects/msaviewer/">NCBI MSA viewer page</a> on your browser and import your alignment using the Upload button and the Data file link.</li>
-</ol>
-<div class="rmdquestion">
-<h3 id="question-12">
-Question 12
-</h3>
-<ul>
-<li>
-<p>
-Add the image of the MSA
-</p>
-</li>
-<li>
-<p>
-Write a short summary of the MSA by playing with the options in
-the MSA aligner (Are there regions that are highly conserved? Regions
-that are not that conserved? What are the species that look more similar
-to each other?)
-</p>
+Do all the proteins have the same length? What might explain
+differences in length?
 </li>
 </ul>
 </div>
 <hr />
 </div>
-<div id="creating-and-searching-an-hmm-model-using-our-alignment" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Creating and searching an HMM model using our alignment<a href="homology-and-multiple-sequence-alignments.html#creating-and-searching-an-hmm-model-using-our-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:</p>
-<pre><code>https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_5/mess_with_human_proteins.fasta</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Download the new FASTA file to your <code>Lab_5</code> folder. Count the number of sequences and answer the next question:</li>
+<div id="part-2-align-with-mafft-online-and-choose-the-best-algorithm" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Part 2: Align with MAFFT (online) and choose the best algorithm<a href="homology-and-multiple-sequence-alignments.html#part-2-align-with-mafft-online-and-choose-the-best-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>MAFFT is one of the most widely used aligners. It has several algorithms, and choosing the right one is part of the job.</p>
+<ol style="list-style-type: decimal">
+<li><p>In RStudio, open the <strong>Files</strong> pane, tick <code>msh2_subset.fasta</code>, and use <strong>More → Export</strong> to download it to your computer.</p></li>
+<li><p>Go to the <a href="https://mafft.cbrc.jp/alignment/server/">MAFFT web server</a>. Upload <code>msh2_subset.fasta</code> (or paste the sequences).</p></li>
+<li><p>Before you run anything, read about the algorithms on the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html">MAFFT algorithms page</a>.</p></li>
 </ol>
 <div class="rmdquestion">
-<h3 id="question-13">
-Question 13
+<h3 id="question-4">
+Question 4
 </h3>
 <ul>
 <li>
-What is the number of sequences in the downloaded FASTA file?
+MAFFT offers <strong>G-INS-i</strong>, <strong>L-INS-i</strong>, and
+<strong>E-INS-i</strong>. In your own words, describe what kind of
+protein each one is designed for.
+</li>
+<li>
+MSH2 is a large protein with several distinct domains joined by more
+variable regions. Before you run anything, which algorithm do you
+predict will work best, and why?
 </li>
 </ul>
 </div>
-<ol start="9" style="list-style-type: decimal">
-<li><p>Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create an HMM profile of our MSH homologs and then search for the sequences!</p></li>
-<li><p>To create the HMMER profile you need your alignment file of the MSH homologs in protein format, and the <code>hmmbuild</code> program.</p></li>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Run the alignment <strong>three times</strong>, changing the strategy each time: <strong>Auto</strong>, <strong>G-INS-i</strong>, and <strong>L-INS-i</strong>. Download each result in FASTA format and save them as <code>aln_auto.fasta</code>, <code>aln_gins.fasta</code>, and <code>aln_linsi.fasta</code>.</p></li>
+<li><p>Upload all three files into your <code>Lab_5</code> folder on the cluster (Files pane → <strong>Upload</strong>).</p></li>
+<li><p>Compare them:</p></li>
 </ol>
-<p>The <code>hmmbuild</code> program creates an HMM model of your alignment (so, of your conserved domains!) that you can use to search using <code>hmmsearch</code>, the same way we did in our last class!</p>
-<p>To run it use the following command:</p>
-<pre><code>hmmbuild MSH_homolog.hmm alignment_file.fasta</code></pre>
-<p>Answer the following question:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="homology-and-multiple-sequence-alignments.html#cb61-1" tabindex="-1"></a>aln_auto  <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(<span class="st">&quot;aln_auto.fasta&quot;</span>)</span>
+<span id="cb61-2"><a href="homology-and-multiple-sequence-alignments.html#cb61-2" tabindex="-1"></a>aln_gins  <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(<span class="st">&quot;aln_gins.fasta&quot;</span>)</span>
+<span id="cb61-3"><a href="homology-and-multiple-sequence-alignments.html#cb61-3" tabindex="-1"></a>aln_linsi <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(<span class="st">&quot;aln_linsi.fasta&quot;</span>)</span>
+<span id="cb61-4"><a href="homology-and-multiple-sequence-alignments.html#cb61-4" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="homology-and-multiple-sequence-alignments.html#cb61-5" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb61-6"><a href="homology-and-multiple-sequence-alignments.html#cb61-6" tabindex="-1"></a>  <span class="at">strategy =</span> <span class="fu">c</span>(<span class="st">&quot;Auto&quot;</span>, <span class="st">&quot;G-INS-i&quot;</span>, <span class="st">&quot;L-INS-i&quot;</span>),</span>
+<span id="cb61-7"><a href="homology-and-multiple-sequence-alignments.html#cb61-7" tabindex="-1"></a>  <span class="at">alignment_length =</span> <span class="fu">c</span>(<span class="fu">width</span>(aln_auto)[<span class="dv">1</span>], <span class="fu">width</span>(aln_gins)[<span class="dv">1</span>], <span class="fu">width</span>(aln_linsi)[<span class="dv">1</span>]),</span>
+<span id="cb61-8"><a href="homology-and-multiple-sequence-alignments.html#cb61-8" tabindex="-1"></a>  <span class="at">percent_gaps =</span> <span class="fu">c</span>(<span class="fu">mean</span>(<span class="fu">as.matrix</span>(aln_auto)  <span class="sc">==</span> <span class="st">&quot;-&quot;</span>),</span>
+<span id="cb61-9"><a href="homology-and-multiple-sequence-alignments.html#cb61-9" tabindex="-1"></a>                   <span class="fu">mean</span>(<span class="fu">as.matrix</span>(aln_gins)  <span class="sc">==</span> <span class="st">&quot;-&quot;</span>),</span>
+<span id="cb61-10"><a href="homology-and-multiple-sequence-alignments.html#cb61-10" tabindex="-1"></a>                   <span class="fu">mean</span>(<span class="fu">as.matrix</span>(aln_linsi) <span class="sc">==</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb61-11"><a href="homology-and-multiple-sequence-alignments.html#cb61-11" tabindex="-1"></a>)</span></code></pre></div>
 <div class="rmdquestion">
-<h3 id="question-14">
-Question 14
+<h3 id="questions-5---6">
+Questions 5 - 6
 </h3>
 <ul>
 <li>
-Summarize the process of building an HMM model
+Paste the table. Which strategy produced the longest alignment? The
+most gaps?
+</li>
+<li>
+Based on the table and what you know about MSH2, which strategy do
+you think gave the best alignment? Did it match your prediction in
+Question 4? (There is no single right answer. Explain your
+reasoning.)
 </li>
 </ul>
 </div>
-<ol start="11" style="list-style-type: decimal">
-<li>Finally, run <code>hmmsearch</code> and identify the protein with positive hits. Add them to the following table:</li>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Look at your alignment.</strong> Pick the strategy you chose as best (change the file name if needed) and view it:</li>
 </ol>
-<table>
-<colgroup>
-<col width="20%" />
-<col width="18%" />
-<col width="18%" />
-<col width="18%" />
-<col width="23%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Target Name</th>
-<th>Full Sequence E-value</th>
-<th>Full Seq. Score</th>
-<th>Best 1 domain E-value</th>
-<th>Best 1 domain score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Query_1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="homology-and-multiple-sequence-alignments.html#cb62-1" tabindex="-1"></a>aln <span class="ot">&lt;-</span> aln_linsi    <span class="co"># change to aln_auto or aln_gins if you prefer another</span></span>
+<span id="cb62-2"><a href="homology-and-multiple-sequence-alignments.html#cb62-2" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="homology-and-multiple-sequence-alignments.html#cb62-3" tabindex="-1"></a><span class="fu">ggmsa</span>(aln, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">&quot;Chemistry_AA&quot;</span>, <span class="at">seq_name =</span> <span class="cn">TRUE</span>, <span class="at">char_width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb62-4"><a href="homology-and-multiple-sequence-alignments.html#cb62-4" tabindex="-1"></a>  <span class="fu">geom_seqlogo</span>()</span></code></pre></div>
+<p>Change <code>start</code> and <code>end</code> to look at other regions (for example 101 to 200).</p>
+<div class="rmdquestion">
+<h3 id="question-7">
+Question 7
+</h3>
+<ul>
+<li>
+Include your figure. Describe what you see: are there stretches
+where almost every sequence has the same amino acid? Stretches with many
+gaps or lots of variation? Which sequences look most similar to each
+other?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="part-3-build-a-tree-from-the-alignment" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Part 3: Build a tree from the alignment<a href="homology-and-multiple-sequence-alignments.html#part-3-build-a-tree-from-the-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An alignment tells us which positions are homologous, so we can measure how different each pair of sequences is and build a tree of their relationships. We will use the <strong>neighbor-joining</strong> method, with bootstrapping to measure how much we can trust each branch.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="homology-and-multiple-sequence-alignments.html#cb63-1" tabindex="-1"></a>pd   <span class="ot">&lt;-</span> <span class="fu">phyDat</span>(<span class="fu">as.matrix</span>(aln), <span class="at">type =</span> <span class="st">&quot;AA&quot;</span>)</span>
+<span id="cb63-2"><a href="homology-and-multiple-sequence-alignments.html#cb63-2" tabindex="-1"></a>dm   <span class="ot">&lt;-</span> <span class="fu">dist.ml</span>(pd, <span class="at">model =</span> <span class="st">&quot;WAG&quot;</span>)     <span class="co"># pairwise distances between sequences</span></span>
+<span id="cb63-3"><a href="homology-and-multiple-sequence-alignments.html#cb63-3" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">midpoint</span>(<span class="fu">NJ</span>(dm))               <span class="co"># build the tree and root it at its midpoint</span></span>
+<span id="cb63-4"><a href="homology-and-multiple-sequence-alignments.html#cb63-4" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="homology-and-multiple-sequence-alignments.html#cb63-5" tabindex="-1"></a><span class="co"># Bootstrap: repeat the tree-building 100 times on resampled columns</span></span>
+<span id="cb63-6"><a href="homology-and-multiple-sequence-alignments.html#cb63-6" tabindex="-1"></a>bs <span class="ot">&lt;-</span> <span class="fu">bootstrap.phyDat</span>(pd, <span class="cf">function</span>(x) <span class="fu">NJ</span>(<span class="fu">dist.ml</span>(x, <span class="at">model =</span> <span class="st">&quot;WAG&quot;</span>)), <span class="at">bs =</span> <span class="dv">100</span>)</span>
+<span id="cb63-7"><a href="homology-and-multiple-sequence-alignments.html#cb63-7" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="homology-and-multiple-sequence-alignments.html#cb63-8" tabindex="-1"></a><span class="fu">plotBS</span>(tree, bs, <span class="at">p =</span> <span class="dv">50</span>, <span class="at">type =</span> <span class="st">&quot;phylogram&quot;</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p>The numbers on the branches are bootstrap values (out of 100). Higher means more support.</p>
+<div class="rmdquestion">
+<h3 id="questions-8---9">
+Questions 8 - 9
+</h3>
+<ul>
+<li>
+Include your tree. Do the animals group together? The fungi? Does it
+look like the species tree you expect?
+</li>
+<li>
+Find a branch with low bootstrap support (below 70). What does low
+support mean? What would you try to improve it?
+</li>
+</ul>
+</div>
+<p><strong>Does the alignment matter?</strong> Re-run the three code chunks above using <code>aln &lt;- aln_auto</code> and then <code>aln &lt;- aln_gins</code>.</p>
+<div class="rmdquestion">
+<h3 id="question-10">
+Question 10
+</h3>
+<ul>
+<li>
+Did the tree change when you used a different alignment? If so,
+where? What does this tell you about how much the alignment step
+matters?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="part-4-where-are-the-most-and-fewest-changes" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Part 4: Where are the most (and fewest) changes?<a href="homology-and-multiple-sequence-alignments.html#part-4-where-are-the-most-and-fewest-changes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now for the question that matters biologically: <strong>which parts of MSH2 stay the same across species (probably important) and which change a lot (probably tolerate change)?</strong></p>
+<div id="step-1-measure-conservation-at-every-position" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Step 1: Measure conservation at every position<a href="homology-and-multiple-sequence-alignments.html#step-1-measure-conservation-at-every-position" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For each column in the alignment, we calculate the fraction of sequences that share the most common amino acid. 1 means everyone is identical, and lower numbers mean more variation.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="homology-and-multiple-sequence-alignments.html#cb64-1" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(aln)</span>
+<span id="cb64-2"><a href="homology-and-multiple-sequence-alignments.html#cb64-2" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="homology-and-multiple-sequence-alignments.html#cb64-3" tabindex="-1"></a>conservation <span class="ot">&lt;-</span> <span class="fu">apply</span>(m, <span class="dv">2</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb64-4"><a href="homology-and-multiple-sequence-alignments.html#cb64-4" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x[x <span class="sc">!=</span> <span class="st">&quot;-&quot;</span>]                     <span class="co"># ignore gaps</span></span>
+<span id="cb64-5"><a href="homology-and-multiple-sequence-alignments.html#cb64-5" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb64-6"><a href="homology-and-multiple-sequence-alignments.html#cb64-6" tabindex="-1"></a>  <span class="fu">max</span>(<span class="fu">table</span>(x)) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb64-7"><a href="homology-and-multiple-sequence-alignments.html#cb64-7" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+<div id="step-2-use-human-residue-numbers" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> Step 2: Use human residue numbers<a href="homology-and-multiple-sequence-alignments.html#step-2-use-human-residue-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Alignment columns do not match the real protein positions because of gaps. We want everything numbered by the <strong>human MSH2 protein</strong>, so we count residues along the human row:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="homology-and-multiple-sequence-alignments.html#cb65-1" tabindex="-1"></a>human <span class="ot">&lt;-</span> m[<span class="fu">grep</span>(<span class="st">&quot;MSH2_HUMAN&quot;</span>, <span class="fu">rownames</span>(m)), ]</span>
+<span id="cb65-2"><a href="homology-and-multiple-sequence-alignments.html#cb65-2" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="homology-and-multiple-sequence-alignments.html#cb65-3" tabindex="-1"></a>cons <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb65-4"><a href="homology-and-multiple-sequence-alignments.html#cb65-4" tabindex="-1"></a>  <span class="at">column       =</span> <span class="fu">seq_along</span>(human),</span>
+<span id="cb65-5"><a href="homology-and-multiple-sequence-alignments.html#cb65-5" tabindex="-1"></a>  <span class="at">residue      =</span> <span class="fu">ifelse</span>(human <span class="sc">==</span> <span class="st">&quot;-&quot;</span>, <span class="cn">NA</span>, <span class="fu">cumsum</span>(human <span class="sc">!=</span> <span class="st">&quot;-&quot;</span>)),</span>
+<span id="cb65-6"><a href="homology-and-multiple-sequence-alignments.html#cb65-6" tabindex="-1"></a>  <span class="at">conservation =</span> conservation</span>
+<span id="cb65-7"><a href="homology-and-multiple-sequence-alignments.html#cb65-7" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb65-8"><a href="homology-and-multiple-sequence-alignments.html#cb65-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(residue))</span>
+<span id="cb65-9"><a href="homology-and-multiple-sequence-alignments.html#cb65-9" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="homology-and-multiple-sequence-alignments.html#cb65-10" tabindex="-1"></a><span class="co"># A smoothed line (average of 15 neighboring residues) is easier to read</span></span>
+<span id="cb65-11"><a href="homology-and-multiple-sequence-alignments.html#cb65-11" tabindex="-1"></a>cons<span class="sc">$</span>smooth <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(stats<span class="sc">::</span><span class="fu">filter</span>(cons<span class="sc">$</span>conservation, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">15</span>, <span class="dv">15</span>), <span class="at">sides =</span> <span class="dv">2</span>))</span>
+<span id="cb65-12"><a href="homology-and-multiple-sequence-alignments.html#cb65-12" tabindex="-1"></a></span>
+<span id="cb65-13"><a href="homology-and-multiple-sequence-alignments.html#cb65-13" tabindex="-1"></a><span class="fu">head</span>(cons)</span></code></pre></div>
+</div>
+<div id="step-3-find-the-proteins-domains" class="section level3 hasAnchor" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Step 3: Find the protein’s domains<a href="homology-and-multiple-sequence-alignments.html#step-3-find-the-proteins-domains" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Domains are parts of a protein with a specific job. Real researchers get them from databases.</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://www.ebi.ac.uk/interpro/">InterPro</a> and search for <strong>P43246</strong> (human MSH2) in Search by Text.</li>
+<li>Open the <strong>Family &amp; Domains</strong> section. Also look at for P43246.</li>
+<li>Fill in the table below with at least <strong>three</strong> domains or regions, using their start and end positions.</li>
+</ol>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="homology-and-multiple-sequence-alignments.html#cb66-1" tabindex="-1"></a>domains <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb66-2"><a href="homology-and-multiple-sequence-alignments.html#cb66-2" tabindex="-1"></a>  <span class="at">domain =</span> <span class="fu">c</span>(<span class="st">&quot;Domain 1&quot;</span>, <span class="st">&quot;Domain 2&quot;</span>, <span class="st">&quot;Domain 3&quot;</span>,<span class="st">&quot;Domain 4&quot;</span>),   <span class="co"># replace with the real names</span></span>
+<span id="cb66-3"><a href="homology-and-multiple-sequence-alignments.html#cb66-3" tabindex="-1"></a>  <span class="at">start  =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">125</span>, <span class="dv">300</span>, <span class="dv">620</span>),                           <span class="co"># replace with the real start positions</span></span>
+<span id="cb66-4"><a href="homology-and-multiple-sequence-alignments.html#cb66-4" tabindex="-1"></a>  <span class="at">end    =</span> <span class="fu">c</span>(<span class="dv">124</span>, <span class="dv">297</span>, <span class="dv">507</span>, <span class="dv">934</span>)                            <span class="co"># replace with the real end positions</span></span>
+<span id="cb66-5"><a href="homology-and-multiple-sequence-alignments.html#cb66-5" tabindex="-1"></a>)</span>
+<span id="cb66-6"><a href="homology-and-multiple-sequence-alignments.html#cb66-6" tabindex="-1"></a>domains</span></code></pre></div>
+<div class="rmdquestion">
+<h3 id="question-11">
+Question 11
+</h3>
+<ul>
+<li>
+Paste your <code>domains</code> table. What does each domain
+do?
+</li>
+</ul>
+</div>
+</div>
+<div id="step-4-plot-conservation-along-the-protein-with-the-domains" class="section level3 hasAnchor" number="9.5.4">
+<h3><span class="header-section-number">9.5.4</span> Step 4: Plot conservation along the protein with the domains<a href="homology-and-multiple-sequence-alignments.html#step-4-plot-conservation-along-the-protein-with-the-domains" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="homology-and-multiple-sequence-alignments.html#cb67-1" tabindex="-1"></a><span class="fu">ggplot</span>(cons, <span class="fu">aes</span>(residue, conservation)) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="homology-and-multiple-sequence-alignments.html#cb67-2" tabindex="-1"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> domains,</span>
+<span id="cb67-3"><a href="homology-and-multiple-sequence-alignments.html#cb67-3" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> start, <span class="at">xmax =</span> end, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">1</span>, <span class="at">fill =</span> domain),</span>
+<span id="cb67-4"><a href="homology-and-multiple-sequence-alignments.html#cb67-4" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb67-5"><a href="homology-and-multiple-sequence-alignments.html#cb67-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.3</span>, <span class="at">colour =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="homology-and-multiple-sequence-alignments.html#cb67-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> smooth), <span class="at">linewidth =</span> <span class="fl">0.9</span>, <span class="at">colour =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb67-7"><a href="homology-and-multiple-sequence-alignments.html#cb67-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Position in human MSH2 (amino acid number)&quot;</span>,</span>
+<span id="cb67-8"><a href="homology-and-multiple-sequence-alignments.html#cb67-8" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Conservation (1 = identical in all species)&quot;</span>,</span>
+<span id="cb67-9"><a href="homology-and-multiple-sequence-alignments.html#cb67-9" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Domain&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-10"><a href="homology-and-multiple-sequence-alignments.html#cb67-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb67-11"><a href="homology-and-multiple-sequence-alignments.html#cb67-11" tabindex="-1"></a></span>
+<span id="cb67-12"><a href="homology-and-multiple-sequence-alignments.html#cb67-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;msh2_conservation_domains.png&quot;</span>, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">200</span>)</span></code></pre></div>
+<p>And a number for each domain:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="homology-and-multiple-sequence-alignments.html#cb68-1" tabindex="-1"></a>domains <span class="sc">|&gt;</span></span>
+<span id="cb68-2"><a href="homology-and-multiple-sequence-alignments.html#cb68-2" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb68-3"><a href="homology-and-multiple-sequence-alignments.html#cb68-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_conservation =</span> <span class="fu">mean</span>(cons<span class="sc">$</span>conservation[cons<span class="sc">$</span>residue <span class="sc">&gt;=</span> start <span class="sc">&amp;</span> cons<span class="sc">$</span>residue <span class="sc">&lt;=</span> end],</span>
+<span id="cb68-4"><a href="homology-and-multiple-sequence-alignments.html#cb68-4" tabindex="-1"></a>                                  <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb68-5"><a href="homology-and-multiple-sequence-alignments.html#cb68-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="rmdquestion">
+<h3 id="questions-12---14">
+Questions 12 - 14
+</h3>
+<ul>
+<li>
+Include your plot. Which domain is the most conserved? Which is the
+most variable?
+</li>
+<li>
+Do the most conserved regions match the domains with the most
+important jobs (such as ATP binding or DNA binding)? Why would evolution
+keep those positions unchanged?
+</li>
+<li>
+Are there stretches between domains that are much less conserved?
+What might that tell you about those regions?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+</div>
+<div id="part-5-real-world-connection-mutations-that-cause-disease" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Part 5: Real-world connection: mutations that cause disease<a href="homology-and-multiple-sequence-alignments.html#part-5-real-world-connection-mutations-that-cause-disease" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If a position is the same across all species, a change there is more likely to harm the protein. Researchers use this idea to judge whether a human mutation might cause disease.</p>
+<ol style="list-style-type: decimal">
+<li>Go to <a href="https://www.ncbi.nlm.nih.gov/clinvar/">ClinVar</a> and search <code>MSH2[gene]</code>. Filter for <strong>missense</strong> variants (single amino acid changes).</li>
+<li>Choose <strong>three pathogenic</strong> variants and <strong>three benign</strong> variants. Note the position in each (for example, <code>p.Gly67Arg</code> is position 67).</li>
+<li>Add them to the code below and plot them on your conservation figure:</li>
+</ol>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="homology-and-multiple-sequence-alignments.html#cb69-1" tabindex="-1"></a>variants <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb69-2"><a href="homology-and-multiple-sequence-alignments.html#cb69-2" tabindex="-1"></a>  <span class="at">position =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),       <span class="co"># replace with your six positions</span></span>
+<span id="cb69-3"><a href="homology-and-multiple-sequence-alignments.html#cb69-3" tabindex="-1"></a>  <span class="at">type     =</span> <span class="fu">c</span>(<span class="st">&quot;Pathogenic&quot;</span>, <span class="st">&quot;Pathogenic&quot;</span>, <span class="st">&quot;Pathogenic&quot;</span>,</span>
+<span id="cb69-4"><a href="homology-and-multiple-sequence-alignments.html#cb69-4" tabindex="-1"></a>               <span class="st">&quot;Benign&quot;</span>, <span class="st">&quot;Benign&quot;</span>, <span class="st">&quot;Benign&quot;</span>)</span>
+<span id="cb69-5"><a href="homology-and-multiple-sequence-alignments.html#cb69-5" tabindex="-1"></a>)</span>
+<span id="cb69-6"><a href="homology-and-multiple-sequence-alignments.html#cb69-6" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="homology-and-multiple-sequence-alignments.html#cb69-7" tabindex="-1"></a>variants <span class="ot">&lt;-</span> variants <span class="sc">|&gt;</span></span>
+<span id="cb69-8"><a href="homology-and-multiple-sequence-alignments.html#cb69-8" tabindex="-1"></a>  <span class="fu">left_join</span>(cons, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;position&quot;</span> <span class="ot">=</span> <span class="st">&quot;residue&quot;</span>))</span>
+<span id="cb69-9"><a href="homology-and-multiple-sequence-alignments.html#cb69-9" tabindex="-1"></a></span>
+<span id="cb69-10"><a href="homology-and-multiple-sequence-alignments.html#cb69-10" tabindex="-1"></a>variants</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="homology-and-multiple-sequence-alignments.html#cb70-1" tabindex="-1"></a><span class="fu">ggplot</span>(cons, <span class="fu">aes</span>(residue, conservation)) <span class="sc">+</span></span>
+<span id="cb70-2"><a href="homology-and-multiple-sequence-alignments.html#cb70-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.3</span>, <span class="at">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-3"><a href="homology-and-multiple-sequence-alignments.html#cb70-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> variants, <span class="fu">aes</span>(position, conservation, <span class="at">colour =</span> type), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb70-4"><a href="homology-and-multiple-sequence-alignments.html#cb70-4" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Pathogenic =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">Benign =</span> <span class="st">&quot;steelblue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb70-5"><a href="homology-and-multiple-sequence-alignments.html#cb70-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Position in human MSH2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Conservation&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;ClinVar&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-6"><a href="homology-and-multiple-sequence-alignments.html#cb70-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="rmdquestion">
+<h3 id="questions-15---16">
+Questions 15 - 16
+</h3>
+<ul>
+<li>
+Include your table and plot. Are the pathogenic variants at more
+conserved positions than the benign ones?
+</li>
+<li>
+Would you trust conservation alone to decide whether a mutation is
+harmful? What other evidence would you want?
+</li>
+</ul>
+</div>
+<hr />
+</div>
+<div id="wrap-up" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Wrap-up<a href="homology-and-multiple-sequence-alignments.html#wrap-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="rmdquestion">
+<h3 id="question-17-reflection">
+Question 17 (reflection)
+</h3>
+<ul>
+<li>
+In 4 to 6 sentences, describe the steps you ran today (get
+sequences, align, build a tree, measure conservation, connect to
+disease). Which step do you think could change the final conclusions the
+most if done poorly, and why?
+</li>
+</ul>
+</div>
+<p><strong>Submit:</strong> your knit <code>Lab_5.html</code> containing your code, figures, and answers.</p>
+<hr />
+</div>
+<div id="challenge-optional" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Challenge (optional)<a href="homology-and-multiple-sequence-alignments.html#challenge-optional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Repeat the lab for a different protein. Change <code>gene%3AMSH2</code> in the UniProt link to another gene name (for example, <code>gene%3ATP53</code>), and find its domains in UniProt.</li>
+<li>Pick a fungal protein you are curious about and compare how conserved its domains are across the species you can find.</li>
+</ul>
 
 </div>
 </div>

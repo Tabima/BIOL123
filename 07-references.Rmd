@@ -1,137 +1,304 @@
 # Homology and multiple sequence alignments
 
-Homologous genes are genes that share common ancestry and can be functionally similar. These homologous genes can be identified between different samples, species, etc., based on similarity and other metrics such as inflation in MCL, etc.
-
-In this section, we will learn how to obtain and analyze data sets of orthologous sets of genes using online repositories and observing their differences and similarities with multiple sequence alignments.
-
-## Downloading sequences from Homologene
-
-There are many ways to obtain homologous genes. For example, running `OrthoMCL/OrthoFinder` in a set of genomes will identify all the genes of interest between the set of genomes.
-
-In other cases, we can obtain genes of interest from online databases, such as the [`OrthoMCL DB`](https://orthomcl.org/orthomcl/app) or [`NCBI homologene`](https://www.ncbi.nlm.nih.gov/homologene/210).
-
-Today, we will use NCBI Homologene. 
-
-1. Go to this [link](https://www.ncbi.nlm.nih.gov/homologene/210)
-
-```{block, type='rmdquestion'}
-### Questions 1 - 4
-
--  What number of homologene is this?
--  What gene/genic family is represented in this set of sequences?
--  Based on the schematics on the right, which domains of the protein are conserved across the different species?
--  Fill in the following table using all the sequences from the homologene info
+```{r setup-lab5, include=FALSE}
+# Students run the code themselves in RStudio, so chunks are not evaluated when the book is knit.
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
-|Species|Common Name|Protein ID|Protein length|Number of domains found|
-|---|---|---|---|---|
-|*Homo sapiens*|Human|NP_000242.2|Three |(MutS_I, MutS_II, ABC_ATPase)|
+Homologous genes share a common ancestor. When we line up homologous sequences in a **multiple sequence alignment (MSA)**, we can see which positions changed over evolution and which stayed the same, and that tells us what parts of a protein matter.
 
+In this lab you will follow the workflow real researchers use:
 
+**get sequences → align them → build a tree → find where the protein changes (and where it doesn't)**
 
-2. Go to the Download links and download the mRNA and Protein sequences in FASTA format
-
-3. Connect to the cluster and upload the sequences into a new folder inside of `BIOL123` called `Lab_5`
-
-4. Answer the following questions:
-
-```{block, type='rmdquestion'}
-### Questions 5 - 7
--  What is the number of sequences in each of the files uploaded?
--  Did you expect this number to be similar or different across the files?
-```
-
-
-## Multiple sequence alignment in MAFFT
-
-Now, we will do some multiple sequence alignments using MAFFT.
-
-If we remember from class, MAFFT is one of the most complete multiple sequence aligner programs that exist. 
-
-It allows us to do many different kinds of searches, such as local alignments, global alignments, and iterative and progressive alignments focused on aligning highly conserved domains
-
-5. Before you proceed with the alignment, go to the [MAFFT algorithms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) and answer the following questions based on the information on the algorithms MAFFT uses:
-
-
-```{block, type='rmdquestion'}
-### Questions 8 - 11
--  What kinds of algorithms from MAFFT (E-INS-i, L-INS-i or G-INS-i) would you use for the following datasets, and briefly explain your answers:
-    - Proteins with multiple conserved domains
-    - Proteins with single conserved domains
-    - Proteins with a single short domain
-```
-
-6. Based on your answer above, align the protein sequence you downloaded using the algorithm of your choice in the cluster.
-
-To do this, in your `Lab_5` do the following:
-
-* Use the following code for your alignment:
-     * For L-INS-i
-```
-mafft --localpair --maxiterate 1000 input_file > output_file
-```
-     * For E-INS-i
-```
-mafft --genafpair --maxiterate 1000 input_file > output_file
-```
-     * For G-INS-i
-```
-mafft --globalpair --maxiterate 1000 input_file > output_file
-```
-
-Remember to change your `input_file` and `output_file` for the FASTA file and the output file (also in FASTA file).
-
-7. Download your `output_file` into your local computer. Open the [NCBI MSA viewer page](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) on your browser and import your alignment using the Upload button and the Data file link.
-
-```{block, type='rmdquestion'}
-### Question 12
-- Add the image of the MSA
-
-- Write a short summary of the MSA by playing with the options in the MSA aligner (Are there regions that are highly conserved?  Regions that are not that conserved? What are the species that look more similar to each other?)
-
-```
-
+Our protein is **MSH2**, a DNA mismatch repair protein. In humans, damage to MSH2 causes Lynch syndrome, a hereditary cancer predisposition. By the end you will be able to answer: *which parts of this protein are the most important, and how can we tell?*
 
 ***
 
-## Creating and searching an HMM model using our alignment
+## Part 0: Load the tools
 
-Now, we will search across a data set of FASTA proteins from the file we used last week but updated with some human proteins:
+The packages are already installed on the cluster. In RStudio, create a new R Markdown file called `Lab_5.Rmd` in your `BIOL123/Lab_5` folder, and load them:
 
+```r
+library(Biostrings)   # reading and handling sequences
+library(ggmsa)        # drawing alignments
+library(phangorn)     # building trees
+library(dplyr)        # data wrangling
+library(ggplot2)      # plotting
+library(tibble)       # tables
 ```
-https://raw.githubusercontent.com/Tabima/BIOL123/master/Lab_5/mess_with_human_proteins.fasta
+
+***
+
+## Part 1: Get the sequences
+
+We will download manually reviewed MSH2 proteins from UniProt (a curated protein database) directly into R:
+
+```r
+url <- "https://rest.uniprot.org/uniprotkb/stream?format=fasta&query=%28gene%3AMSH2%29+AND+%28reviewed%3Atrue%29"
+download.file(url, "msh2_all.fasta")
+
+seqs <- readAAStringSet("msh2_all.fasta")
+
+# UniProt names are long, so keep only the short ID (like MSH2_HUMAN)
+names(seqs) <- sub("^sp\\|[^|]+\\|([^ ]+) .*", "\\1", names(seqs))
+seqs
 ```
 
-8. Download the new FASTA file to your `Lab_5` folder. Count the number of sequences and answer the next question:
+To keep things manageable, we will use the human sequence plus 14 others:
+
+```r
+ # Lets save the sequences in a file for us to use them in different programs
+writeXStringSet(seqs, "msh2_subset.fasta")
+```
 
 ```{block, type='rmdquestion'}
-### Question 13
--  What is the number of sequences in the downloaded FASTA file?
-
+### Questions 1 - 3
+- How many sequences are in `msh2_subset.fasta`?
+- Which species are in your set? (The ID ending tells you the species, for example `_HUMAN`, `_MOUSE`, `_YEAST`.)
+- Do all the proteins have the same length? What might explain differences in length?
 ```
 
-9. Now, we want to identify if there are proteins that match the MSH homologs we have in the new FASTA file. That means we will have to create an HMM profile of our MSH homologs and then search for the sequences!
+***
 
-10. To create the HMMER profile you need your alignment file of the MSH homologs in protein format, and the `hmmbuild` program.
+## Part 2: Align with MAFFT (online) and choose the best algorithm
 
-The `hmmbuild` program creates an HMM model of your alignment (so, of your conserved domains!) that you can use to search using `hmmsearch`, the same way we did in our last class!
+MAFFT is one of the most widely used aligners. It has several algorithms, and choosing the right one is part of the job.
 
-To run it use the following command:
+1. In RStudio, open the **Files** pane, tick `msh2_subset.fasta`, and use **More → Export** to download it to your computer.
 
-```
-hmmbuild MSH_homolog.hmm alignment_file.fasta
-```
+2. Go to the [MAFFT web server](https://mafft.cbrc.jp/alignment/server/). Upload `msh2_subset.fasta` (or paste the sequences).
 
-Answer the following question:
+3. Before you run anything, read about the algorithms on the [MAFFT algorithms page](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html).
 
 ```{block, type='rmdquestion'}
-### Question 14
--  Summarize the process of building an HMM model
-
+### Question 4
+- MAFFT offers **G-INS-i**, **L-INS-i**, and **E-INS-i**. In your own words, describe what kind of protein each one is designed for.
+- MSH2 is a large protein with several distinct domains joined by more variable regions. Before you run anything, which algorithm do you predict will work best, and why?
 ```
 
-11. Finally, run `hmmsearch` and identify the protein with positive hits. Add them to the following table:
+4. Run the alignment **three times**, changing the strategy each time: **Auto**, **G-INS-i**, and **L-INS-i**. Download each result in FASTA format and save them as `aln_auto.fasta`, `aln_gins.fasta`, and `aln_linsi.fasta`.
 
-| Target Name  | Full Sequence E-value | Full Seq. Score | Best 1 domain E-value | Best 1 domain score |
-|---------|--------|--------|--------|----------|
-| Query_1 |        |        |        |          |      
+5. Upload all three files into your `Lab_5` folder on the cluster (Files pane → **Upload**).
+
+6. Compare them:
+
+```r
+aln_auto  <- readAAStringSet("aln_auto.fasta")
+aln_gins  <- readAAStringSet("aln_gins.fasta")
+aln_linsi <- readAAStringSet("aln_linsi.fasta")
+
+tibble(
+  strategy = c("Auto", "G-INS-i", "L-INS-i"),
+  alignment_length = c(width(aln_auto)[1], width(aln_gins)[1], width(aln_linsi)[1]),
+  percent_gaps = c(mean(as.matrix(aln_auto)  == "-"),
+                   mean(as.matrix(aln_gins)  == "-"),
+                   mean(as.matrix(aln_linsi) == "-")) * 100
+)
+```
+
+```{block, type='rmdquestion'}
+### Questions 5 - 6
+- Paste the table. Which strategy produced the longest alignment? The most gaps?
+- Based on the table and what you know about MSH2, which strategy do you think gave the best alignment? Did it match your prediction in Question 4? (There is no single right answer. Explain your reasoning.)
+```
+
+7. **Look at your alignment.** Pick the strategy you chose as best (change the file name if needed) and view it:
+
+```r
+aln <- aln_linsi    # change to aln_auto or aln_gins if you prefer another
+
+ggmsa(aln, start = 1, end = 100, color = "Chemistry_AA", seq_name = TRUE, char_width = 0.5) +
+  geom_seqlogo()
+```
+
+Change `start` and `end` to look at other regions (for example 101 to 200).
+
+```{block, type='rmdquestion'}
+### Question 7
+- Include your figure. Describe what you see: are there stretches where almost every sequence has the same amino acid? Stretches with many gaps or lots of variation? Which sequences look most similar to each other?
+```
+
+***
+
+## Part 3: Build a tree from the alignment
+
+An alignment tells us which positions are homologous, so we can measure how different each pair of sequences is and build a tree of their relationships. We will use the **neighbor-joining** method, with bootstrapping to measure how much we can trust each branch.
+
+```r
+pd   <- phyDat(as.matrix(aln), type = "AA")
+dm   <- dist.ml(pd, model = "WAG")     # pairwise distances between sequences
+tree <- midpoint(NJ(dm))               # build the tree and root it at its midpoint
+
+# Bootstrap: repeat the tree-building 100 times on resampled columns
+bs <- bootstrap.phyDat(pd, function(x) NJ(dist.ml(x, model = "WAG")), bs = 100)
+
+plotBS(tree, bs, p = 50, type = "phylogram", cex = 0.8)
+```
+
+The numbers on the branches are bootstrap values (out of 100). Higher means more support.
+
+```{block, type='rmdquestion'}
+### Questions 8 - 9
+- Include your tree. Do the animals group together? The fungi? Does it look like the species tree you expect?
+- Find a branch with low bootstrap support (below 70). What does low support mean? What would you try to improve it?
+```
+
+**Does the alignment matter?** Re-run the three code chunks above using `aln <- aln_auto` and then `aln <- aln_gins`.
+
+```{block, type='rmdquestion'}
+### Question 10
+- Did the tree change when you used a different alignment? If so, where? What does this tell you about how much the alignment step matters?
+```
+
+***
+
+## Part 4: Where are the most (and fewest) changes?
+
+Now for the question that matters biologically: **which parts of MSH2 stay the same across species (probably important) and which change a lot (probably tolerate change)?**
+
+### Step 1: Measure conservation at every position
+
+For each column in the alignment, we calculate the fraction of sequences that share the most common amino acid. 1 means everyone is identical, and lower numbers mean more variation.
+
+```r
+m <- as.matrix(aln)
+
+conservation <- apply(m, 2, function(x) {
+  x <- x[x != "-"]                     # ignore gaps
+  if (length(x) == 0) return(NA)
+  max(table(x)) / length(x)
+})
+```
+
+### Step 2: Use human residue numbers
+
+Alignment columns do not match the real protein positions because of gaps. We want everything numbered by the **human MSH2 protein**, so we count residues along the human row:
+
+```r
+human <- m[grep("MSH2_HUMAN", rownames(m)), ]
+
+cons <- tibble(
+  column       = seq_along(human),
+  residue      = ifelse(human == "-", NA, cumsum(human != "-")),
+  conservation = conservation
+) |>
+  filter(!is.na(residue))
+
+# A smoothed line (average of 15 neighboring residues) is easier to read
+cons$smooth <- as.numeric(stats::filter(cons$conservation, rep(1/15, 15), sides = 2))
+
+head(cons)
+```
+
+### Step 3: Find the protein's domains
+
+Domains are parts of a protein with a specific job. Real researchers get them from databases.
+
+1. Go to [InterPro](https://www.ebi.ac.uk/interpro/)  and search for **P43246** (human MSH2) in Search by Text.
+2. Open the **Family & Domains** section. Also look at for P43246.
+3. Fill in the table below with at least **three** domains or regions, using their start and end positions.
+
+```r
+domains <- tibble(
+  domain = c("Domain 1", "Domain 2", "Domain 3","Domain 4"),   # replace with the real names
+  start  = c(1, 125, 300, 620),                           # replace with the real start positions
+  end    = c(124, 297, 507, 934)                            # replace with the real end positions
+)
+domains
+```
+
+```{block, type='rmdquestion'}
+### Question 11
+- Paste your `domains` table. What does each domain do?
+```
+
+### Step 4: Plot conservation along the protein with the domains
+
+```r
+ggplot(cons, aes(residue, conservation)) +
+  geom_rect(data = domains,
+            aes(xmin = start, xmax = end, ymin = 0, ymax = 1, fill = domain),
+            alpha = 0.25, inherit.aes = FALSE) +
+  geom_line(linewidth = 0.3, colour = "grey50") +
+  geom_line(aes(y = smooth), linewidth = 0.9, colour = "firebrick", na.rm = TRUE) +
+  labs(x = "Position in human MSH2 (amino acid number)",
+       y = "Conservation (1 = identical in all species)",
+       fill = "Domain") +
+  theme_minimal()
+
+ggsave("msh2_conservation_domains.png", width = 12, height = 4, dpi = 200)
+```
+
+And a number for each domain:
+
+```r
+domains |>
+  rowwise() |>
+  mutate(mean_conservation = mean(cons$conservation[cons$residue >= start & cons$residue <= end],
+                                  na.rm = TRUE)) |>
+  ungroup()
+```
+
+```{block, type='rmdquestion'}
+### Questions 12 - 14
+- Include your plot. Which domain is the most conserved? Which is the most variable?
+- Do the most conserved regions match the domains with the most important jobs (such as ATP binding or DNA binding)? Why would evolution keep those positions unchanged?
+- Are there stretches between domains that are much less conserved? What might that tell you about those regions?
+```
+
+***
+
+## Part 5: Real-world connection: mutations that cause disease
+
+If a position is the same across all species, a change there is more likely to harm the protein. Researchers use this idea to judge whether a human mutation might cause disease.
+
+1. Go to [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) and search `MSH2[gene]`. Filter for **missense** variants (single amino acid changes).
+2. Choose **three pathogenic** variants and **three benign** variants. Note the position in each (for example, `p.Gly67Arg` is position 67).
+3. Add them to the code below and plot them on your conservation figure:
+
+```r
+variants <- tibble(
+  position = c(NA, NA, NA, NA, NA, NA),       # replace with your six positions
+  type     = c("Pathogenic", "Pathogenic", "Pathogenic",
+               "Benign", "Benign", "Benign")
+)
+
+variants <- variants |>
+  left_join(cons, by = c("position" = "residue"))
+
+variants
+```
+
+```r
+ggplot(cons, aes(residue, conservation)) +
+  geom_line(linewidth = 0.3, colour = "grey60") +
+  geom_point(data = variants, aes(position, conservation, colour = type), size = 3) +
+  scale_colour_manual(values = c(Pathogenic = "firebrick", Benign = "steelblue")) +
+  labs(x = "Position in human MSH2", y = "Conservation", colour = "ClinVar") +
+  theme_minimal()
+```
+
+```{block, type='rmdquestion'}
+### Questions 15 - 16
+- Include your table and plot. Are the pathogenic variants at more conserved positions than the benign ones?
+- Would you trust conservation alone to decide whether a mutation is harmful? What other evidence would you want?
+```
+
+***
+
+## Wrap-up
+
+```{block, type='rmdquestion'}
+### Question 17 (reflection)
+- In 4 to 6 sentences, describe the steps you ran today (get sequences, align, build a tree, measure conservation, connect to disease). Which step do you think could change the final conclusions the most if done poorly, and why?
+```
+
+**Submit:** your knit `Lab_5.html` containing your code, figures, and answers.
+
+***
+
+## Challenge (optional)
+
+- Repeat the lab for a different protein. Change `gene%3AMSH2` in the UniProt link to another gene name (for example, `gene%3ATP53`), and find its domains in UniProt.
+- Pick a fungal protein you are curious about and compare how conserved its domains are across the species you can find.
