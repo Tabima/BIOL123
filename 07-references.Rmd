@@ -79,6 +79,15 @@ MAFFT is one of the most widely used aligners. It has several algorithms, and ch
 
 4. Run the alignment **three times**, changing the strategy each time: **Auto**, **G-INS-i**, and **L-INS-i**. Download each result in FASTA format and save them as `aln_auto.fasta`, `aln_gins.fasta`, and `aln_linsi.fasta`.
 
+```{block, type='rmdwarning'}
+
+Since `MAFFT` is not running online, we need to run it in the cluster:  
+
+**Auto**: `mafft --auto msh2_subset.fasta > aln_auto.fasta`                       
+**G-INS-i**: `mafft --globalpair --maxiterate 1000 msh2_subset.fasta > aln_gins.fasta`
+**L-INS-i** `mafft --localpair  --maxiterate 1000 msh2_subset.fasta > aln_linsi.fasta` 
+```
+
 5. Upload all three files into your `Lab_5` folder on the cluster (Files pane → **Upload**).
 
 6. Compare them:

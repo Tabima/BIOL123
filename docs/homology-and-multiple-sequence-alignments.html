@@ -375,7 +375,23 @@ predict will work best, and why?
 </ul>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Run the alignment <strong>three times</strong>, changing the strategy each time: <strong>Auto</strong>, <strong>G-INS-i</strong>, and <strong>L-INS-i</strong>. Download each result in FASTA format and save them as <code>aln_auto.fasta</code>, <code>aln_gins.fasta</code>, and <code>aln_linsi.fasta</code>.</p></li>
+<li>Run the alignment <strong>three times</strong>, changing the strategy each time: <strong>Auto</strong>, <strong>G-INS-i</strong>, and <strong>L-INS-i</strong>. Download each result in FASTA format and save them as <code>aln_auto.fasta</code>, <code>aln_gins.fasta</code>, and <code>aln_linsi.fasta</code>.</li>
+</ol>
+<div class="rmdwarning">
+<p>
+Since <code>MAFFT</code> is not running online, we need to run it in
+the cluster:
+</p>
+<p>
+<strong>Auto</strong>:
+<code>mafft –auto msh2_subset.fasta &gt; aln_auto.fasta</code><br />
+<strong>G-INS-i</strong>:
+<code>mafft –globalpair –maxiterate 1000 msh2_subset.fasta &gt; aln_gins.fasta</code>
+<strong>L-INS-i</strong>
+<code>mafft –localpair –maxiterate 1000 msh2_subset.fasta &gt; aln_linsi.fasta</code>
+</p>
+</div>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Upload all three files into your <code>Lab_5</code> folder on the cluster (Files pane → <strong>Upload</strong>).</p></li>
 <li><p>Compare them:</p></li>
 </ol>
