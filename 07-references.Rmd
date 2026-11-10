@@ -145,8 +145,7 @@ plotBS(tree, bs, p = 50, type = "phylogram", cex = 0.8)
 support <- prop.clades(tree, bs)   # how many of the 100 bootstrap trees contain each branch
 
 plot(tree, type = "phylogram", cex = 0.9)
-nodelabels(ifelse(support >= 50, support, ""), frame = "none",
-+            adj = c(1.1, -0.4), cex = 0.8, col = "firebrick")
+nodelabels(ifelse(support >= 50, support, ""), frame = "none",adj = c(1.1, -0.4), cex = 0.8, col = "firebrick")
 ```
 
 The numbers on the branches are bootstrap values (out of 100). Higher means more support.
