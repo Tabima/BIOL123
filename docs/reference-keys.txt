@@ -105,7 +105,6 @@ the-case
 align-the-sequences
 fix-it
 solve-the-case
-homework-report-to-the-dean
 answering-each-part-of-the-questions
 number-of-nucleotides
 length-of-sequence

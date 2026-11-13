@@ -37,9 +37,9 @@ library(ape)
 library(phangorn)
 ```
 
-# Part 1: Playing God
+## Part 1: Playing God
 
-## Create your creatures
+### Create your creatures
 
 1. Invent **12 creatures**. Give them names, the weirder the better (`"Glorbo"`, `"Sir_Wigglesworth"`, `"Toast_Moth"`...). Use no spaces in the names; use `_` instead.
 
@@ -60,7 +60,7 @@ true_tree$edge.length <- true_tree$edge.length * 0.2   # keep branches realistic
 write.tree(true_tree, "SEALED_true_tree.nwk")
 ```
 
-## Evolve their DNA
+### Evolve their DNA
 
 3. Now let evolution happen. `simSeq()` starts with one ancestral sequence at the root and lets mutations accumulate along every branch of your tree, just like real evolution, until it reaches your 12 living creatures.
 
@@ -75,7 +75,7 @@ for (len in c(20, 100, 1000)) {
 
 These sequences are already aligned (our simulation has no insertions or deletions), so we can go straight to tree building.
 
-## Reconstruct the tree
+### Reconstruct the tree
 
 4. In the Terminal, run `IQ-tree` on all three files:
 
@@ -93,7 +93,7 @@ done
 - How many **parsimony-informative sites** did `IQ-tree` find in each alignment (it's in the `.iqtree` file)? Why does this number matter more than the raw length?
 ```
 
-## Look at your trees
+### Look at your trees
 
 5. Plot your three reconstructed trees with their bootstrap support:
 
@@ -115,7 +115,7 @@ Remember: bootstrap values above 75% are generally considered well supported, an
 - Before opening the envelope: which of your three trees do you trust the most, and why? Which specific relationships would you bet money on?
 ```
 
-## Open the envelope
+### Open the envelope
 
 6. Now compare each reconstruction to the truth. The **Robinson-Foulds (RF) distance** counts how many branches (splits) are in one tree but not the other. **RF = 0 means you got the tree exactly right.** For 12 creatures, the worst possible score is 18.
 
@@ -156,9 +156,9 @@ title("Truth (left) vs. IQ-tree 1000 bp (right)")
 - Looking at the class plot: is there a length where pretty much everyone got the right tree? In real life you never have the envelope. Why does this experiment matter for the trees you'll build later in your career?
 ```
 
-# Part 2: The Campus Outbreak
+## Part 2: The Campus Outbreak
 
-## The case
+### The case
 
 > **URGENT – Office of the Dean of Students**
 >
@@ -176,7 +176,7 @@ title("Truth (left) vs. IQ-tree 1000 bp (right)")
 
 9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from here:  and put them in your folder.
 
-## Align the sequences
+### Align the sequences
 
 10. Unlike your creatures, these sequences have insertions and deletions, so they need aligning first. Align them with `MAFFT`:
 
@@ -214,7 +214,7 @@ legend("right", legend = names(colors), text.col = colors, bty = "n")
 - Something is very wrong with one sample. Which one, and what about the tree tells you so? Open `outbreak_aligned.fasta` in the [NCBI MSA viewer](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) (use `Coloring -> Nucleic Acid Colors`) to look at that sample. What do you see?
 ```
 
-## Fix it
+### Fix it
 
 13. Somebody in the sequencing facility loaded one sample backwards: it's the **reverse complement** of the real sequence. `MAFFT` can detect and flip backwards sequences for you:
 
@@ -241,7 +241,7 @@ add.scale.bar()
 legend("right", legend = names(colors), text.col = colors, bty = "n")
 ```
 
-## Solve the case
+### Solve the case
 
 14. Now color the infected students by **dorm** instead of by source:
 
@@ -273,13 +273,3 @@ is.monophyletic(tr, c(patients, "LabStock_1", "LabStock_2", "LabStock_3"))
 - Are there separate transmission clusters for each dorm? One student's tree position doesn't match their dorm. Who is it, and what could explain it? (Think about how students from different dorms might come into contact.)
 ```
 
-## Homework: Report to the Dean
-
-> Write a **one-page memo to the Dean of Students** (no jargon; the Dean is not a biologist) that answers:
->
-> 1. Where did the outbreak come from, and how confident are you?
-> 2. Is it spreading between dorms?
-> 3. What should the university do next?
-> 4. What went wrong with one of the samples, and how did you fix it?
->
-> Include **one figure**: your final tree, colored however best tells the story, with a caption that a non-scientist can understand.
