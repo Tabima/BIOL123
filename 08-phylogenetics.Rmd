@@ -1,110 +1,285 @@
-# Phylogenetics 
+# Phylogenetics: Playing God and Catching a Fungus  {#phylogenetics}
 
-One of the most common ways of creating phylogenetic trees is using protein data, as the length of the protein alignment is usually smaller than the nucleotide alignment. 
+In this lab you'll do two things that real phylogeneticists do all the time, and that most intro classes skip:
+
+1. **Play God.** You'll *create* your own group of imaginary creatures, evolve their DNA in the computer, and hide the true family tree in a sealed envelope. Then you'll use `IQ-tree` to try to reconstruct it and see how close you get. This is the only time you'll ever know the *right answer* for a phylogeny, so it's the only time you can actually check whether your methods work.
+2. **Catch a fungus.** A zombie-ant-style fungus (*Ophiocordyceps*) is infecting students in two dorms. You have DNA from the patients and from three suspects. You'll use a tree to figure out where the outbreak came from, who infected whom, and whether the mycology lab is to blame.
+
+This second part is called **genomic epidemiology**, and it's the same approach public health labs used to track SARS-CoV-2, mpox and *Candida auris* outbreaks.
 
 ## Introduction to `IQ-tree`
 
-In this lab, we will use one of the most recent programs to build phylogenetic trees: [`IQ-tree`](http://www.iqtree.org/).
+We will use [`IQ-tree`](http://www.iqtree.org/), one of the most widely used programs for building phylogenetic trees. `IQ-tree`:
 
-`IQ-tree` uses a maximum likelihood approach and ultra-fast bootstrapping to reconstruct phylogenetic trees. 
+- Uses **maximum likelihood**: it searches for the tree that makes your data most probable under a model of evolution.
+- Runs **ModelFinder** first to pick the best model of substitution for your data (remember AIC/BIC from lecture).
+- Runs **ultrafast bootstraps** to tell you how much to trust each branch.
 
-`IQ-tree` is a very fast program, and it can use nucleotide, protein and other types of data to reconstruct phylogenies based on maximum likelihood.
-
-In addition, if you remember from the theory lecture, `IQ-tree` also determines the best model for nucleotide/amino-acid substitution for the phylogenetic reconstruction, so pretty much `IQ-tree` can do it all.
-
-## Running IQ-tree on protein data
-
-So, we are going to use the protein alignment that we created last week.
-
-To run IQ-tree, we need a simple command:
+The basic command is:
 
 ```
-iqtree2 -s your_protein_alignment -B 1000
+iqtree2 -s your_alignment.fasta -B 1000
 ```
 
-This single command runs `IQ-tree`, automatically determines the best model of amino-acid evolution, runs 1000 ultra-fast bootstraps, and obtains the most likely tree.
+> **Tip:** `IQ-tree` won't overwrite an earlier run with the same name. If you need to rerun something, add `-redo` to the command.
 
-1. Answer the following questions:
+We'll run `IQ-tree` from the **Terminal** tab in RStudio on `pippin`, and do everything else in R. Make a folder for today:
+
+```
+mkdir ~/phylo_lab
+cd ~/phylo_lab
+```
+
+And in R:
+
+```r
+library(ape)
+library(phangorn)
+```
+
+# Part 1: Playing God
+
+## Create your creatures
+
+1. Invent **12 creatures**. Give them names, the weirder the better (`"Glorbo"`, `"Sir_Wigglesworth"`, `"Toast_Moth"`...). Use no spaces in the names; use `_` instead.
+
+2. Use your student ID number (or any number you like) as your random seed. That makes your world *yours*: nobody else in the class will have the same tree.
+
+```
+set.seed(12345)   # <- change this to your own number
+
+my_creatures <- c("Glorbo", "Sir_Wigglesworth", "Toast_Moth", "Captain_Spore",
+                  "Blorp", "Mildred", "Snorkelbeast", "Fungal_Fiona",
+                  "Gerald", "Velvet_Worm_Steve", "Zoomba", "The_Professor")
+
+# Make a random family tree for your creatures
+true_tree <- rtree(12, tip.label = my_creatures)
+true_tree$edge.length <- true_tree$edge.length * 0.2   # keep branches realistic
+
+# SEAL THE ENVELOPE. Do not look at this tree until step 8!
+write.tree(true_tree, "SEALED_true_tree.nwk")
+```
+
+## Evolve their DNA
+
+3. Now let evolution happen. `simSeq()` starts with one ancestral sequence at the root and lets mutations accumulate along every branch of your tree, just like real evolution, until it reaches your 12 living creatures.
+
+We'll make three datasets of different sizes: a tiny 20 bp gene, a short 100 bp gene, and a decent 1,000 bp gene.
+
+```
+for (len in c(20, 100, 1000)) {
+  dna <- simSeq(true_tree, l = len, type = "DNA")
+  write.phyDat(dna, paste0("creatures_", len, "bp.fasta"), format = "fasta")
+}
+```
+
+These sequences are already aligned (our simulation has no insertions or deletions), so we can go straight to tree building.
+
+## Reconstruct the tree
+
+4. In the Terminal, run `IQ-tree` on all three files:
+
+```
+for len in 20 100 1000; do
+  iqtree2 -s creatures_${len}bp.fasta -B 1000 --prefix creatures_${len}bp
+done
+```
 
 ```{block, type='rmdquestion'}
 ### Questions 1 - 3
 
-- Check the output of the program as it runs. According to the output, what is the Best-fit model for our alignment?
-- What are the best models according to Akaike information criteria, corrected Akaike information criteria, and Bayesian information criteria? Are they all different?
-- Use code to extract the Log-likelihood of the tree from the `.iqtree` file from the run. What is that value? How did you extract it?
+- Look at the `.iqtree` file for the 1,000 bp run. What is the best-fit model according to BIC? The simulation used the simplest possible model of DNA evolution (Jukes-Cantor, `JC`). Did `IQ-tree` figure that out for all three lengths? If not, why might it pick a more complex model?
+- Use code (e.g. `grep`) to pull the log-likelihood of the tree out of each `.iqtree` file. Paste your code and the three values. Why can't you compare these three numbers to decide which tree is "best"?
+- How many **parsimony-informative sites** did `IQ-tree` find in each alignment (it's in the `.iqtree` file)? Why does this number matter more than the raw length?
 ```
 
-2. To view your final phylogenetic tree, download [FigTree](https://github.com/rambaut/figtree/releases) where the `dmg` is for MacOS, the `zip` for Windows, and the `tgz` for Linux. Install the program.
+## Look at your trees
 
-3. Download the `.treefile` file from the cluster to your computer. Open `FigTree` and open the downloaded `.treefile`.
+5. Plot your three reconstructed trees with their bootstrap support:
 
-4. You'll see a window like this. It asks you about what name you want to give the labels of the trees. I usually call them *bootstrap*:
+```
+par(mfrow = c(1, 3))
+for (len in c(20, 100, 1000)) {
+  tr <- read.tree(paste0("creatures_", len, "bp.treefile"))
+  tr <- midpoint(tr)    # ML trees are unrooted; root them at the midpoint
+  plot(tr, main = paste(len, "bp"), cex = 0.8)
+  nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.7, col = "red")
+}
+```
 
-![](Lab_5/img1.png)
-
-5. Here's your tree! Now, all Maximum Likelihood trees are unrooted by definition. However, it's easier to study the tree if you root it. In this case, you can root it on the node with the longest branch. To do so do `Trees -> Root tree -> Midpoint`.
-
-6. You can also organize the tree for easy viewing by organizing it by early-emerging to late emerging. Use `Trees -> Order nodes -> Increasing` to do so.
-
-7. Finally, observe the bootstrap values by selecting `Node Labels -> Bootstrap`. Good bootstrap support values are greater than 60%; highly supported values are greater than 75%. 
-
-8. Answer the following question:
+Remember: bootstrap values above 75% are generally considered well supported, and above 95% strongly supported.
 
 ```{block, type='rmdquestion'}
 ### Question 4
 
-- Summarize your findings (i.e.: Describe the relationships between the species; which nodes are well supported, which nodes are not; does this tree fit the expectation based on the taxonomy of the species used?)
+- Before opening the envelope: which of your three trees do you trust the most, and why? Which specific relationships would you bet money on?
 ```
 
-## Running IQ-tree on nucleotide data
+## Open the envelope
 
-Now, let's do the same but using the `homologene_nucl.fasta` file you'll find on the Moodle page. 
+6. Now compare each reconstruction to the truth. The **Robinson-Foulds (RF) distance** counts how many branches (splits) are in one tree but not the other. **RF = 0 means you got the tree exactly right.** For 12 creatures, the worst possible score is 18.
 
-This file has **been previously aligned** using `MAFFT`, so this **SHOULD BE** the same file you got from the `mRNA` homologene file, and we will test this hypothesis. 
+```
+true_tree <- read.tree("SEALED_true_tree.nwk")
 
-9. Align **YOUR** mRNA homologene file you obtained last week using `MAFFT`. Answer the following question.
-
-```{block, type='rmdquestion'}
-### Questions 5 - 6
-
-- Add the code for the MAFFT alignment of your mRNA file.
-- Why did you decide to use that algorithm?
+for (len in c(20, 100, 1000)) {
+  tr <- read.tree(paste0("creatures_", len, "bp.treefile"))
+  cat(len, "bp -> RF distance:", RF.dist(true_tree, tr, rooted = FALSE), "\n")
+}
 ```
 
-10. Run `IQ-tree` for each of the mRNA alignments. Fill in the following table
+7. Put the truth and your best guess side by side. The lines connect the same creature in both trees:
 
-| mRNA file | Best nucleotide model | Likelihood score of tree |
+```
+est <- read.tree("creatures_1000bp.treefile")
+est <- root(est, outgroup = true_tree$tip.label[1], resolve.root = TRUE)
+true_rooted <- root(true_tree, outgroup = true_tree$tip.label[1], resolve.root = TRUE)
+cophyloplot(true_rooted, est,
+            assoc = cbind(true_rooted$tip.label, true_rooted$tip.label),
+            length.line = 4, space = 60, gap = 3)
+title("Truth (left) vs. IQ-tree 1000 bp (right)")
+```
+
+8. Fill in this table and add your numbers to the **class spreadsheet** (link on Moodle). We'll plot everyone's results together at the end of class.
+
+| Alignment length | RF distance to the truth | Lowest bootstrap value in the tree |
 |---|---|---|
-| Your mRNA file | | |
-| Professor's mRNA file | | |
-
-11. Open both trees in FigTree. Answer the following question:
+| 20 bp | | |
+| 100 bp | | |
+| 1,000 bp | | |
 
 ```{block, type='rmdquestion'}
-### Question 7
+### Questions 5 - 7
 
-- What is the most striking difference you see?
+- How did the amount of data affect how close you got to the truth?
+- Find a branch in your 20 bp or 100 bp tree that was **wrong** (not in the true tree). What was its bootstrap value? Find a branch that was **right**. What was its bootstrap value? What does this tell you about what bootstrap values actually mean?
+- Looking at the class plot: is there a length where pretty much everyone got the right tree? In real life you never have the envelope. Why does this experiment matter for the trees you'll build later in your career?
 ```
 
-12. Open the professor's alignment in the [MSA viewer of NCBI](https://www.ncbi.nlm.nih.gov/projects/msaviewer/). After uploading the sequence, use the `Coloring -> Nucleic Acid Colors` option. Answer the following question:
+# Part 2: The Campus Outbreak
+
+## The case
+
+> **URGENT – Office of the Dean of Students**
+>
+> Over the past three weeks, 16 students from **Dorm A** and **Dorm B** have come to Health Services with fatigue, an unusual craving to climb to high places, and a fuzzy white growth behind the ears. Culture results show an *Ophiocordyceps* fungus.
+>
+> We have sequenced the same 1.5 kb marker gene from every patient, and from three possible sources:
+>
+> - **`Forest_*`**: wild *Ophiocordyceps* collected in the woods behind campus.
+> - **`LabStock_*`**: strains from the mycology lab's freezer. (The mycology lab says it's definitely not them.)
+> - **`Smoothie_*`**: fungus cultured from two lots of "Brain Boost" mushroom powder sold at the campus smoothie bar.
+>
+> A *Cordyceps militaris* sequence is included as an outgroup.
+>
+> We need to know: **Where did this come from? Is it spreading between dorms? Who is to blame?**
+
+9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from here:  and put them in your folder.
+
+## Align the sequences
+
+10. Unlike your creatures, these sequences have insertions and deletions, so they need aligning first. Align them with `MAFFT`:
+
+```
+system('mafft --auto outbreak_unaligned.fasta > outbreak_aligned.fasta')
+```
+
+11. Build the tree:
+
+```
+system('iqtree2 -s outbreak_aligned.fasta -B 1000 --prefix outbreak')
+```
+
+12. Plot it in R, coloring the samples by where they came from:
+
+```
+meta <- read.csv("outbreak_metadata.csv")
+tr   <- read.tree("outbreak.treefile")
+tr   <- root(tr, outgroup = "Outgroup_Cordyceps", resolve.root = TRUE)
+
+colors <- c("Forest" = "darkgreen", "LabStock" = "purple", "Smoothie" = "orange",
+            "Infected student" = "red", "Outgroup (C. militaris)" = "grey40")
+tip_source <- meta$source[match(tr$tip.label, meta$sample)]
+
+par(mfrow = c(1, 1))
+plot(tr, tip.color = colors[tip_source], cex = 0.8)
+nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.6)
+add.scale.bar()
+legend("right", legend = names(colors), text.col = colors, bty = "n")
+```
 
 ```{block, type='rmdquestion'}
 ### Question 8
 
-- There is one sequence that looks very weird (i.e. Colors don't match and there are long strands of insertions and deletions in the region). What sequence do you suspect is weird?
+- Something is very wrong with one sample. Which one, and what about the tree tells you so? Open `outbreak_aligned.fasta` in the [NCBI MSA viewer](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) (use `Coloring -> Nucleic Acid Colors`) to look at that sample. What do you see?
 ```
 
-13. The professor just noticed that he changed the sequence of *Mus musculus* (`gi|118130707|ref|NM_008628.2|`) and added the reverse strand instead of the forward strand... WHOOPS.
+## Fix it
 
-In this case, `MAFFT` can check all the sequences and correct the direction of the strand. Use the `--adjustdirectionaccurately` option of `MAFFT` to run it. 
+13. Somebody in the sequencing facility loaded one sample backwards: it's the **reverse complement** of the real sequence. `MAFFT` can detect and flip backwards sequences for you:
 
-So, if you used the `E-INS-i` algorithm, the syntax would be like this:
+```
+system('mafft --adjustdirectionaccurately --auto outbreak_unaligned.fasta > outbreak_fixed.fasta')
+system('iqtree2 -s outbreak_fixed.fasta -B 1000 --prefix outbreak_fixed')
+```
 
-`mafft --adjustdirectionaccurately --genafpair --maxiterate 1000 homologene_nucl.fasta > professor_corrected.fasta`
+`MAFFT` adds `_R_` to the start of the name of any sequence it flipped. Run `grep "_R_" outbreak_fixed.fasta` to check which one it was. Then clean up the name in R before plotting, and replot your tree using `outbreak_fixed.treefile`:
 
-Using this info, here's the homework:
+```
+tr <- read.tree("outbreak_fixed.treefile")
+tr <- midpoint(tr)
+tr$tip.label <- sub("^_R_", "", tr$tip.label)
 
-## Final Phylogenetics exercise:
+colors <- c("Forest" = "darkgreen", "LabStock" = "purple", "Smoothie" = "orange",
+            "Infected student" = "red", "Outgroup (C. militaris)" = "grey40")
+tip_source <- meta$source[match(tr$tip.label, meta$sample)]
 
-> Using the mis-alignment I sent, correct it using the `MAFFT` code above and run the tree again. Does the tree look like the mRNA you obtained? Write a paragraph about the comparison.
+par(mfrow = c(1, 1))
+plot(tr, tip.color = colors[tip_source], cex = 0.8)
+nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.6)
+add.scale.bar()
+legend("right", legend = names(colors), text.col = colors, bty = "n")
+```
 
+## Solve the case
+
+14. Now color the infected students by **dorm** instead of by source:
+
+```
+tip_dorm <- meta$dorm[match(tr$tip.label, meta$sample)]
+dorm_colors <- ifelse(is.na(tip_dorm), "grey60",
+                      ifelse(tip_dorm == "Dorm_A", "blue", "red"))
+plot(tr, tip.color = dorm_colors, cex = 0.8)
+nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.6)
+legend("right", legend = c("Dorm A", "Dorm B", "Not a patient"),
+       text.col = c("blue", "red", "grey60"), bty = "n")
+```
+
+15. Use code to check your hypotheses. `is.monophyletic()` tells you whether a group of samples forms a single clade with nothing else mixed in:
+
+```
+patients <- grep("Patient", tr$tip.label, value = TRUE)
+is.monophyletic(tr, patients)
+is.monophyletic(tr, c(patients, "Smoothie_LotA", "Smoothie_LotB"))
+is.monophyletic(tr, c(patients, "LabStock_1", "LabStock_2", "LabStock_3"))
+```
+
+```{block, type='rmdquestion'}
+### Questions 9 - 12
+
+- Is this a single outbreak (one introduction) or several separate infections from the environment? How do you know?
+- Which suspect is the source: the forest, the lab or the smoothie bar? Which node in the tree supports your answer, and what is its bootstrap value?
+- The mycology lab strains are not the source, but they are fairly closely related to the outbreak. Why might someone who looked at the tree too quickly have blamed the lab?
+- Are there separate transmission clusters for each dorm? One student's tree position doesn't match their dorm. Who is it, and what could explain it? (Think about how students from different dorms might come into contact.)
+```
+
+## Homework: Report to the Dean
+
+> Write a **one-page memo to the Dean of Students** (no jargon; the Dean is not a biologist) that answers:
+>
+> 1. Where did the outbreak come from, and how confident are you?
+> 2. Is it spreading between dorms?
+> 3. What should the university do next?
+> 4. What went wrong with one of the samples, and how did you fix it?
+>
+> Include **one figure**: your final tree, colored however best tells the story, with a caption that a non-scientist can understand.
