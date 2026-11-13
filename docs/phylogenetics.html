@@ -330,12 +330,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p><strong>Tip:</strong> <code>IQ-tree</code> won’t overwrite an earlier run with the same name. If you need to rerun something, add <code>-redo</code> to the command.</p>
 </blockquote>
-<p>We’ll run <code>IQ-tree</code> from the <strong>Terminal</strong> tab in RStudio on <code>pippin</code>, and do everything else in R. Make a folder for today:</p>
-<pre><code>mkdir ~/phylo_lab
-cd ~/phylo_lab</code></pre>
-<p>And in R:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="phylogenetics.html#cb87-1" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb87-2"><a href="phylogenetics.html#cb87-2" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span></code></pre></div>
+<p>We’ll run <code>IQ-tree</code> from the <strong>Terminal</strong> tab in RStudio on <code>pippin</code>, and do everything else in R.</p>
+<p>And in , load the libraries:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="phylogenetics.html#cb86-1" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb86-2"><a href="phylogenetics.html#cb86-2" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span></code></pre></div>
 </div>
 <div id="part-1-playing-god" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Part 1: Playing God<a href="phylogenetics.html#part-1-playing-god" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -529,7 +527,7 @@ career?
 <p>We need to know: <strong>Where did this come from? Is it spreading between dorms? Who is to blame?</strong></p>
 </blockquote>
 <ol start="9" style="list-style-type: decimal">
-<li>Download <code>outbreak_unaligned.fasta</code> and <code>outbreak_metadata.csv</code> from here: and put them in your folder.</li>
+<li>Download <code>outbreak_unaligned.fasta</code> and <code>outbreak_metadata.csv</code> from (here)[<a href="https://github.com/Tabima/BIOL123/raw/refs/heads/main/Lab6/outbreak_data.zip" class="uri">https://github.com/Tabima/BIOL123/raw/refs/heads/main/Lab6/outbreak_data.zip</a>] and put them in your folder.</li>
 </ol>
 </div>
 <div id="align-the-sequences" class="section level3 hasAnchor" number="10.3.2">

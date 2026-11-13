@@ -23,14 +23,9 @@ iqtree2 -s your_alignment.fasta -B 1000
 
 > **Tip:** `IQ-tree` won't overwrite an earlier run with the same name. If you need to rerun something, add `-redo` to the command.
 
-We'll run `IQ-tree` from the **Terminal** tab in RStudio on `pippin`, and do everything else in R. Make a folder for today:
+We'll run `IQ-tree` from the **Terminal** tab in RStudio on `pippin`, and do everything else in R.
 
-```
-mkdir ~/phylo_lab
-cd ~/phylo_lab
-```
-
-And in R:
+And in , load the libraries:
 
 ```r
 library(ape)
@@ -174,7 +169,7 @@ title("Truth (left) vs. IQ-tree 1000 bp (right)")
 >
 > We need to know: **Where did this come from? Is it spreading between dorms? Who is to blame?**
 
-9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from here:  and put them in your folder.
+9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from (here)[https://github.com/Tabima/BIOL123/raw/refs/heads/main/Lab6/outbreak_data.zip]  and put them in your folder.
 
 ### Align the sequences
 
