@@ -15,9 +15,9 @@ library(phytools)
 ```
 
 
-# Part 1: The Campus Outbreak
+## Part 1: The Campus Outbreak
 
-## The case
+### The case
 
 > **URGENT – Office of the Dean of Students**
 >
@@ -33,7 +33,7 @@ library(phytools)
 >
 > We need to know: **Where did this come from? Is it spreading between dorms? Who is to blame?**
 
-## Introduction to `IQ-tree`
+### Introduction to `IQ-tree`
 
 For this part, you'll build the tree yourself. We will use [`IQ-tree`](http://www.iqtree.org/), one of the most widely used programs for building phylogenetic trees. `IQ-tree`:
 
@@ -51,18 +51,18 @@ iqtree2 -s your_alignment.fasta -B 1000
 
 9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from Moodle and put them in your `~/phylo_lab` folder.
 
-## Align the sequences
+### Align the sequences
 
 10. These sequences have insertions and deletions, so they need aligning first. Align them with `MAFFT`:
 
 ```
-mafft --auto outbreak_unaligned.fasta > outbreak_aligned.fasta
+system('mafft --auto outbreak_unaligned.fasta > outbreak_aligned.fasta')
 ```
 
 11. Build the tree:
 
 ```
-iqtree2 -s outbreak_aligned.fasta -B 1000 --prefix outbreak
+system('iqtree2 -s outbreak_aligned.fasta -B 1000 --prefix outbreak')
 ```
 
 12. Plot it in R, coloring the samples by where they came from:
@@ -89,13 +89,13 @@ legend("right", legend = names(colors), text.col = colors, bty = "n")
 - Something is very wrong with one sample. Which one, and what about the tree tells you so? Open `outbreak_aligned.fasta` in the [NCBI MSA viewer](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) (use `Coloring -> Nucleic Acid Colors`) to look at that sample. What do you see?
 ```
 
-## Fix it
+### Fix it
 
 13. Somebody in the sequencing facility loaded one sample backwards: it's the **reverse complement** of the real sequence. `MAFFT` can detect and flip backwards sequences for you:
 
 ```
-mafft --adjustdirectionaccurately --auto outbreak_unaligned.fasta > outbreak_fixed.fasta
-iqtree2 -s outbreak_fixed.fasta -B 1000 --prefix outbreak_fixed
+system('mafft --adjustdirectionaccurately --auto outbreak_unaligned.fasta > outbreak_fixed.fasta')
+system('iqtree2 -s outbreak_fixed.fasta -B 1000 --prefix outbreak_fixed')
 ```
 
 `MAFFT` adds `_R_` to the start of the name of any sequence it flipped. Run `grep "_R_" outbreak_fixed.fasta` to check which one it was. Then clean up the name in R before plotting, and replot your tree using `outbreak_fixed.treefile`:
@@ -106,7 +106,7 @@ tr$tip.label <- sub("^_R_", "", tr$tip.label)
 # ...then root and plot exactly as in step 12
 ```
 
-## Solve the case
+### Solve the case
 
 14. Now color the infected students by **dorm** instead of by source:
 
@@ -140,9 +140,9 @@ is.monophyletic(tr, c(patients, "LabStock_1", "LabStock_2", "LabStock_3"))
 
 ***
 
-# Part 2: Is Everything Turning Into a Crab?
+## Part 2: Is Everything Turning Into a Crab?
 
-## Carcinization
+### Carcinization
 
 In 1916 the zoologist L.A. Borradaile noticed that unrelated crustaceans kept evolving into crab-shaped animals, and called it *"one of the many attempts of Nature to evolve a crab."* The process now has a name: **carcinization**.
 
@@ -162,7 +162,7 @@ A hermit crab has a soft abdomen curled into a snail shell, so it's not crab-lik
 
 **Ancestral state reconstruction (ASR)** takes a tree and the traits we can see in living species, and estimates what the traits were in ancestors we can't see. That lets us count how many times a trait was gained or lost.
 
-## The data
+### The data
 
 We'll use 36 decapod crustaceans. The tree is a simplified version of published phylogenies of crabs and their relatives (Bracken-Grissom et al. 2013, *BMC Evolutionary Biology*; Wolfe et al. 2021, *BioEssays*). Some relationships are still debated, so where the experts don't agree, the tree has a **polytomy** (a node with more than two branches).
 
@@ -236,7 +236,7 @@ legend("topleft", legend = c("crab-like", "not crab-like"), fill = cols, bty = "
 - King crabs look like true crabs. Where are they on the tree, and who are their closest relatives? Does that surprise you?
 ```
 
-## Method 1: Parsimony
+### Method 1: Parsimony
 
 3. **Parsimony** asks: what is the *smallest* number of changes (gains or losses of the crab body) needed to explain the colors on the tips?
 
@@ -251,7 +251,7 @@ parsimony(tr, body_data)
 - What is the minimum number of changes? Draw (or describe) one scenario on the tree that uses exactly that number of changes. How many are gains and how many are losses in your scenario?
 ```
 
-## Method 2: Maximum likelihood
+### Method 2: Maximum likelihood
 
 4. Parsimony gives one answer and no measure of uncertainty. **Maximum likelihood** fits a model where the trait can switch between states at some rate, and gives the **probability** that each ancestor was crab-like:
 
@@ -288,7 +288,7 @@ prob_crab("Pagurus_bernhardus", "Lithodes_maja")      # ancestor of hermit crabs
 - King crabs are crab-like. Their ancestor with hermit crabs was not. So what was the ancestor of king crabs carrying around on its back?
 ```
 
-## Method 3: Counting gains and losses
+### Method 3: Counting gains and losses
 
 6. **Stochastic character mapping** simulates 100 possible histories of the trait on the tree, in proportion to how likely each one is. Then we can count how many gains and losses happen in an average history:
 
