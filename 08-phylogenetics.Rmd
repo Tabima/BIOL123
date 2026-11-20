@@ -1,159 +1,23 @@
-# Phylogenetics: Playing God and Catching a Fungus  {#phylogenetics}
+# Phylogenetics: Crabs and a Campus Outbreak
 
-In this lab you'll do two things that real phylogeneticists do all the time, and that most intro classes skip:
+In this lab you'll use phylogenetic trees for two things real scientists do with them:
 
-1. **Play God.** You'll *create* your own group of imaginary creatures, evolve their DNA in the computer, and hide the true family tree in a sealed envelope. Then you'll use `IQ-tree` to try to reconstruct it and see how close you get. This is the only time you'll ever know the *right answer* for a phylogeny, so it's the only time you can actually check whether your methods work.
-2. **Catch a fungus.** A zombie-ant-style fungus (*Ophiocordyceps*) is infecting students in two dorms. You have DNA from the patients and from three suspects. You'll use a tree to figure out where the outbreak came from, who infected whom, and whether the mycology lab is to blame.
+1. **Catch a fungus.** A zombie-ant-style fungus (*Ophiocordyceps*) is infecting students in two dorms. You have DNA from the patients and from three suspects. You'll build a tree to figure out where the outbreak came from, who infected whom, and whether the mycology lab is to blame. This is called **genomic epidemiology**, and it's the same approach public health labs used to track SARS-CoV-2, mpox and *Candida auris* outbreaks.
 
-This second part is called **genomic epidemiology**, and it's the same approach public health labs used to track SARS-CoV-2, mpox and *Candida auris* outbreaks.
+2. **Is everything turning into a crab?** The internet jokes that every animal eventually evolves into a crab. It's actually half true! You'll use **ancestral state reconstruction** to find out how many times evolution "invented" the crab body, and whether it ever un-invented it.
 
-## Introduction to `IQ-tree`
+in R:
 
-We will use [`IQ-tree`](http://www.iqtree.org/), one of the most widely used programs for building phylogenetic trees. `IQ-tree`:
-
-- Uses **maximum likelihood**: it searches for the tree that makes your data most probable under a model of evolution.
-- Runs **ModelFinder** first to pick the best model of substitution for your data (remember AIC/BIC from lecture).
-- Runs **ultrafast bootstraps** to tell you how much to trust each branch.
-
-The basic command is:
-
-```
-iqtree2 -s your_alignment.fasta -B 1000
-```
-
-> **Tip:** `IQ-tree` won't overwrite an earlier run with the same name. If you need to rerun something, add `-redo` to the command.
-
-We'll run `IQ-tree` from the **Terminal** tab in RStudio on `pippin`, and do everything else in R.
-
-And in , load the libraries:
-
-```r
+```{r, eval=FALSE}
 library(ape)
 library(phangorn)
+library(phytools)
 ```
 
-## Part 1: Playing God
 
-### Create your creatures
+# Part 1: The Campus Outbreak
 
-1. Invent **12 creatures**. Give them names, the weirder the better (`"Glorbo"`, `"Sir_Wigglesworth"`, `"Toast_Moth"`...). Use no spaces in the names; use `_` instead.
-
-2. Use your student ID number (or any number you like) as your random seed. That makes your world *yours*: nobody else in the class will have the same tree.
-
-```
-set.seed(12345)   # <- change this to your own number
-
-my_creatures <- c("Glorbo", "Sir_Wigglesworth", "Toast_Moth", "Captain_Spore",
-                  "Blorp", "Mildred", "Snorkelbeast", "Fungal_Fiona",
-                  "Gerald", "Velvet_Worm_Steve", "Zoomba", "The_Professor")
-
-# Make a random family tree for your creatures
-true_tree <- rtree(12, tip.label = my_creatures)
-true_tree$edge.length <- true_tree$edge.length * 0.2   # keep branches realistic
-
-# SEAL THE ENVELOPE. Do not look at this tree until step 8!
-write.tree(true_tree, "SEALED_true_tree.nwk")
-```
-
-### Evolve their DNA
-
-3. Now let evolution happen. `simSeq()` starts with one ancestral sequence at the root and lets mutations accumulate along every branch of your tree, just like real evolution, until it reaches your 12 living creatures.
-
-We'll make three datasets of different sizes: a tiny 20 bp gene, a short 100 bp gene, and a decent 1,000 bp gene.
-
-```
-for (len in c(20, 100, 1000)) {
-  dna <- simSeq(true_tree, l = len, type = "DNA")
-  write.phyDat(dna, paste0("creatures_", len, "bp.fasta"), format = "fasta")
-}
-```
-
-These sequences are already aligned (our simulation has no insertions or deletions), so we can go straight to tree building.
-
-### Reconstruct the tree
-
-4. In the Terminal, run `IQ-tree` on all three files:
-
-```
-for len in 20 100 1000; do
-  iqtree2 -s creatures_${len}bp.fasta -B 1000 --prefix creatures_${len}bp
-done
-```
-
-```{block, type='rmdquestion'}
-### Questions 1 - 3
-
-- Look at the `.iqtree` file for the 1,000 bp run. What is the best-fit model according to BIC? The simulation used the simplest possible model of DNA evolution (Jukes-Cantor, `JC`). Did `IQ-tree` figure that out for all three lengths? If not, why might it pick a more complex model?
-- Use code (e.g. `grep`) to pull the log-likelihood of the tree out of each `.iqtree` file. Paste your code and the three values. Why can't you compare these three numbers to decide which tree is "best"?
-- How many **parsimony-informative sites** did `IQ-tree` find in each alignment (it's in the `.iqtree` file)? Why does this number matter more than the raw length?
-```
-
-### Look at your trees
-
-5. Plot your three reconstructed trees with their bootstrap support:
-
-```
-par(mfrow = c(1, 3))
-for (len in c(20, 100, 1000)) {
-  tr <- read.tree(paste0("creatures_", len, "bp.treefile"))
-  tr <- midpoint(tr)    # ML trees are unrooted; root them at the midpoint
-  plot(tr, main = paste(len, "bp"), cex = 0.8)
-  nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.7, col = "red")
-}
-```
-
-Remember: bootstrap values above 75% are generally considered well supported, and above 95% strongly supported.
-
-```{block, type='rmdquestion'}
-### Question 4
-
-- Before opening the envelope: which of your three trees do you trust the most, and why? Which specific relationships would you bet money on?
-```
-
-### Open the envelope
-
-6. Now compare each reconstruction to the truth. The **Robinson-Foulds (RF) distance** counts how many branches (splits) are in one tree but not the other. **RF = 0 means you got the tree exactly right.** For 12 creatures, the worst possible score is 18.
-
-```
-true_tree <- read.tree("SEALED_true_tree.nwk")
-
-for (len in c(20, 100, 1000)) {
-  tr <- read.tree(paste0("creatures_", len, "bp.treefile"))
-  cat(len, "bp -> RF distance:", RF.dist(true_tree, tr, rooted = FALSE), "\n")
-}
-```
-
-7. Put the truth and your best guess side by side. The lines connect the same creature in both trees:
-
-```
-est <- read.tree("creatures_1000bp.treefile")
-est <- root(est, outgroup = true_tree$tip.label[1], resolve.root = TRUE)
-true_rooted <- root(true_tree, outgroup = true_tree$tip.label[1], resolve.root = TRUE)
-cophyloplot(true_rooted, est,
-            assoc = cbind(true_rooted$tip.label, true_rooted$tip.label),
-            length.line = 4, space = 60, gap = 3)
-title("Truth (left) vs. IQ-tree 1000 bp (right)")
-```
-
-8. Fill in this table and add your numbers to the **class spreadsheet** (link on Moodle). We'll plot everyone's results together at the end of class.
-
-| Alignment length | RF distance to the truth | Lowest bootstrap value in the tree |
-|---|---|---|
-| 20 bp | | |
-| 100 bp | | |
-| 1,000 bp | | |
-
-```{block, type='rmdquestion'}
-### Questions 5 - 7
-
-- How did the amount of data affect how close you got to the truth?
-- Find a branch in your 20 bp or 100 bp tree that was **wrong** (not in the true tree). What was its bootstrap value? Find a branch that was **right**. What was its bootstrap value? What does this tell you about what bootstrap values actually mean?
-- Looking at the class plot: is there a length where pretty much everyone got the right tree? In real life you never have the envelope. Why does this experiment matter for the trees you'll build later in your career?
-```
-
-## Part 2: The Campus Outbreak
-
-### The case
+## The case
 
 > **URGENT – Office of the Dean of Students**
 >
@@ -169,25 +33,41 @@ title("Truth (left) vs. IQ-tree 1000 bp (right)")
 >
 > We need to know: **Where did this come from? Is it spreading between dorms? Who is to blame?**
 
-9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from (here)[https://github.com/Tabima/BIOL123/raw/refs/heads/main/Lab6/outbreak_data.zip]  and put them in your folder.
+## Introduction to `IQ-tree`
 
-### Align the sequences
+For this part, you'll build the tree yourself. We will use [`IQ-tree`](http://www.iqtree.org/), one of the most widely used programs for building phylogenetic trees. `IQ-tree`:
 
-10. Unlike your creatures, these sequences have insertions and deletions, so they need aligning first. Align them with `MAFFT`:
+- Uses **maximum likelihood**: it searches for the tree that makes your data most probable under a model of evolution.
+- Runs **ModelFinder** first to pick the best model of substitution for your data (remember AIC/BIC from lecture).
+- Runs **ultrafast bootstraps** to tell you how much to trust each branch. Bootstrap values above 75% are generally considered well supported, and above 95% strongly supported.
+
+The basic command, run from the **Terminal**, is:
 
 ```
-system('mafft --auto outbreak_unaligned.fasta > outbreak_aligned.fasta')
+iqtree2 -s your_alignment.fasta -B 1000
+```
+
+> **Tip:** `IQ-tree` won't overwrite an earlier run with the same name. If you need to rerun something, add `-redo` to the command.
+
+9. Download `outbreak_unaligned.fasta` and `outbreak_metadata.csv` from Moodle and put them in your `~/phylo_lab` folder.
+
+## Align the sequences
+
+10. These sequences have insertions and deletions, so they need aligning first. Align them with `MAFFT`:
+
+```
+mafft --auto outbreak_unaligned.fasta > outbreak_aligned.fasta
 ```
 
 11. Build the tree:
 
 ```
-system('iqtree2 -s outbreak_aligned.fasta -B 1000 --prefix outbreak')
+iqtree2 -s outbreak_aligned.fasta -B 1000 --prefix outbreak
 ```
 
 12. Plot it in R, coloring the samples by where they came from:
 
-```
+```{r, eval=FALSE}
 meta <- read.csv("outbreak_metadata.csv")
 tr   <- read.tree("outbreak.treefile")
 tr   <- root(tr, outgroup = "Outgroup_Cordyceps", resolve.root = TRUE)
@@ -209,38 +89,28 @@ legend("right", legend = names(colors), text.col = colors, bty = "n")
 - Something is very wrong with one sample. Which one, and what about the tree tells you so? Open `outbreak_aligned.fasta` in the [NCBI MSA viewer](https://www.ncbi.nlm.nih.gov/projects/msaviewer/) (use `Coloring -> Nucleic Acid Colors`) to look at that sample. What do you see?
 ```
 
-### Fix it
+## Fix it
 
 13. Somebody in the sequencing facility loaded one sample backwards: it's the **reverse complement** of the real sequence. `MAFFT` can detect and flip backwards sequences for you:
 
 ```
-system('mafft --adjustdirectionaccurately --auto outbreak_unaligned.fasta > outbreak_fixed.fasta')
-system('iqtree2 -s outbreak_fixed.fasta -B 1000 --prefix outbreak_fixed')
+mafft --adjustdirectionaccurately --auto outbreak_unaligned.fasta > outbreak_fixed.fasta
+iqtree2 -s outbreak_fixed.fasta -B 1000 --prefix outbreak_fixed
 ```
 
 `MAFFT` adds `_R_` to the start of the name of any sequence it flipped. Run `grep "_R_" outbreak_fixed.fasta` to check which one it was. Then clean up the name in R before plotting, and replot your tree using `outbreak_fixed.treefile`:
 
-```
+```{r, eval=FALSE}
 tr <- read.tree("outbreak_fixed.treefile")
-tr <- midpoint(tr)
 tr$tip.label <- sub("^_R_", "", tr$tip.label)
-
-colors <- c("Forest" = "darkgreen", "LabStock" = "purple", "Smoothie" = "orange",
-            "Infected student" = "red", "Outgroup (C. militaris)" = "grey40")
-tip_source <- meta$source[match(tr$tip.label, meta$sample)]
-
-par(mfrow = c(1, 1))
-plot(tr, tip.color = colors[tip_source], cex = 0.8)
-nodelabels(tr$node.label, frame = "none", adj = c(1.2, -0.4), cex = 0.6)
-add.scale.bar()
-legend("right", legend = names(colors), text.col = colors, bty = "n")
+# ...then root and plot exactly as in step 12
 ```
 
-### Solve the case
+## Solve the case
 
 14. Now color the infected students by **dorm** instead of by source:
 
-```
+```{r, eval=FALSE}
 tip_dorm <- meta$dorm[match(tr$tip.label, meta$sample)]
 dorm_colors <- ifelse(is.na(tip_dorm), "grey60",
                       ifelse(tip_dorm == "Dorm_A", "blue", "red"))
@@ -252,7 +122,7 @@ legend("right", legend = c("Dorm A", "Dorm B", "Not a patient"),
 
 15. Use code to check your hypotheses. `is.monophyletic()` tells you whether a group of samples forms a single clade with nothing else mixed in:
 
-```
+```{r, eval=FALSE}
 patients <- grep("Patient", tr$tip.label, value = TRUE)
 is.monophyletic(tr, patients)
 is.monophyletic(tr, c(patients, "Smoothie_LotA", "Smoothie_LotB"))
@@ -267,4 +137,173 @@ is.monophyletic(tr, c(patients, "LabStock_1", "LabStock_2", "LabStock_3"))
 - The mycology lab strains are not the source, but they are fairly closely related to the outbreak. Why might someone who looked at the tree too quickly have blamed the lab?
 - Are there separate transmission clusters for each dorm? One student's tree position doesn't match their dorm. Who is it, and what could explain it? (Think about how students from different dorms might come into contact.)
 ```
+
+***
+
+# Part 2: Is Everything Turning Into a Crab?
+
+## Carcinization
+
+In 1916 the zoologist L.A. Borradaile noticed that unrelated crustaceans kept evolving into crab-shaped animals, and called it *"one of the many attempts of Nature to evolve a crab."* The process now has a name: **carcinization**.
+
+Here's the twist: not every crab is a crab.
+
+- **True crabs (Brachyura):** blue crabs, edible crabs, spider crabs, ghost crabs...
+- **False crabs (Anomura):** the relatives of hermit crabs and squat lobsters. Some of them (king crabs, porcelain crabs) look *exactly* like crabs, but evolved that shape on their own.
+
+Evolution can also go the other way: some crab-shaped lineages *lost* the crab body. That's called **decarcinization**.
+
+In this lab, an animal counts as **crab-like** if it has **both** of these:
+
+1. a wide, flat, hard upper shell (the carapace), and
+2. the abdomen (the "tail") folded tightly underneath the body.
+
+A hermit crab has a soft abdomen curled into a snail shell, so it's not crab-like. A lobster has a long tail sticking out the back, so it's not crab-like either.
+
+**Ancestral state reconstruction (ASR)** takes a tree and the traits we can see in living species, and estimates what the traits were in ancestors we can't see. That lets us count how many times a trait was gained or lost.
+
+## The data
+
+We'll use 36 decapod crustaceans. The tree is a simplified version of published phylogenies of crabs and their relatives (Bracken-Grissom et al. 2013, *BMC Evolutionary Biology*; Wolfe et al. 2021, *BioEssays*). Some relationships are still debated, so where the experts don't agree, the tree has a **polytomy** (a node with more than two branches).
+
+1. Load the tree and the trait data:
+
+```{r, eval=FALSE}
+decapods <- read.tree(text = "((Homarus_americanus,Procambarus_clarkii),((Dromia_personata,(Homola_barbata,(Ranina_ranina,((Callinectes_sapidus,Cancer_pagurus,Macrocheira_kaempferi,Carcinus_maenas,Menippe_mercenaria),(Ocypode_quadrata,Leptuca_pugilator,Grapsus_grapsus))))),((Emerita_analoga,Emerita_talpoida,Hippa_pacifica),((Aegla_platensis,(Lomis_hirta,Kiwa_hirsuta,Uroptychus_nitidus)),(Munida_gregaria,Galathea_strigosa,Pleuroncodes_planipes,(Petrolisthes_cinctipes,Petrolisthes_armatus,Porcellana_platycheles,Euceramus_praelongus)),((Dardanus_venosus,Clibanarius_vittatus,(Coenobita_clypeatus,Birgus_latro)),(Pagurus_bernhardus,Pagurus_longicarpus,(Paralithodes_camtschaticus,Paralithodes_platypus,Lithodes_maja)))))));")
+
+# 1 = crab-like, 0 = not crab-like
+crab_like <- c(
+  # Outgroups: lobster and crayfish
+  Homarus_americanus = 0,          # American lobster
+  Procambarus_clarkii = 0,         # red swamp crayfish
+  # True crabs (Brachyura)
+  Dromia_personata = 1,            # sponge crab (wears a sponge as a hat)
+  Homola_barbata = 0,              # carrier crab (tucked abdomen but narrow shell)
+  Ranina_ranina = 0,               # frog crab / spanner crab
+  Callinectes_sapidus = 1,         # Atlantic blue crab
+  Cancer_pagurus = 1,              # edible crab
+  Macrocheira_kaempferi = 1,       # Japanese spider crab (legs up to ~4 m across!)
+  Carcinus_maenas = 1,             # European green crab
+  Menippe_mercenaria = 1,          # Florida stone crab
+  Ocypode_quadrata = 1,            # Atlantic ghost crab
+  Leptuca_pugilator = 1,           # sand fiddler crab
+  Grapsus_grapsus = 1,             # Sally Lightfoot crab
+  # False crabs (Anomura)
+  Emerita_analoga = 0,             # Pacific mole crab / sand crab
+  Emerita_talpoida = 0,            # Atlantic mole crab
+  Hippa_pacifica = 0,              # mole crab
+  Aegla_platensis = 0,             # freshwater squat lobster
+  Lomis_hirta = 1,                 # hairy stone crab (only found in southern Australia)
+  Kiwa_hirsuta = 0,                # yeti crab (hairy, lives on deep-sea vents)
+  Uroptychus_nitidus = 0,          # deep-sea squat lobster
+  Munida_gregaria = 0,             # Patagonian squat lobster
+  Galathea_strigosa = 0,           # spiny squat lobster
+  Pleuroncodes_planipes = 0,       # "tuna crab" (actually a squat lobster)
+  Petrolisthes_cinctipes = 1,      # flat porcelain crab
+  Petrolisthes_armatus = 1,        # green porcelain crab
+  Porcellana_platycheles = 1,      # broad-clawed porcelain crab
+  Euceramus_praelongus = 0,        # olivepit porcelain crab (long and skinny)
+  Dardanus_venosus = 0,            # star-eye hermit crab
+  Clibanarius_vittatus = 0,        # thinstripe hermit crab
+  Coenobita_clypeatus = 0,         # Caribbean land hermit crab (the pet store one)
+  Birgus_latro = 0,                # coconut crab (a giant hermit crab that ditched the shell)
+  Pagurus_bernhardus = 0,          # common hermit crab
+  Pagurus_longicarpus = 0,         # long-wristed hermit crab
+  Paralithodes_camtschaticus = 1,  # red king crab
+  Paralithodes_platypus = 1,       # blue king crab
+  Lithodes_maja = 1                # Norway king crab
+)
+```
+
+2. Our ASR methods need every node to split in two, so we'll randomly resolve the polytomies with `multi2di()`. We don't have real branch lengths for this tree (it was assembled from several studies), so we'll set every branch to length 1.
+
+```{r, eval=FALSE}
+set.seed(1)
+tr <- multi2di(decapods)
+tr <- compute.brlen(tr, 1)
+
+body <- setNames(ifelse(crab_like[tr$tip.label] == 1, "crab", "not_crab"), tr$tip.label)
+cols <- c(crab = "orangered", not_crab = "steelblue")
+
+plot(tr, cex = 0.7, label.offset = 0.1, tip.color = cols[body])
+legend("topleft", legend = c("crab-like", "not crab-like"), fill = cols, bty = "n")
+```
+
+```{block, type='rmdquestion'}
+### Questions 1 - 2
+
+- **Make a prediction before you run anything.** Just by looking at the tree and the colors, how many times do you think the crab body evolved? Was the common ancestor of all crabs (true and false) crab-like?
+- King crabs look like true crabs. Where are they on the tree, and who are their closest relatives? Does that surprise you?
+```
+
+## Method 1: Parsimony
+
+3. **Parsimony** asks: what is the *smallest* number of changes (gains or losses of the crab body) needed to explain the colors on the tips?
+
+```{r, eval=FALSE}
+body_data <- phyDat(as.matrix(body), type = "USER", levels = c("crab", "not_crab"))
+parsimony(tr, body_data)
+```
+
+```{block, type='rmdquestion'}
+### Question 3
+
+- What is the minimum number of changes? Draw (or describe) one scenario on the tree that uses exactly that number of changes. How many are gains and how many are losses in your scenario?
+```
+
+## Method 2: Maximum likelihood
+
+4. Parsimony gives one answer and no measure of uncertainty. **Maximum likelihood** fits a model where the trait can switch between states at some rate, and gives the **probability** that each ancestor was crab-like:
+
+```{r, eval=FALSE}
+fit <- ace(body, tr, type = "discrete", model = "ER")
+
+plot(tr, cex = 0.7, label.offset = 0.1, tip.color = cols[body])
+nodelabels(pie = fit$lik.anc, piecol = cols, cex = 0.5)
+legend("topleft", legend = c("crab-like", "not crab-like"), fill = cols, bty = "n")
+```
+
+Each pie chart is an ancestor. The more orange the pie, the more likely that ancestor was crab-like.
+
+5. Let's get the exact probabilities for some important ancestors. `getMRCA()` finds the most recent common ancestor of two species:
+
+```{r, eval=FALSE}
+anc <- fit$lik.anc
+rownames(anc) <- (Ntip(tr) + 1):(Ntip(tr) + tr$Nnode)
+
+prob_crab <- function(sp1, sp2) {
+  round(anc[as.character(getMRCA(tr, c(sp1, sp2))), "crab"], 2)
+}
+
+prob_crab("Dromia_personata", "Lithodes_maja")        # ancestor of ALL crabs (true + false)
+prob_crab("Emerita_analoga", "Lithodes_maja")         # ancestor of false crabs (Anomura)
+prob_crab("Dromia_personata", "Ocypode_quadrata")     # ancestor of true crabs (Brachyura)
+prob_crab("Pagurus_bernhardus", "Lithodes_maja")      # ancestor of hermit crabs + king crabs
+```
+
+```{block, type='rmdquestion'}
+### Questions 4 - 5
+
+- Was the ancestor of the false crabs (Anomura) crab-like? Was the ancestor of the true crabs (Brachyura)? How confident is each answer? Based on this, how many times did the crab body evolve *within* the true crabs?
+- King crabs are crab-like. Their ancestor with hermit crabs was not. So what was the ancestor of king crabs carrying around on its back?
+```
+
+## Method 3: Counting gains and losses
+
+6. **Stochastic character mapping** simulates 100 possible histories of the trait on the tree, in proportion to how likely each one is. Then we can count how many gains and losses happen in an average history:
+
+```{r, eval=FALSE}
+maps <- make.simmap(tr, body, model = "ER", nsim = 100, message = FALSE)
+history <- summary(maps)
+
+colMeans(history$count)   # N = total changes; then crab -> not_crab (losses), not_crab -> crab (gains)
+plot(history, colors = cols, fsize = 0.6)
+```
+
+```{block, type='rmdquestion'}
+### Question 6
+
+- On average, how many times was the crab body **gained** and how many times was it **lost**? Why is the total higher than the parsimony number from Question 3?
+```
+
 
